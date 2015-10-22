@@ -12,20 +12,20 @@ public interface CoinGameModel {
    * Does this by checking if game is over, and if so, who last played
    * @return unique value of the winner, or 0 if game is not over
    */
-  int winner();
+  String winner();
   /**
    * Gets the unique value identifying the player whose turn it currently is
    *
    * @return unique value of the current player, or 0 if the game is over
    */
-  int currentPlayer();
+  String currentPlayer();
 
   /**
    * Lists all players, by order, with the next in play at a[0]
    *
    * @returns an ArrayList of player indices
    */
-  ArrayList<Integer> getPlayers();
+  LinkedList<String> getPlayers();
 
   /**
    * Adds a new player to the game
@@ -33,7 +33,7 @@ public interface CoinGameModel {
    * @return unique value identifying the player, starting with 1
    * @throws IllegalStateException the game is over
    */
-  int addPlayer();
+  String addPlayer();
 
   /**
    * Gets the size of the board (the number of squares)
