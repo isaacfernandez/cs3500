@@ -1,116 +1,139 @@
-package cs3500.hw04;
-import java.util.*;
+package cs3500.hw03;
 
-/**
- * You don't need to implement this class or any concrete subclasses
- * for pset03.
- */
+import java.util.LinkedList;
+
 public final class StrictCoinGameModel implements CoinGameModel {
 
   /**
-   *  The state of the board, represented internally as 0s and 1s
-   *  1s represent coins, 0s empty spaces
+   * Represents the state of the game. An element is true if there is a coin at that location. If
+   * there is no coin at that location, the element is false.
+   *
+   * INVARIANT: The number of spaces in the game {@code gameState.length()}
+   * cannot change during the game.
    */
-  private int[] boardState;
+  private final boolean[] gameState;
 
   /**
-   * Players are represented as integers
-   * Keeps track of all players and current play order.
-   * players.get(0) is the current player.
+   * Represents the players in the game. The player whose turn it is is the first element in the
+   * list ({@code player.get(0)})
+   *
+   * INVARIANT: Each String in {@code players} is unique (no two players share the same name).
+   * INVARIANT: {@code players} cannot be empty.
+   * INVARIANT: {@code players} cannot decrease in size (a player cannot leave the game).
    */
-  private ArrayList<Integer> players;
+  private LinkedList<String> players;
+
   /**
-   * INVARIANT: players never decreases in size. When a player takes his turn, he will be removed
-   * from the front of the list and immediately reinserted into the back.
-   * INVARIANT: All entries in players are unique. No two players should share the same id.
-   * INVARIANT: Not empty.
-   * INVARIANT: players is only to be modified as follows:
-   *<ul>
-   *     <li>Integer i = players.remove(0), only if followed by players.add(i)</li>
-   *     <li>players.add(Integer i), where i is not already in players.</li>
-   *</ul>
-   * This maintains that the players are always in the proper play order
+   * Constructs a new StrictCoinGameModel.
+   * Takes a String {@code board} as the String representation of the initial game state. Throws an
+   * {@code IllegalArgumentException} if there are any characters in {@code board} that are not "-"
+   * or "O"(that is the uppercase o, not the number 0). Calls {@code stringToBoard}.
+   * Takes an arbitrary number of String {@code players}, which represent the names of each of the
+   * starting players. Throws an {@code IllegalArgumentException} if there are any non-unique
+   * (repeat) names. Throws an {@code IllegalArgumentException} if there are no players.
    *
    *
-   *
-  /**
-   * Constructs a CoinGameModel following StrictGameModel rules. A Coin Game consists of a board
-   * and an n number of players.
-   * The board shall be represented as a string, whose characters are either O (uppercase 0) or '-'
-   * The O represents a coin and the - an empty spot.
-   * The players are provided as an ArrayList\<Integer\>,
-   *
-   * @param players ArrayList<Integer> Representing the players and play order
-   * @param board String representing the board state
-   * @throws IllegalArgumentException if the boardstate is not valid or there are no players
+   * @param board The String state of the board, represented with - for an empty space and O for
+   *              a space with a coin.
+   * @param players The unique String name of each starting player.
+   * @throws IllegalArgumentException board contains characters other than - and O.
+   * @throws IllegalArgumentException there are any player names that are not unique
+   *  (more than one player with the same name).
+   * @throws IllegalArgumentException there are no players
    */
-  protected StrictCoinGameModel(String board, ArrayList<Integer> players) {
-    // You don't need to implement this constructor.
+  protected StrictCoinGameModel(String board, String... players) {
     throw new UnsupportedOperationException("no need to implement this");
   }
 
   /**
-   * Default constructor. Requires, at minimum, the initial board state. Will default to one player,
-   * but supports adding additional players.
+   * Returns an array of booleans that represent the String {@code board}. Throws an
+   * {@code IllegalArgumentException} if there are any characters in {@code board} that are not "-"
+   * or "O"(that is the uppercase o, not the integer 0).-
+   * Called in {@code StrictCoinGameModel}.
+   *
+   * @return the boolean array board representation
+   * @throws IllegalArgumentException board contains characters other than - and O.
    */
-  public static final class Builder {
-    int playerCounter = 0;
-    ArrayList<Integer> players;
-    String board;
-
-    /** Construct a builder with 1 player and the given boardstate
-     * @param board Initial board state
-     */
-    public Builder(String board) {
-      this.board = board;
-      players = new ArrayList();
-      this.addPlayer();
-    }
-    /**
-     * Constructs the game with n number of players
-     * @param board Initial board state
-     * @param n Number of players
-     */
-    public Builder(String board, int n) {
-      this.board = board;
-      for (int i = 0; i < n; i++) {
-        this.addPlayer();
-      }
-    }
-
-    /**Adds a player to the game
-     * @return this
-     */
-    public Builder addPlayer() {
-      this.playerCounter++;
-      players.add(new Integer(playerCounter));
-      return this;
-    }
-
-    /** Rotates the player with so that the starting player is player i
-     * @param i The player who will start
-     * @return this
-     */
-    public Builder startWith(int i) {
-      //TODO
-      return this;
-    }
-
-    /**
-     * Creates a StrictCoinGameModel as specified
-     * @return StrictCoinGame Model
-     */
-    public StrictCoinGameModel build() {
-      //TODO
-      return new StrictCoinGameModel(board, players);
-    }
+  protected static boolean[] stringToBoard(String board) {
+    return new boolean[0]; //actual implementation would go here
   }
 
-  // You don't need to implement any methods or constructors. However,
-  // if you want to make sure your code compiles, you could have your
-  // IDE generate stubs for all the missing methods. This would also
-  // allow you to make sure that your tests in StrictCoinGameModelTest
-  // actually type check and compile against this class (though you
-  // don’t need to make them pass, because you don’t need to implement
-  // StrictCoinGameModel’s methods).
+  /**
+   * Returns a String representation of the {@code gameState}, with O standing for coins and
+   * - standing for empty spaces.
+   *
+   * @return String representation of the game
+   */
+  protected String gameStateToString() {
+    return "";
+  }
+
+  /**
+   * Returns a list of players separated by commas.
+   * For example, if players = {"A", "B", "C"}, the String returned would be "A, B, C"
+   * A one player game would just return the name of that player.
+   *
+   * @return String representation of the game
+   */
+  protected String playersToString() {
+    return "";
+  }
+
+  @Override
+  public int boardSize() {
+    return 0;
+  }
+
+  @Override
+  public int coinCount() {
+    return 0;
+  }
+
+  @Override
+  public int getCoinPosition(int coinIndex) {
+    return 0;
+  }
+
+  @Override
+  public boolean isGameOver() {
+    return false;
+  }
+
+  @Override
+  //
+  public void move(int coinIndex, int newPosition) {
+
+  }
+
+  @Override
+  public void addPlayer(String name) {
+
+  }
+
+  public void addPlayer(int n, String name) {
+
+  }
+
+
+  /**
+   * Switches the player whose move it is to the next player by rotating the list so that the
+   * current player (player at {@code players.get(0)} is now at the end of players, and the player
+   * after that player is now at {@code players.get(0)}
+   * If there is only 1 player, it stays that players turn.
+   *
+   */
+  @Override
+  public void nextTurn() {
+  }
+
+  @Override
+  public String currentPlayer() {
+    return null;
+  }
+
+  @Override
+  public String winner() {
+    return null;
+  }
+
 }
