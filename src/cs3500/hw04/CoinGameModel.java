@@ -8,15 +8,17 @@ import java.util.*;
 public interface CoinGameModel {
 
   /**
-   * Get the winner of the game, or 0 if the game is not over yet
+   * Get the winner of the game
    * Does this by checking if game is over, and if so, who last played
-   * @return unique value of the winner, or 0 if game is not over
+   * @return name of the winner
+   * @throws IllegalArgumentException if game is not over
    */
   String winner();
+
   /**
-   * Gets the unique value identifying the player whose turn it currently is
+   * Gets the string identifying the player whose turn it currently is
    *
-   * @return unique value of the current player, or 0 if the game is over
+   * @return string of the current player
    */
   String currentPlayer();
 
@@ -34,6 +36,18 @@ public interface CoinGameModel {
    * @throws IllegalStateException the game is over
    */
   String addPlayer();
+
+  /**
+   * Adds a new player to the game n turns after the current player
+   * @param {@code n} Turns after current player
+   *
+   * @return unique value identifying the player, starting with 1
+   * @throws IllegalStateException the game is over
+   * @thorws IllegalArgumentException if name is already used
+   * @throws IllegalArgumentException if n > # of players
+   */
+  String addPlayer(int n, String name);
+
 
   /**
    * Gets the size of the board (the number of squares)

@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="eb00e188-96c9-4060-b96f-d019621c564d" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cs3500/hw04/CoinGameModel.java" afterPath="$PROJECT_DIR$/src/cs3500/hw04/CoinGameModel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="hw04.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -48,8 +47,8 @@
       <file leaf-file-name="CoinGameModel.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/cs3500/hw04/CoinGameModel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-1.1086262">
-              <caret line="35" column="4" selection-start-line="35" selection-start-column="4" selection-end-line="35" selection-end-column="4" />
+            <state vertical-scroll-proportion="-0.3">
+              <caret line="10" column="31" selection-start-line="10" selection-start-column="31" selection-end-line="10" selection-end-column="31" />
               <folding />
             </state>
           </provider>
@@ -375,8 +374,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/cs3500/hw04/CoinGameModel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.1086262">
-          <caret line="35" column="4" selection-start-line="35" selection-start-column="4" selection-end-line="35" selection-end-column="4" />
+        <state vertical-scroll-proportion="-0.3">
+          <caret line="10" column="31" selection-start-line="10" selection-start-column="31" selection-end-line="10" selection-end-column="31" />
           <folding />
         </state>
       </provider>
