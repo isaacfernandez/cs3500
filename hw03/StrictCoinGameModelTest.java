@@ -1,8 +1,3 @@
-/*
- Regan Dvoskin Homework 3
- OOD Fall 2015
-  */
-
 package cs3500.hw03;
 
 import org.junit.Test;
