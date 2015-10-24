@@ -65,7 +65,16 @@ public final class StrictCoinGameModel implements CoinGameModel {
    * @return String representation of the game
    */
   protected String gameStateToString() {
-    return "";
+    String game = "";
+    for (int x = 0; x < this.boardSize(); x = x + 1) {
+      if (this.gameState[x]) {
+        game = game + "O";
+      } else {
+        game = game + "-";
+      }
+    }
+    return game;
+  }
   }
 
   /**
@@ -76,27 +85,71 @@ public final class StrictCoinGameModel implements CoinGameModel {
    * @return String representation of the game
    */
   protected String playersToString() {
-    return "";
   }
 
+  /**
+   * Gets the size of the board (the number of squares)
+   *
+   * @return the board size
+   */
   @Override
   public int boardSize() {
-    return 0;
+    return this.gameState.length;
   }
 
+  /**
+   * Gets the number of coins.
+   *
+   * @return the number of coins
+   */
   @Override
   public int coinCount() {
-    return 0;
+    int coins = 0; // number of coins seen so far
+    for (int x = 0; x < this.boardSize(); x = x + 1) {
+      if (this.gameState[x]) {
+        coins = coins + 1;
+      }
+    }
+    return coins;
   }
 
+  /**
+   * Gets the (zero-based) position of coin number {@code coinIndex}.
+   *
+   * @param coinIndex which coin to look up
+   * @return the coin's position
+   * @throws IllegalArgumentException
+   *     if there is no coin with the requested index
+   */
   @Override
   public int getCoinPosition(int coinIndex) {
-    return 0;
+    int coinNumber = -1; //represents coin index of the most recently seen coin
+    for (int x = 0; x < this.boardSize(); x = x + 1) {
+      if (this.gameState[x]) {
+        coinNumber = coinNumber + 1;
+        if (coinNumber == coinIndex) {
+          return x;
+        }
+      }
+    }
+    throw new IllegalArgumentException("Coin " + coinIndex + " does not exist!");
   }
 
+  /**
+   * Returns whether the current game is over. The game is over if there are
+   * no valid moves.
+   *
+   * @return whether the game is over
+   */
   @Override
   public boolean isGameOver() {
-    return false;
+    int coins = this.coinCount();
+    for (int x = 0; x < coins; x = x + 1) {
+      if (!this.gameState[x]) {
+        return false;
+      }
+    }
+    return true;
   }
 
   @Override
