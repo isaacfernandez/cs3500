@@ -53,6 +53,151 @@ public class StrictCoinGameModelTest {
   }
 
   /*
+  boardSize tests.
+  */
+  @Test
+  public void testBoardSize0() {
+    assertEquals(this.game0.boardSize(), 0);
+  }
+
+  @Test
+  public void testBoardSize1() {
+    assertEquals(this.game1.boardSize(), 4);
+  }
+
+  @Test
+  public void testBoardSize2() {
+    assertEquals(this.game2.boardSize(), 3);
+  }
+
+  @Test
+  public void testBoardSize3() {
+    assertEquals(this.game3.boardSize(), 6);
+  }
+
+  @Test
+  public void testBoardSize4() {
+    assertEquals(this.game4.boardSize(), 10);
+  }
+
+  @Test
+  public void testBoardSize5() {
+    assertEquals(this.game6.boardSize(), 5);
+  }
+
+  /*
+  coinCount tests.
+  */
+  @Test
+  public void testCointCount0() {
+    assertEquals(this.game0.coinCount(), 0);
+  }
+
+  @Test
+  public void testCointCount1() {
+    assertEquals(this.game1.coinCount(), 0);
+  }
+
+  @Test
+  public void testCointCount2() {
+    assertEquals(this.game2.coinCount(), 2);
+  }
+
+  @Test
+  public void testCointCount3() {
+    assertEquals(this.game3.coinCount(), 4);
+  }
+
+  @Test
+  public void testCointCount4() {
+    assertEquals(this.game4.coinCount(), 2);
+  }
+
+  @Test
+  public void testCointCount5() {
+    assertEquals(this.game6.coinCount(), 5);
+  }
+
+  /*
+  getCoinPosition exception tests.
+  */
+  @Test(expected = IllegalArgumentException.class)
+  public void testCoinPosException0() {
+    this.game0.getCoinPosition(0);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testCoinPosException1() {
+    this.game6.getCoinPosition(5);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testCoinPosException2() {
+    this.game4.getCoinPosition(2);
+  }
+
+  /*
+  getCoinPosition tests.
+   */
+  @Test
+  public void testCoinPos0() {
+    assertEquals(this.game2.getCoinPosition(0), 0);
+  }
+
+  @Test
+  public void testCoinPos1() {
+    assertEquals(this.game2.getCoinPosition(1), 2);
+  }
+
+  @Test
+  public void testCoinPos2() {
+    assertEquals(this.game4.getCoinPosition(0), 4);
+  }
+
+  @Test
+  public void testCoinPos3() {
+    assertEquals(this.game6.getCoinPosition(4), 4);
+  }
+
+  /*
+  isGameOver tests
+  */
+  @Test
+  public void testIsGameOver0() {
+    assertEquals(this.game0.isGameOver(), true);
+  }
+
+  @Test
+  public void testIsGameOver1() {
+    assertEquals(this.game1.isGameOver(), true);
+  }
+
+  @Test
+  public void testIsGameOver2() {
+    assertEquals(this.game2.isGameOver(), false);
+  }
+
+  @Test
+  public void testIsGameOver3() {
+    assertEquals(this.game3.isGameOver(), false);
+  }
+
+  @Test
+  public void testIsGameOver4() {
+    assertEquals(this.game4.isGameOver(), false);
+  }
+
+  @Test
+  public void testIsGameOver5() {
+    assertEquals(this.game6.isGameOver(), true);
+  }
+
+  @Test
+  public void testIsGameOver7() {
+    assertEquals(this.game7.isGameOver(), true);
+  }
+
+  /*
   gameStateToString tests.
    */
   @Test
