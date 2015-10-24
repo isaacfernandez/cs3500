@@ -1,5 +1,6 @@
 package cs3500.hw03;
 
+import java.lang.Override;
 import java.util.LinkedList;
 
 public final class StrictCoinGameModel implements CoinGameModel {
@@ -74,7 +75,6 @@ public final class StrictCoinGameModel implements CoinGameModel {
       }
     }
     return game;
-  }
   }
 
   /**
@@ -153,37 +153,63 @@ public final class StrictCoinGameModel implements CoinGameModel {
   }
 
   @Override
-  //
   public void move(int coinIndex, int newPosition) {
 
   }
 
+  /**
+   * Adds a new player to the game n turns after the current player
+   * @param {@code n} Turns after current player
+   *
+   * @return unique value identifying the player, starting with 1
+   * @throws IllegalStateException the game is over
+   * @thorws IllegalArgumentException if name is already used
+   * @throws IllegalArgumentException if n > # of players
+   */
   @Override
   public void addPlayer(String name) {
-
   }
 
+  /**
+   * Adds a new player to the game n turns after the current player
+   * @param {@code n} Turns after current player
+   *
+   * @return unique value identifying the player, starting with 1
+   * @throws IllegalStateException the game is over
+   * @thorws IllegalArgumentException if name is already used
+   * @throws IllegalArgumentException if n > # of players
+   */
+  @Override
   public void addPlayer(int n, String name) {
 
   }
-
 
   /**
    * Switches the player whose move it is to the next player by rotating the list so that the
    * current player (player at {@code players.get(0)} is now at the end of players, and the player
    * after that player is now at {@code players.get(0)}
    * If there is only 1 player, it stays that players turn.
-   *
    */
   @Override
   public void nextTurn() {
   }
 
-  @Override
+  /**
+   * Gets the string identifying the player whose turn it currently is
+   * (the player at the index 0 in players)
+   *
+   * @return string of the current player
+   */
   public String currentPlayer() {
-    return null;
+    return this.players.get(0); //can do this because invariant players cannot be empty
   }
 
+  /**
+   * Get the winner of the game
+   * Does this by checking if game is over, and if so, who last played
+   * @return name of the winner
+   * @throws IllegalArgumentException if game is not over
+   */
   @Override
   public String winner() {
     return null;

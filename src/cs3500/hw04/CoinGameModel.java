@@ -30,12 +30,16 @@ public interface CoinGameModel {
   LinkedList<String> getPlayers();
 
   /**
-   * Adds a new player to the game
+   * Adds a new player to the game n turns after the current player
+   * @param {@code n} Turns after current player
    *
    * @return unique value identifying the player, starting with 1
    * @throws IllegalStateException the game is over
+   * @thorws IllegalArgumentException if name is already used
+   * @throws IllegalArgumentException if n > # of players
    */
   String addPlayer();
+
 
   /**
    * Adds a new player to the game n turns after the current player
