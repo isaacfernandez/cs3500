@@ -1,5 +1,7 @@
 package cs3500.hw03;
 
+import java.lang.IllegalArgumentException;
+import java.lang.IllegalStateException;
 import java.lang.Override;
 import java.util.LinkedList;
 
@@ -32,7 +34,6 @@ public final class StrictCoinGameModel implements CoinGameModel {
    * Takes an arbitrary number of String {@code players}, which represent the names of each of the
    * starting players. Throws an {@code IllegalArgumentException} if there are any non-unique
    * (repeat) names. Throws an {@code IllegalArgumentException} if there are no players.
-   *
    *
    * @param board The String state of the board, represented with - for an empty space and O for
    *              a space with a coin.
@@ -88,7 +89,7 @@ public final class StrictCoinGameModel implements CoinGameModel {
   }
 
   /**
-   * Gets the size of the board (the number of squares)
+   * Gets the size of the board (the number of squares).
    *
    * @return the board size
    */
@@ -158,22 +159,29 @@ public final class StrictCoinGameModel implements CoinGameModel {
   }
 
   /**
-   * Adds a new player to the game n turns after the current player
-   * @param {@code n} Turns after current player
+   * Adds a new player to the game, to play next.
    *
+   * @param {@code name} The name of the new player
    * @return unique value identifying the player, starting with 1
    * @throws IllegalStateException the game is over
    * @thorws IllegalArgumentException if name is already used
-   * @throws IllegalArgumentException if n > # of players
    */
   @Override
   public void addPlayer(String name) {
+    if (this.isGameOver()) {
+      throw new IllegalStateException("The game is already over!");
+    } else if (this.players.contains(name)) {
+      throw new IllegalArgumentException("There is already a player with that name!");
+    } else {
+      this.players.add(1, name);
+    }
   }
 
   /**
    * Adds a new player to the game n turns after the current player
-   * @param {@code n} Turns after current player
    *
+   * @param {@code n} Turns after current player.
+   * @param {@code name} The name of the new player.
    * @return unique value identifying the player, starting with 1
    * @throws IllegalStateException the game is over
    * @thorws IllegalArgumentException if name is already used
@@ -181,7 +189,15 @@ public final class StrictCoinGameModel implements CoinGameModel {
    */
   @Override
   public void addPlayer(int n, String name) {
-
+    if (this.isGameOver()) {
+      throw new IllegalStateException("The game is already over!");
+    } else if (n > players.size()) {
+      throw new IllegalArgumentException("Too many turns ahead!");
+    } else if (this.players.contains(name)) {
+      throw new IllegalArgumentException("There is already a player with that name!");
+    } else {
+      this.players.add(n + 1, name);
+    }
   }
 
   /**
