@@ -129,7 +129,7 @@ public final class CoinGameTestScenarios {
 
     public static boolean scenario5(String board) {
         // Creates a CoinGameModel with THREE players from board:
-        CoinGameModel model = new StrictCoinGameModel(board, "p1", "p2", "p3" );
+        CoinGameModel model = new StrictCoinGameModel(board, "p1", "p2", "p3");
 
         // Moves coin index 1 to position 6:
         model.move(1, 6);

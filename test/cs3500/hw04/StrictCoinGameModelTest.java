@@ -4,6 +4,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 public class StrictCoinGameModelTest {
   StrictCoinGameModel game0 = new StrictCoinGameModel("", "");
@@ -472,5 +473,50 @@ public class StrictCoinGameModelTest {
     game.move(0, 0);
     game.winner();
   }
+
+
+  @Test
+  public void testAddThrowException() {
+    StrictCoinGameModel game = new StrictCoinGameModel("OOO---", ":o", ":)");
+    if (game.isGameOver() == false) {
+      fail("Game isn't over?");
+      return;
+    }
+    try {
+      game.addPlayer(":c");
+    } catch (IllegalStateException e) {
+      assertEquals(e.getMessage(), "The game is already over!");
+      return;
+    }
+    fail("Did not error");
+  }
+
+  @Test
+  public void testAddThrowException2() {
+    StrictCoinGameModel game = new StrictCoinGameModel("-OO---", ":o", ":)");
+
+    try {
+      game.addPlayer(100, ":c");
+    } catch (IllegalArgumentException e) {
+      assertEquals(e.getMessage(), "Too many turns ahead!");
+      return;
+    }
+    fail("Did not error");
+  }
+
+  @Test
+  public void testAddThrowException3() {
+    StrictCoinGameModel game = new StrictCoinGameModel("-OO---", ":o", ":)");
+    try {
+      game.addPlayer(":o");
+    } catch (IllegalArgumentException e) {
+      assertEquals(e.getMessage(), "There is already a player with that name!");
+      return;
+    }
+    fail("Did not error");
+  }
+
+
+
 
 }
