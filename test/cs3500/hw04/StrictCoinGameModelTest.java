@@ -1,6 +1,8 @@
 package cs3500.hw04;
 
 import org.junit.Test;
+
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
 public class StrictCoinGameModelTest {
@@ -355,7 +357,7 @@ public class StrictCoinGameModelTest {
    */
   @Test
   public void testAddPlayer0() {
-    StrictCoinGameModel game = new StrictCoinGameModel("", "!");
+    StrictCoinGameModel game = new StrictCoinGameModel("--O", "!");
     assertEquals(game.playersToString(), "!");
     game.addPlayer("someone");
     assertEquals(game.playersToString(), "!, someone");
@@ -371,7 +373,7 @@ public class StrictCoinGameModelTest {
     assertEquals(game.playersToString(), "abc, jkl, def, ghi");
     game.nextTurn();
     game.addPlayer("mno");
-    assertEquals(game.playersToString(), "abc, jkl, mno, def, ghi");
+    assertEquals(game.playersToString(), "jkl, mno, def, ghi, abc");
   }
 
   @Test
@@ -379,7 +381,7 @@ public class StrictCoinGameModelTest {
     StrictCoinGameModel game = new StrictCoinGameModel("----O----O", "me", "you");
     game.nextTurn();
     game.addPlayer("another dude");
-    assertEquals(game.playersToString(), "me, you, another dude");
+    assertEquals(game.playersToString(), "you, another dude, me");
     game.nextTurn();
     game.nextTurn();
     game.addPlayer(":o");
@@ -409,11 +411,17 @@ public class StrictCoinGameModelTest {
   @Test
   public void testWinner0() {
     StrictCoinGameModel game = new StrictCoinGameModel("OO--", "player 1", "player 2");
-    assertEquals(game.winner(), "player 1");
+    assertEquals(game.winner(), "player 2");
   }
 
   @Test
   public void testWinner1() {
+    StrictCoinGameModel game = new StrictCoinGameModel("OO--", "player 2", "player 1");
+    assertEquals(game.winner(), "player 1");
+  }
+
+  @Test
+  public void testWinner2() {
     StrictCoinGameModel game = new StrictCoinGameModel("O-----OO", "player 1", "player 2",
         "player 3");
     game.move(1, 1);
@@ -422,7 +430,7 @@ public class StrictCoinGameModelTest {
   }
 
   @Test
-  public void testWinner2() {
+  public void testWinner3() {
     StrictCoinGameModel game = new StrictCoinGameModel("O-----OO", "player 1", "player 2",
         "player 3");
     game.move(1, 3);
@@ -435,14 +443,14 @@ public class StrictCoinGameModelTest {
   /*
   winner exception tests
    */
-  @Test(expected = IllegalArgumentException.class)
+  @Test(expected = IllegalStateException.class)
   public void testWinnerException0() {
     StrictCoinGameModel game = new StrictCoinGameModel("O--O--OO", "player 1", "player 2",
         "player 3", "player 4");
     game.winner();
   }
 
-  @Test(expected = IllegalArgumentException.class)
+  @Test(expected = IllegalStateException.class)
   public void testWinnerException1() {
     StrictCoinGameModel game = new StrictCoinGameModel("-OOO", ":o", ":)");
     game.move(0, 0);

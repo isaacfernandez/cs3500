@@ -47,7 +47,7 @@ public final class StrictCoinGameModel implements CoinGameModel {
    */
   protected StrictCoinGameModel(String board, String... players) {
     this.players = new LinkedList<String>();
-    this.gameState = stringToBoard(board);
+    this.gameState = StrictCoinGameModel.stringToBoard(board);
     if (players.length == 0) {
       throw new IllegalArgumentException("No Players");
     }
@@ -71,20 +71,17 @@ public final class StrictCoinGameModel implements CoinGameModel {
    * @throws IllegalArgumentException board contains characters other than - and O.
    */
   protected static boolean[] stringToBoard(String board) {
-    boolean[] ret = new boolean[board.length()];
-    for (int i = 0; i < board.length(); i++) {
-      char c = board.charAt(i);
-      if (c == 'O') {
-        ret[i] = true;
-      }
-      else if (c == '-') {
-        ret[i] = false;
-      }
-      else {
-        throw new IllegalArgumentException("Os or -");
+    boolean[] arrayBoard = new boolean[board.length()];
+    for (int x = 0; x < board.length(); x = x + 1) {
+      if (board.substring(x, x + 1).equals("-")) {
+        arrayBoard[x] = false;
+      } else if (board.substring(x, x + 1).equals("O")) {
+        arrayBoard[x] = true;
+      } else {
+        throw new IllegalArgumentException("Invalid board.");
       }
     }
-    return ret;
+    return arrayBoard;
   }
 
   /**
@@ -262,7 +259,7 @@ public final class StrictCoinGameModel implements CoinGameModel {
    * @param {@code name} The name of the new player.
    * @return unique value identifying the player, starting with 1
    * @throws IllegalStateException the game is over
-   * @thorws IllegalArgumentException if name is already used
+   * @throws IllegalArgumentException if name is already used
    * @throws IllegalArgumentException if n > # of players
    */
   @Override
