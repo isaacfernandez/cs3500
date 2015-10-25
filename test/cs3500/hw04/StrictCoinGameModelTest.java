@@ -485,8 +485,8 @@ public class StrictCoinGameModelTest {
 
   @Test
   public void testMove3() {
-    StrictCoinGameModel mgame = new StrictCoinGameModel("----O----O", "runescape", "world of warcraft",
-        "league of legends" );
+    StrictCoinGameModel mgame = new StrictCoinGameModel("----O----O", "runescape",
+        "world of warcraft", "league of legends" );
     mgame.move(0, 1);
     assertEquals(mgame.gameStateToString(), "-O-------O");
     mgame.move(0,0);

@@ -1,5 +1,4 @@
 package cs3500.hw04;
-import java.util.*;
 
 /**
  * An interface for playing a coin game. The rules of a particular coin game
@@ -87,7 +86,7 @@ public interface CoinGameModel {
    * @param {@code n} Turns after current player
    * @param {@code name} The name of the new player
    * @throws IllegalStateException the game is over
-   * @thorws IllegalArgumentException if name is already used
+   * @throws IllegalArgumentException if name is already used
    * @throws IllegalArgumentException if n > # of players
    */
   void addPlayer(int n, String name);
