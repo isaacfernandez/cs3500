@@ -16,6 +16,21 @@ public class StrictCoinGameModelTest {
   StrictCoinGameModel game6 = new StrictCoinGameModel("OOOOO", "a");
   StrictCoinGameModel game7 = new StrictCoinGameModel("OO---", "???", "!!!", "?!?!?!");
 
+
+  //Helper because assertEquals(boolean[], boolean[]) doesn't exist
+  public static boolean booleanArrayEq(boolean[] a, boolean[] b) {
+    if (a.length != b.length) {
+      return false;
+    }
+    for (int i = 0; i < a.length; i++) {
+      if (a[i] != b[i]) {
+        return false;
+      }
+    }
+    return true;
+    }
+
+
   /*
   Constructor exception tests.
    */
