@@ -71,17 +71,17 @@ public final class StrictCoinGameModel implements CoinGameModel {
    * @throws IllegalArgumentException board contains characters other than - and O.
    */
   protected static boolean[] stringToBoard(String board) {
-    String[] stringArr = board.split("");
-    boolean[] ret = new boolean[stringArr.length];
-    for (int i = 0; i < stringArr.length; i++) {
-      if (stringArr[i].equals("O")) {
+    boolean[] ret = new boolean[board.length()];
+    for (int i = 0; i < board.length(); i++) {
+      char c = board.charAt(i);
+      if (c == 'O') {
         ret[i] = true;
       }
-      else if (stringArr[i].equals("-")) {
+      else if (c == '-') {
         ret[i] = false;
       }
       else {
-        throw IllegalArgumentException("board contains characters other than - and O");
+        throw new IllegalArgumentException("Os or -");
       }
     }
     return ret;
@@ -124,6 +124,7 @@ public final class StrictCoinGameModel implements CoinGameModel {
         playerString = playerString + this.players.get(x) + ", ";
       }
     }
+    return playerString;
   }
 
   /**
@@ -244,7 +245,6 @@ public final class StrictCoinGameModel implements CoinGameModel {
    * @throws IllegalStateException the game is over
    * @thorws IllegalArgumentException if name is already used
    */
-  @Override
   public void addPlayer(String name) {
     if (this.isGameOver()) {
       throw new IllegalStateException("The game is already over!");
@@ -284,7 +284,6 @@ public final class StrictCoinGameModel implements CoinGameModel {
    * after that player is now at {@code players.get(0)}
    * If there is only 1 player, it stays that players turn.
    */
-  @Override
   public void nextTurn() {
     String player = this.players.removeFirst();
     this.players.addLast(player);

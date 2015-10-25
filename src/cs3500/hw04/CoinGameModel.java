@@ -23,21 +23,13 @@ public interface CoinGameModel {
   String currentPlayer();
 
   /**
-   * Lists all players, by order, with the next in play at a[0]
-   *
-   * @returns an ArrayList of player indices
-   */
-  LinkedList<String> getPlayers();
-
-  /**
    * Adds a new player to the game, to play next.
    *
    * @param {@code name} The name of the new player
-   * @return unique value identifying the player, starting with 1
    * @throws IllegalStateException the game is over
    * @thorws IllegalArgumentException if name is already used
    */
-  String addPlayer();
+  void addPlayer(String name);
 
 
   /**
@@ -45,12 +37,11 @@ public interface CoinGameModel {
    *
    * @param {@code n} Turns after current player
    * @param {@code name} The name of the new player
-   * @return unique value identifying the player, starting with 1
    * @throws IllegalStateException the game is over
    * @thorws IllegalArgumentException if name is already used
    * @throws IllegalArgumentException if n > # of players
    */
-  String addPlayer(int n, String name);
+  void addPlayer(int n, String name);
 
 
   /**
