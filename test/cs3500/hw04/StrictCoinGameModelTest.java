@@ -1,4 +1,4 @@
-package cs3500.hw03;
+package cs3500.hw04;
 
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
