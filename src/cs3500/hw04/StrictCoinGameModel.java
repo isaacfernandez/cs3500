@@ -1,8 +1,10 @@
 package cs3500.hw03;
 
+import java.lang.Boolean;
 import java.lang.IllegalArgumentException;
 import java.lang.IllegalStateException;
 import java.lang.Override;
+import java.lang.String;
 import java.util.LinkedList;
 
 public final class StrictCoinGameModel implements CoinGameModel {
@@ -44,7 +46,19 @@ public final class StrictCoinGameModel implements CoinGameModel {
    * @throws IllegalArgumentException there are no players
    */
   protected StrictCoinGameModel(String board, String... players) {
-    throw new UnsupportedOperationException("no need to implement this");
+    this.players = new LinkedList<String>();
+    this.gameState = stringToBoard(board);
+    if (players.length == 0) {
+      throw new IllegalArgumentException("No Players");
+    }
+    for (String s : players) {
+      if (this.players.contains(s)) {
+        throw new IllegalArgumentException("Duplicate player name");
+      }
+      else {
+        this.players.add(s);
+      }
+    }
   }
 
   /**
@@ -57,7 +71,20 @@ public final class StrictCoinGameModel implements CoinGameModel {
    * @throws IllegalArgumentException board contains characters other than - and O.
    */
   protected static boolean[] stringToBoard(String board) {
-    return new boolean[0]; //actual implementation would go here
+    String[] stringArr = board.split("");
+    boolean[] ret = new boolean[stringArr.length];
+    for (int i = 0; i < stringArr.length; i++) {
+      if (stringArr[i].equals("O")) {
+        ret[i] = true;
+      }
+      else if (stringArr[i].equals("-")) {
+        ret[i] = false;
+      }
+      else {
+        throw IllegalArgumentException("board contains characters other than - and O");
+      }
+    }
+    return ret;
   }
 
   /**
