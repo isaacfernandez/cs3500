@@ -2,7 +2,6 @@ package cs3500.hw04;
 
 import org.junit.Test;
 
-import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
@@ -552,7 +551,7 @@ public class StrictCoinGameModelTest {
   @Test
   public void testAddThrowException0() {
     StrictCoinGameModel game = new StrictCoinGameModel("OOO---", ":o", ":)");
-    if (game.isGameOver() == false) {
+    if (!game.isGameOver()) {
       fail("Game isn't over?");
       return;
     }
@@ -620,5 +619,38 @@ public class StrictCoinGameModelTest {
     StrictCoinGameModel g2 = new StrictCoinGameModel("-OO---", "yes", "no");
     g2.addPlayer("maybe");
     assertEquals(game.playersToString(), g2.playersToString());
+  }
+
+  /*
+  toString tests.
+  */
+  @Test
+  public void testToString0() {
+    assertEquals(this.game0.toString(), "");
+  }
+
+  @Test
+  public void testToString1() {
+    assertEquals(this.game1.toString(), "----");
+  }
+
+  @Test
+  public void testToString2() {
+    assertEquals(this.game2.toString(), "O-O");
+  }
+
+  @Test
+  public void tesToString3() {
+    assertEquals(this.game3.toString(), "-OOOO-");
+  }
+
+  @Test
+  public void testToString4() {
+    assertEquals(this.game4.toString(), "----O----O");
+  }
+
+  @Test
+  public void testToString5() {
+    assertEquals(this.game6.toString(), "OOOOO");
   }
 }
