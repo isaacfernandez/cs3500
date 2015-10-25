@@ -423,6 +423,84 @@ public class StrictCoinGameModelTest {
   }
 
   /*
+  move tests.
+   */
+  @Test(expected = IllegalArgumentException.class)
+  public void testMoveException0() {
+    CoinGameModel mgame = new StrictCoinGameModel("----", "beep", "honk", "bzzz");
+    mgame.move(0, 1);
+  }
+
+  @Test(expected = CoinGameModel.IllegalMoveException.class)
+  public void testMoveException1() {
+    CoinGameModel mgame = new StrictCoinGameModel("-OOO-O", "mmmmhhhmmmmmmm", "D:");
+    mgame.move(1, 0);
+  }
+
+  @Test(expected = CoinGameModel.IllegalMoveException.class)
+  public void testMoveException2() {
+    CoinGameModel mgame = new StrictCoinGameModel("-O----O-", "!!!", "!!!???", "?", "why");
+    mgame.move(1, 1);
+  }
+
+  @Test(expected = CoinGameModel.IllegalMoveException.class)
+  public void testMoveException3() {
+    CoinGameModel mgame = new StrictCoinGameModel("--O----","you", "who?");
+    mgame.move(0, 2);
+  }
+
+  @Test(expected = CoinGameModel.IllegalMoveException.class)
+  public void testMoveException4() {
+    CoinGameModel mgame = new StrictCoinGameModel("--O----", "a player", "another player");
+    mgame.move(0, 4);
+  }
+
+  @Test(expected = CoinGameModel.IllegalMoveException.class)
+  public void testMoveException5() {
+    CoinGameModel mgame = new StrictCoinGameModel("--O----", "a player");
+    mgame.move(0, -1);
+  }
+  @Test(expected = CoinGameModel.IllegalMoveException.class)
+  public void testMoveException6() {
+    CoinGameModel mgame = new StrictCoinGameModel("--O----", "a player", "??");
+    mgame.move(0, 1);
+    mgame.move(0, -1);
+  }
+
+  @Test
+  public void testMove0() {
+    StrictCoinGameModel mgame = new StrictCoinGameModel("--O----", "a player", "another player");
+    mgame.move(0, 1);
+    assertEquals(mgame.gameStateToString(), "-O-----");
+  }
+
+  @Test
+  public void testMove1() {
+    StrictCoinGameModel mgame = new StrictCoinGameModel("--O----", "a", "b", "c", "d", "e", "f");
+    mgame.move(0, 0);
+    assertEquals(mgame.gameStateToString(), "O------");
+  }
+
+  @Test
+  public void testMove2() {
+    StrictCoinGameModel mgame = new StrictCoinGameModel("----O----O", ":o");
+    mgame.move(1, 5);
+    assertEquals(mgame.gameStateToString(), "----OO----");
+  }
+
+  @Test
+  public void testMove3() {
+    StrictCoinGameModel mgame = new StrictCoinGameModel("----O----O", "runescape", "world of warcraft",
+        "league of legends" );
+    mgame.move(0, 1);
+    assertEquals(mgame.gameStateToString(), "-O-------O");
+    mgame.move(0,0);
+    assertEquals(mgame.gameStateToString(), "O--------O");
+    mgame.move(1,3);
+    assertEquals(mgame.gameStateToString(), "O--O------");
+  }
+
+  /*
   winner tests.
    */
   @Test
