@@ -85,6 +85,15 @@ public final class StrictCoinGameModel implements CoinGameModel {
   }
 
   /**
+   * See Javadoc for {@method gameStateToString}
+   *
+   * @return String representation of the game
+   */
+  @Override
+  public String toString(){
+    return this.gameStateToString();
+  }
+  /**
    * Returns a String representation of the {@code gameState}, with O standing for coins and
    * - standing for empty spaces.
    *
