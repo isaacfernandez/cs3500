@@ -243,13 +243,7 @@ public final class StrictCoinGameModel implements CoinGameModel {
    * @thorws IllegalArgumentException if name is already used
    */
   public void addPlayer(String name) {
-    if (this.isGameOver()) {
-      throw new IllegalStateException("The game is already over!");
-    } else if (this.players.contains(name)) {
-      throw new IllegalArgumentException("There is already a player with that name!");
-    } else {
       this.addPlayer(0, name);
-    }
   }
 
   /**
@@ -264,6 +258,9 @@ public final class StrictCoinGameModel implements CoinGameModel {
    */
   @Override
   public void addPlayer(int n, String name) {
+    if (n < 0) {
+      throw new IllegalArgumentException("Turns can't be negative");
+    }
     if (this.isGameOver()) {
       throw new IllegalStateException("The game is already over!");
     } else if (n > players.size()) {

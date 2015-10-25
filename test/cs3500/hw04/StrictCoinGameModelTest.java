@@ -593,6 +593,12 @@ public class StrictCoinGameModelTest {
       game.addPlayer(3, ":c");
   }
 
+  @Test(expected = IllegalArgumentException.class)
+  public void testAddThrowExceptionNeg4() {
+    StrictCoinGameModel game = new StrictCoinGameModel("-OO---", "?", "!");
+    game.addPlayer(-4, ":c");
+  }
+
   @Test
   public void testAddThrowException4() {
     StrictCoinGameModel game = new StrictCoinGameModel("-OO---", ":o", ":)");
@@ -611,9 +617,12 @@ public class StrictCoinGameModelTest {
     game.addPlayer("maybe");
   }
 
+  @Test
   public void testAddPlayer() {
     StrictCoinGameModel game = new StrictCoinGameModel("-OO---", "yes", "no");
     game.addPlayer(0, "maybe");
-    assertEquals(game.playersToString(), );
+    StrictCoinGameModel g2 = new StrictCoinGameModel("-OO---", "yes", "no");
+    g2.addPlayer("maybe");
+    assertEquals(game.playersToString(), g2.playersToString());
   }
 }
