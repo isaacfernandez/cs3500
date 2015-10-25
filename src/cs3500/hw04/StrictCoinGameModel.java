@@ -235,6 +235,27 @@ public final class StrictCoinGameModel implements CoinGameModel {
   }
 
   /**
+   * Switches the player whose move it is to the next player by rotating the list so that the
+   * current player (player at {@code players.get(0)} is now at the end of players, and the player
+   * after that player is now at {@code players.get(0)}
+   * If there is only 1 player, it stays that players turn.
+   */
+  protected void nextTurn() {
+    String player = this.players.removeFirst();
+    this.players.addLast(player);
+  }
+
+  /**
+   * Gets the string identifying the player whose turn it currently is
+   * (the player at the index 0 in players)
+   *
+   * @return string of the current player
+   */
+  public String currentPlayer() {
+    return this.players.get(0);
+  }
+
+  /**
    * Adds a new player to the game, to play next.
    *
    * @param {@code name} The name of the new player
@@ -270,27 +291,6 @@ public final class StrictCoinGameModel implements CoinGameModel {
     } else {
       this.players.add(n + 1, name);
     }
-  }
-
-  /**
-   * Switches the player whose move it is to the next player by rotating the list so that the
-   * current player (player at {@code players.get(0)} is now at the end of players, and the player
-   * after that player is now at {@code players.get(0)}
-   * If there is only 1 player, it stays that players turn.
-   */
-  public void nextTurn() {
-    String player = this.players.removeFirst();
-    this.players.addLast(player);
-  }
-
-  /**
-   * Gets the string identifying the player whose turn it currently is
-   * (the player at the index 0 in players)
-   *
-   * @return string of the current player
-   */
-  public String currentPlayer() {
-    return this.players.get(0);
   }
 
   /**

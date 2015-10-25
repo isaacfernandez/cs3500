@@ -40,6 +40,31 @@ public interface CoinGameModel {
   boolean isGameOver();
 
   /**
+   * Moves coin number {@code coinIndex} to position {@code newPosition} and
+   * changes the turn to the next player.
+   * Throws {@code IllegalMoveException} if the requested move is illegal,
+   * which can happen in several ways:
+   *
+   * <ul>
+   *   <li>There is no coin with the requested index.
+   *   <li>The new position is occupied by another coin.
+   *   <li>There is some other reason the move is illegal,
+   *       as specified by the concrete game class.
+   * </ul>
+   *
+   * Note that {@code coinIndex} refers to the coins as numbered from 0
+   * to {@code coinCount() - 1}, not their absolute position on the board.
+   * However, coins have no identity, so if one coin passes another, their
+   * indices are exchanged. The leftmost coin is always coin 0, the next
+   * leftmost is coin 1, and so on.
+   *
+   * @param coinIndex   which coin to move (numbered from the left)
+   * @param newPosition where to move it to
+   * @throws IllegalMoveException the move is illegal
+   */
+  void move(int coinIndex, int newPosition);
+
+  /**
    * Gets the string identifying the player whose turn it currently is
    *
    * @return string of the current player
@@ -66,30 +91,6 @@ public interface CoinGameModel {
    * @throws IllegalArgumentException if n > # of players
    */
   void addPlayer(int n, String name);
-
-  /**
-   * Moves coin number {@code coinIndex} to position {@code newPosition}.
-   * Throws {@code IllegalMoveException} if the requested move is illegal,
-   * which can happen in several ways:
-   *
-   * <ul>
-   *   <li>There is no coin with the requested index.
-   *   <li>The new position is occupied by another coin.
-   *   <li>There is some other reason the move is illegal,
-   *       as specified by the concrete game class.
-   * </ul>
-   *
-   * Note that {@code coinIndex} refers to the coins as numbered from 0
-   * to {@code coinCount() - 1}, not their absolute position on the board.
-   * However, coins have no identity, so if one coin passes another, their
-   * indices are exchanged. The leftmost coin is always coin 0, the next
-   * leftmost is coin 1, and so on.
-   *
-   * @param coinIndex   which coin to move (numbered from the left)
-   * @param newPosition where to move it to
-   * @throws IllegalMoveException the move is illegal
-   */
-  void move(int coinIndex, int newPosition);
 
   /**
    * Get the winner of the game

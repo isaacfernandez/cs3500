@@ -31,7 +31,6 @@ public class StrictCoinGameModelTest {
     return true;
     }
 
-
   /*
   Constructor exception tests.
    */
@@ -289,7 +288,6 @@ public class StrictCoinGameModelTest {
   /*
   stringToBoard tests.
    */
-
   @Test
   public void testStringToBoard0() {
     boolean[] board = new boolean[0];
@@ -329,8 +327,6 @@ public class StrictCoinGameModelTest {
 
   /*
   nextTurn and currentPlayer tests.
-  (Tested together so more than one player per game can be the current player, and so we can see
-  if next turn actually changes the player.)
    */
   @Test
   public void testNextTurnAndCurrentPlayer0() {
