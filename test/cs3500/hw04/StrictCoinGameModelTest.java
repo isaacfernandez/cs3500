@@ -610,4 +610,10 @@ public class StrictCoinGameModelTest {
     StrictCoinGameModel game = new StrictCoinGameModel("-OO---", "yes", "no", "maybe");
     game.addPlayer("maybe");
   }
+
+  public void testAddPlayer() {
+    StrictCoinGameModel game = new StrictCoinGameModel("-OO---", "yes", "no");
+    game.addPlayer(0, "maybe");
+    assertEquals(game.playersToString(), );
+  }
 }

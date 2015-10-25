@@ -248,7 +248,7 @@ public final class StrictCoinGameModel implements CoinGameModel {
     } else if (this.players.contains(name)) {
       throw new IllegalArgumentException("There is already a player with that name!");
     } else {
-      this.players.add(1, name);
+      this.addPlayer(0, name);
     }
   }
 
