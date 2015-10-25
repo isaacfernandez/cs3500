@@ -417,7 +417,6 @@ public class StrictCoinGameModelTest {
     StrictCoinGameModel game = new StrictCoinGameModel("O-----OO", "player 1", "player 2",
         "player 3");
     game.move(1, 1);
-    game.nextTurn();
     game.move(2, 2);
     assertEquals(game.winner(), "player 2");
   }
@@ -427,11 +426,8 @@ public class StrictCoinGameModelTest {
     StrictCoinGameModel game = new StrictCoinGameModel("O-----OO", "player 1", "player 2",
         "player 3");
     game.move(1, 3);
-    game.nextTurn();
     game.move(2, 4);
-    game.nextTurn();
     game.move(1, 1);
-    game.nextTurn();
     game.move(2, 2);
     assertEquals(game.winner(), "player 1");
   }
@@ -450,7 +446,6 @@ public class StrictCoinGameModelTest {
   public void testWinnerException1() {
     StrictCoinGameModel game = new StrictCoinGameModel("-OOO", ":o", ":)");
     game.move(0, 0);
-    game.nextTurn();
     game.winner();
   }
 
