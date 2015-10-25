@@ -8,43 +8,6 @@ import java.util.*;
 public interface CoinGameModel {
 
   /**
-   * Get the winner of the game
-   * Does this by checking if game is over, and if so, who last played
-   * @return name of the winner
-   * @throws IllegalArgumentException if game is not over
-   */
-  String winner();
-
-  /**
-   * Gets the string identifying the player whose turn it currently is
-   *
-   * @return string of the current player
-   */
-  String currentPlayer();
-
-  /**
-   * Adds a new player to the game, to play next.
-   *
-   * @param {@code name} The name of the new player
-   * @throws IllegalStateException the game is over
-   * @thorws IllegalArgumentException if name is already used
-   */
-  void addPlayer(String name);
-
-
-  /**
-   * Adds a new player to the game n turns after the current player.
-   *
-   * @param {@code n} Turns after current player
-   * @param {@code name} The name of the new player
-   * @throws IllegalStateException the game is over
-   * @thorws IllegalArgumentException if name is already used
-   * @throws IllegalArgumentException if n > # of players
-   */
-  void addPlayer(int n, String name);
-
-
-  /**
    * Gets the size of the board (the number of squares)
    *
    * @return the board size
@@ -77,6 +40,34 @@ public interface CoinGameModel {
   boolean isGameOver();
 
   /**
+   * Gets the string identifying the player whose turn it currently is
+   *
+   * @return string of the current player
+   */
+  String currentPlayer();
+
+  /**
+   * Adds a new player to the game, to play next.
+   *
+   * @param {@code name} The name of the new player
+   * @throws IllegalStateException the game is over
+   * @thorws IllegalArgumentException if name is already used
+   */
+  void addPlayer(String name);
+
+
+  /**
+   * Adds a new player to the game n turns after the current player.
+   *
+   * @param {@code n} Turns after current player
+   * @param {@code name} The name of the new player
+   * @throws IllegalStateException the game is over
+   * @thorws IllegalArgumentException if name is already used
+   * @throws IllegalArgumentException if n > # of players
+   */
+  void addPlayer(int n, String name);
+
+  /**
    * Moves coin number {@code coinIndex} to position {@code newPosition}.
    * Throws {@code IllegalMoveException} if the requested move is illegal,
    * which can happen in several ways:
@@ -99,6 +90,14 @@ public interface CoinGameModel {
    * @throws IllegalMoveException the move is illegal
    */
   void move(int coinIndex, int newPosition);
+
+  /**
+   * Get the winner of the game
+   * Does this by checking if game is over, and if so, who last played
+   * @return name of the winner
+   * @throws IllegalArgumentException if game is not over
+   */
+  String winner();
 
   /**
    * The exception thrown by {@code move} when the requested move is illegal.

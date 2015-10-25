@@ -554,7 +554,7 @@ public class StrictCoinGameModelTest {
 
 
   @Test
-  public void testAddThrowException() {
+  public void testAddThrowException0() {
     StrictCoinGameModel game = new StrictCoinGameModel("OOO---", ":o", ":)");
     if (game.isGameOver() == false) {
       fail("Game isn't over?");
@@ -569,10 +569,15 @@ public class StrictCoinGameModelTest {
     fail("Did not error");
   }
 
+  @Test(expected = IllegalStateException.class)
+  public void testAddThrowException1() {
+    StrictCoinGameModel game = new StrictCoinGameModel("OOOOO--", "XD",":o", ":)", ":D");
+      game.addPlayer(":c");
+  }
+
   @Test
   public void testAddThrowException2() {
     StrictCoinGameModel game = new StrictCoinGameModel("-OO---", ":o", ":)");
-
     try {
       game.addPlayer(100, ":c");
     } catch (IllegalArgumentException e) {
@@ -582,8 +587,14 @@ public class StrictCoinGameModelTest {
     fail("Did not error");
   }
 
-  @Test
+  @Test(expected = IllegalArgumentException.class)
   public void testAddThrowException3() {
+    StrictCoinGameModel game = new StrictCoinGameModel("-OO---", "?", "!");
+      game.addPlayer(3, ":c");
+  }
+
+  @Test
+  public void testAddThrowException4() {
     StrictCoinGameModel game = new StrictCoinGameModel("-OO---", ":o", ":)");
     try {
       game.addPlayer(":o");
@@ -594,7 +605,9 @@ public class StrictCoinGameModelTest {
     fail("Did not error");
   }
 
-
-
-
+  @Test(expected = IllegalArgumentException.class)
+  public void testAddThrowException5() {
+    StrictCoinGameModel game = new StrictCoinGameModel("-OO---", "yes", "no", "maybe");
+    game.addPlayer("maybe");
+  }
 }
