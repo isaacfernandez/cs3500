@@ -65,7 +65,7 @@ public final class StrictCoinGameModel implements CoinGameModel {
    * Returns an array of booleans that represent the String {@code board}. Throws an
    * {@code IllegalArgumentException} if there are any characters in {@code board} that are not "-"
    * or "O"(that is the uppercase o, not the integer 0).-
-   * Called in {@code StrictCoinGameModel}.
+   * Called in {@code StrictCoinGameModel} .
    *
    * @return the boolean array board representation
    * @throws IllegalArgumentException board contains characters other than - and O.
