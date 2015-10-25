@@ -109,10 +109,21 @@ public final class StrictCoinGameModel implements CoinGameModel {
    * Returns a list of players separated by commas.
    * For example, if players = {"A", "B", "C"}, the String returned would be "A, B, C"
    * A one player game would just return the name of that player.
+   * The list will be in the same order as the turns are, with the player whose turn it currently
+   * is going first.
    *
    * @return String representation of the game
    */
   protected String playersToString() {
+    String playerString = "";
+    for (int x = 0; x < players.size(); x = x + 1) {
+      if (x == players.size() - 1) {
+        playerString = playerString + this.players.get(x);
+      }
+      else {
+        playerString = playerString + this.players.get(x) + ", ";
+      }
+    }
   }
 
   /**
@@ -234,7 +245,9 @@ public final class StrictCoinGameModel implements CoinGameModel {
    * If there is only 1 player, it stays that players turn.
    */
   @Override
-  public void nextTurn() {
+  private void nextTurn() {
+    String player = this.players.removeFirst();
+    this.players.addLast(player);
   }
 
   /**
@@ -244,7 +257,7 @@ public final class StrictCoinGameModel implements CoinGameModel {
    * @return string of the current player
    */
   public String currentPlayer() {
-    return this.players.get(0); //can do this because invariant players cannot be empty
+    return this.players.get(0);
   }
 
   /**
