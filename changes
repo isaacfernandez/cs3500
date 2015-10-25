@@ -1,0 +1,4 @@
+Majority of the program comes from Reagan's File
+The way turns and turn order are determined (by the order of the list of players, 
+with current player at the head of the list).
+We switched to a LinkedList to gain better performance compared to ArrayList
