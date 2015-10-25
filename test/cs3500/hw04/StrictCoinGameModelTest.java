@@ -16,6 +16,21 @@ public class StrictCoinGameModelTest {
   StrictCoinGameModel game6 = new StrictCoinGameModel("OOOOO", "a");
   StrictCoinGameModel game7 = new StrictCoinGameModel("OO---", "???", "!!!", "?!?!?!");
 
+
+  //Helper because assertEquals(boolean[], boolean[]) doesn't exist
+  public static boolean booleanArrayEq(boolean[] a, boolean[] b) {
+    if (a.length != b.length) {
+      return false;
+    }
+    for (int i = 0; i < a.length; i++) {
+      if (a[i] != b[i]) {
+        return false;
+      }
+    }
+    return true;
+    }
+
+
   /*
   Constructor exception tests.
    */
@@ -273,28 +288,29 @@ public class StrictCoinGameModelTest {
   /*
   stringToBoard tests.
    */
+
   @Test
   public void testStringToBoard0() {
     boolean[] board = new boolean[0];
-    assertEquals(StrictCoinGameModel.stringToBoard(""), board);
+    assertEquals(true, booleanArrayEq(StrictCoinGameModel.stringToBoard(""), board));
   }
 
   @Test
   public void testStringToBoard1() {
     boolean[] board = {false, false, true, true};
-    assertEquals(StrictCoinGameModel.stringToBoard("--OO"), board);
+    assertEquals(true, booleanArrayEq(StrictCoinGameModel.stringToBoard("--OO"), board));
   }
 
   @Test
   public void testStringToBoard2() {
     boolean[] board = {true, false, true, false, true, false, true, false};
-    assertEquals(StrictCoinGameModel.stringToBoard("O-O-O-O-"), board);
+    assertEquals(true, booleanArrayEq(StrictCoinGameModel.stringToBoard("O-O-O-O-"), board));
   }
 
   @Test
   public void testStringToBoard3() {
     boolean[] board = {false, false, false, false, false};
-    assertEquals(StrictCoinGameModel.stringToBoard("-----"), board);
+    assertEquals(true, booleanArrayEq(StrictCoinGameModel.stringToBoard("-----"), board));
   }
 
   /*
