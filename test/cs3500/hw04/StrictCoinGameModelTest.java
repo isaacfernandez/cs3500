@@ -288,28 +288,29 @@ public class StrictCoinGameModelTest {
   /*
   stringToBoard tests.
    */
+
   @Test
   public void testStringToBoard0() {
     boolean[] board = new boolean[0];
-    assertEquals(StrictCoinGameModel.stringToBoard(""), board);
+    assertEquals(true, booleanArrayEq(StrictCoinGameModel.stringToBoard(""), board));
   }
 
   @Test
   public void testStringToBoard1() {
     boolean[] board = {false, false, true, true};
-    assertEquals(StrictCoinGameModel.stringToBoard("--OO"), board);
+    assertEquals(true, booleanArrayEq(StrictCoinGameModel.stringToBoard("--OO"), board));
   }
 
   @Test
   public void testStringToBoard2() {
     boolean[] board = {true, false, true, false, true, false, true, false};
-    assertEquals(StrictCoinGameModel.stringToBoard("O-O-O-O-"), board);
+    assertEquals(true, booleanArrayEq(StrictCoinGameModel.stringToBoard("O-O-O-O-"), board));
   }
 
   @Test
   public void testStringToBoard3() {
     boolean[] board = {false, false, false, false, false};
-    assertEquals(StrictCoinGameModel.stringToBoard("-----"), board);
+    assertEquals(true, booleanArrayEq(StrictCoinGameModel.stringToBoard("-----"), board));
   }
 
   /*
