@@ -191,9 +191,49 @@ public final class StrictCoinGameModel implements CoinGameModel {
     return true;
   }
 
+  /**
+   * Moves coin number {@code coinIndex} to position {@code newPosition} and
+   * changes the turn to the next player.
+   * Throws {@code IllegalMoveException} if the requested move is illegal,
+   * which can happen in several ways:
+   *
+   * <ul>
+   *   <li>There is no coin with the requested index.
+   *   <li>The new position is occupied by another coin.
+   *   <li>Moving the coin to that position would involve passing another coin.
+   * </ul>
+   *
+   * Note that {@code coinIndex} refers to the coins as numbered from 0
+   * to {@code coinCount() - 1}, not their absolute position on the board.
+   * However, coins have no identity, so if one coin passes another, their
+   * indices are exchanged. The leftmost coin is always coin 0, the next
+   * leftmost is coin 1, and so on.
+   *
+   * @param coinIndex   which coin to move (numbered from the left)
+   * @param newPosition where to move it to
+   * @throws IllegalMoveException the move is illegal
+   * @throws IllegalArgumentException the coin does not exist
+   */
   @Override
   public void move(int coinIndex, int newPosition) {
-
+    int coinLoc = this.getCoinPosition(coinIndex);
+    if (newPosition < 0) {
+      throw new IllegalMoveException("No position at that location.");
+    } else if (coinLoc <= newPosition) { //includes locations larger than board size
+      throw new IllegalMoveException("Can only move coin left of the current location!");
+    } else if (coinIndex == 0) { // first coin, cannot be at first location because new
+      this.gameState[coinLoc] = false;  //  position cannot be negative or the same as coin loc
+      this.gameState[newPosition] = true;
+    } else {
+      for (int x = newPosition; x < coinLoc; x = x + 1) {
+        if (this.gameState[x]) {
+          throw new IllegalMoveException("Coins cannot pass other coins!");
+        }
+      }
+      this.gameState[coinLoc] = false;
+      this.gameState[newPosition] = true;
+    }
+    this.nextTurn();
   }
 
   /**
@@ -245,7 +285,7 @@ public final class StrictCoinGameModel implements CoinGameModel {
    * If there is only 1 player, it stays that players turn.
    */
   @Override
-  private void nextTurn() {
+  public void nextTurn() {
     String player = this.players.removeFirst();
     this.players.addLast(player);
   }
@@ -264,11 +304,15 @@ public final class StrictCoinGameModel implements CoinGameModel {
    * Get the winner of the game
    * Does this by checking if game is over, and if so, who last played
    * @return name of the winner
-   * @throws IllegalArgumentException if game is not over
+   * @throws IllegalStateException if game is not over
    */
   @Override
   public String winner() {
-    return null;
+    if (this.isGameOver()) {
+      return this.players.getLast();
+    } else {
+      throw new IllegalStateException("The game isn't over yet!");
+    }
   }
 
 }
