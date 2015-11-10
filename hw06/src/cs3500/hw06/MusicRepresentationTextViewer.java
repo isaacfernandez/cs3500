@@ -3,7 +3,7 @@ package cs3500.hw06;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by isaacf on 11/2/15.
@@ -90,7 +90,7 @@ public class MusicRepresentationTextViewer implements MusicRepresentationView {
      * SIDEEFFECTS: Mutates sustainedNotes s.t.  any new notes to be sustained are incremented,
      * and notes previous being sustained decreased in value
      */
-    private String getFormattedString(ArrayList<Tone> notes,
+    private String getFormattedString(List<Tone> notes,
                                       int[] sustained,
                                       int lowEnd, int hiEnd) {
         String[] marks = new String[ 1 + hiEnd - lowEnd];
