@@ -1,6 +1,7 @@
 package cs3500.hw06;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by isaacf on 11/2/15.
@@ -54,7 +55,7 @@ public interface MusicRepresentation {
      * @param beat
      * @return
      */
-    ArrayList<Tone> getNotesAtBeat(int beat);
+    List<Tone> getNotesAtBeat(int beat);
 
     /**
      * Useful method for testing
