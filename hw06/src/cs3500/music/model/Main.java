@@ -1,4 +1,4 @@
-package cs3500.hw06;
+package cs3500.music.model;
 
 import java.io.File;
 

@@ -1,4 +1,4 @@
-package cs3500.hw06;
+package cs3500.music.model;
 
 /**
  * Created by isaacf on 11/2/15.

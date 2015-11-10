@@ -1,4 +1,4 @@
-package cs3500.hw06;
+package cs3500.music.model;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -17,6 +17,7 @@ public class MusicRepresentationTextViewer implements MusicRepresentationView {
     }
 
     MusicRepresentationTextViewer(File f) {
+        //Probably unnecessary once we use Lerner's builder method
         this.music = new Score();
         try {
             String s;
@@ -51,6 +52,7 @@ public class MusicRepresentationTextViewer implements MusicRepresentationView {
 
     /**
      * Creates a representation of the data
+     * idk what the view is suppose to take?
      */
     @Override
     public void display() {

@@ -1,8 +1,16 @@
+package cs3500.music.tests;
+
 import org.junit.Test;
 
-import cs3500.hw06.*;
+import cs3500.music.model.MusicRepresentation;
+import cs3500.music.model.Note;
+import cs3500.music.model.Score;
+import cs3500.music.model.Tone;
+import cs3500.music.model.ToneImp;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created by isaacf on 11/2/15.
