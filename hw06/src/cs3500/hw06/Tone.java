@@ -1,0 +1,26 @@
+package cs3500.hw06;
+
+/**
+ * Created by isaacf on 11/4/15.
+ */
+public interface Tone {
+    //Returns a negative value if this is lower than t
+    int compare(Tone t);
+
+    int getValue();
+
+    Tone nextTone();
+
+    //Override equality
+    @Override
+    boolean equals(Object o);
+
+    @Override
+    String toString();
+
+    int getOctave();
+
+    int getDuration();
+
+    Note getNote();
+}
