@@ -143,7 +143,6 @@ public final class ToneImp implements Tone {
       this.duration = t.getDuration();
     } else {
       throw new IllegalArgumentException("Invalid duration!");
-    }
     //setting note
     this.note = t.getNote();
     //setting octave
@@ -226,6 +225,29 @@ public final class ToneImp implements Tone {
           && this.duration == ((ToneImp) o).duration
           && this.volume == ((ToneImp) o).volume
           && this.instrument == ((ToneImp) o).instrument;
+=======
+
+
+    @Override
+    public Tone nextTone() {
+        Note nextPitch = Note.ValueToNote((this.getValue() % 12) + 1);
+        int oct = this.octave;
+        if (Note.NoteToString(nextPitch).equals("C")) {
+            oct++;
+        }
+        ToneImp ret = new ToneImp(1, nextPitch, oct, this.volume, instrument);
+        return ret;
+    }
+
+    //Override equality
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof ToneImp) {
+            Tone t = (Tone) o;
+            return ((Tone) o).compare(this) == 0 && this.duration == ((ToneImp) o).duration;
+        }
+        return false;
+>>>>>>> 0c64a765d91ad832bdd8c597e89951413cda8db7
     }
     return false;
   }
