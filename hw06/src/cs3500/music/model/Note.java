@@ -32,6 +32,7 @@ public enum Note {
      * Takes a String note and returns a Note note
      * @param s One of { C C♯ D D♯ E F F♯ G G♯ A A♯ B }
      * @return Note n representing s
+     * @throws IllegalArgumentException invalid note
      */
     public static Note StringToNote(String s) {
         //Remind me to install jdk7
