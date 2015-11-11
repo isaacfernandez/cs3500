@@ -7,10 +7,10 @@ import cs3500.music.view.MusicRepresentationView;
 
 public class Main {
 
-    public static void main(String[] args) {
-        File f = new File("test_sound");
+  public static void main(String[] args) {
+    File f = new File("test_sound");
 
-        MusicRepresentationView mv = new MusicRepresentationTextViewer(f);
-        mv.display();
-    }
+    MusicRepresentationView mv = new MusicRepresentationTextViewer(f);
+    mv.display();
+  }
 }
