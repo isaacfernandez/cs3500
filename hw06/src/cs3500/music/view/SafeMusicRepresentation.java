@@ -9,9 +9,9 @@ import cs3500.music.model.Tone;
  * Created by isaacf on 11/11/15.
  */
 public interface SafeMusicRepresentation {
-    Collection<Tone> getNotesAtBeat(int i);
+  Collection<Tone> getNotesAtBeat(int i);
 
-    int getLength();
+  int getLength();
 
-    List<Tone> displayNotes();
+  List<Tone> displayNotes();
 }

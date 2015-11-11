@@ -13,51 +13,48 @@ import cs3500.music.model.ToneImp;
  * Created by isaacf on 11/11/15.
  */
 public class SafeMusicRepresentationDecorator implements SafeMusicRepresentation {
-    //Protects the Model from the View
-    //should be be an interface?
+  //Protects the Model from the View
+  //should be be an interface?
 
-    private final MusicRepresentation model;
+  private final MusicRepresentation model;
 
-    public SafeMusicRepresentationDecorator(MusicRepresentation model) {
-        this.model = model;
-    }
+  public SafeMusicRepresentationDecorator(MusicRepresentation model) {
+    this.model = model;
+  }
 
-    /**
-     * Safely passes a reference to the set of notes at beat i
-     * @param i the beat being requested
-     * @return
-     */
-    @Override
-    public Collection<Tone> getNotesAtBeat(int i) {
-        return Collections.unmodifiableCollection(this.model.getNotesAtBeat(i));
-    }
+  /**
+   * Safely passes a reference to the set of notes at beat i
+   *
+   * @param i the beat being requested
+   */
+  @Override
+  public Collection<Tone> getNotesAtBeat(int i) {
+    return Collections.unmodifiableCollection(this.model.getNotesAtBeat(i));
+  }
 
-    /**
-     * Returns the length of the piece
-     * @return
-     */
-    @Override
-    public int getLength() {
-        return model.getLength();
-    }
+  /**
+   * Returns the length of the piece
+   */
+  @Override
+  public int getLength() {
+    return model.getLength();
+  }
 
-    /**
-     * Returns a list of Tones (Pitch & Octave) that must be displayed for a full range
-     * @return
-     */
-    @Override
-    public List<Tone> displayNotes() {
-        ArrayList<Tone> notes = new ArrayList<Tone>();
-        Tone header = model.lowest();
-        Tone highest = model.highest();
-        do {
-            //Should split into a 'nextTone' method
-            header = header.nextTone();
-            notes.add(new ToneImp(header));
-        } while (highest.compare(header) >= 0);
-        return notes;
-    }
-
+  /**
+   * Returns a list of Tones (Pitch & Octave) that must be displayed for a full range
+   */
+  @Override
+  public List<Tone> displayNotes() {
+    ArrayList<Tone> notes = new ArrayList<Tone>();
+    Tone header = model.lowest();
+    Tone highest = model.highest();
+    do {
+      //Should split into a 'nextTone' method
+      header = header.nextTone();
+      notes.add(new ToneImp(header));
+    } while (highest.compare(header) >= 0);
+    return notes;
+  }
 
 
 }

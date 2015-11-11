@@ -9,15 +9,15 @@ import java.util.Objects;
 import javax.swing.*;
 
 /**
- * A dummy view that simply draws a string 
+ * A dummy view that simply draws a string
  */
 public class ConcreteGuiViewPanel extends JPanel {
 
-    @Override
-    public void paint(Graphics g){
-        // Look for more documentation about the Graphics class,
-        // and methods on it that may be useful
-        g.drawString("Hello World", 25, 25);
-    }
+  @Override
+  public void paint(Graphics g) {
+    // Look for more documentation about the Graphics class,
+    // and methods on it that may be useful
+    g.drawString("Hello World", 25, 25);
+  }
 
 }
