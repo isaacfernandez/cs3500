@@ -1,9 +1,13 @@
-package cs3500.music.model;
+package cs3500.music.view;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.util.List;
+
+import cs3500.music.model.MusicRepresentation;
+import cs3500.music.model.Score;
+import cs3500.music.model.Tone;
 
 /**
  * Created by isaacf on 11/2/15.

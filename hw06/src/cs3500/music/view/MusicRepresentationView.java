@@ -1,4 +1,4 @@
-package cs3500.music.model;
+package cs3500.music.view;
 
 /**
  * Created by isaacf on 11/2/15.
