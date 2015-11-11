@@ -1,7 +1,7 @@
 package cs3500.music.model;
 
 /**
- * Created by isaacf on 11/4/15.
+ * Represents a tone in a piece of music.
  */
 public interface Tone {
   //Returns a negative value if this is lower than t

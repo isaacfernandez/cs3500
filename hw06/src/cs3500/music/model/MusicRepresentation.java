@@ -3,7 +3,7 @@ package cs3500.music.model;
 import java.util.List;
 
 /**
- * Created by isaacf on 11/2/15.
+ * Represents a music piece
  */
 public interface MusicRepresentation {
 

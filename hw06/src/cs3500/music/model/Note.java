@@ -1,9 +1,20 @@
 package cs3500.music.model;
 
 /**
- * Created by isaacf on 11/2/15.
+ * Represents one of twelve possible notes:
+ *      - C natural
+ *      - C sharp
+ *      - D natural
+ *      - D sharp
+ *      - E natural
+ *      - F natural
+ *      - F sharp
+ *      - G natural
+ *      - G sharp
+ *      - A natural
+ *      - A sharp
+ *      - B natural
  */
-//There are 12 notes
 public enum Note {
   c(0),
   cS(1),
@@ -19,7 +30,7 @@ public enum Note {
   b(11);
 
   private final int val; //gives us a 0-11 index, also to compare higher / lower
-  
+
   Note(int val) {
     this.val = val;
   }

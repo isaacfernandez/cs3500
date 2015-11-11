@@ -1,7 +1,7 @@
 package cs3500.music.model;
 
 /**
- * Created by isaacf on 11/9/15.
+ * Implementation of MusicRepresentation.
  */
 
 import java.util.ArrayList;

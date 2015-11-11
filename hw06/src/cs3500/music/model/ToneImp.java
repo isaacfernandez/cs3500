@@ -1,7 +1,7 @@
 package cs3500.music.model;
 
 /**
- * Created by isaacf on 11/2/15.
+ * Implementation of Tone.
  */
 public final class ToneImp implements Tone {
 
