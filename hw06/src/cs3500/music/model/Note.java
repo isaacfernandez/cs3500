@@ -5,20 +5,20 @@ package cs3500.music.model;
  */
 //There are 12 notes
 public enum Note {
-    c(1),
-    cS(2),
-    d(3),
-    dS(4),
-    e(5),
-    f(6),
-    fS(7),
-    g(8),
-    gS(9),
-    a(10),
-    aS(11),
-    b(12);
+    c(0),
+    cS(1),
+    d(2),
+    dS(3),
+    e(4),
+    f(5),
+    fS(6),
+    g(7),
+    gS(8),
+    a(9),
+    aS(10),
+    b(11);
 
-    private final int val; //gives us a 0-12 index, also to compare higher / lower
+    private final int val; //gives us a 0-11 index, also to compare higher / lower
 
     Note(int val) {
         this.val = val;
@@ -26,7 +26,7 @@ public enum Note {
 
     public int getValue() {
         return this.val;
-    } //I like seeing those other 0 indexes
+    }
 
     /**
      * Takes a String note and returns a Note note

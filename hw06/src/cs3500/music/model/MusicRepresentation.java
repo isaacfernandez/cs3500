@@ -57,6 +57,15 @@ public interface MusicRepresentation {
     List<Tone> getNotesAtBeat(int beat);
 
     /**
+     * Gets the tempo of the piece
+     */
+    int getTempo();
+    /**
+     * Sets the tempo of the piece
+     */
+    void setTempo(int t);
+
+    /**
      * Useful method for testing
      */
     int countNotes();

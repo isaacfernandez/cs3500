@@ -14,6 +14,7 @@ public class Score implements MusicRepresentation {
 
     private int minOctave;
     private int maxOctave;
+    private int tempo;
 
     //All notes to play at beat n
     private ArrayList<Tone> beat;
@@ -194,6 +195,22 @@ public class Score implements MusicRepresentation {
             ret.add(new ToneImp(t));
         }
         return ret;
+    }
+
+    /**
+     * Gets the tempo of the piece
+     */
+    @Override
+    public int getTempo() {
+        return this.tempo;
+    }
+
+    /**
+     * Sets the tempo of the piece
+     */
+    @Override
+    public void setTempo(int t) {
+        this.tempo = t;
     }
 
     /**
