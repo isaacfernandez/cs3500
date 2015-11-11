@@ -12,7 +12,7 @@ import cs3500.music.model.ToneImp;
 /**
  * Created by isaacf on 11/11/15.
  */
-public class SafeMusicRepresentationDecorator {
+public class SafeMusicRepresentationDecorator implements SafeMusicRepresentation {
     //Protects the Model from the View
     //should be be an interface?
 
@@ -27,6 +27,7 @@ public class SafeMusicRepresentationDecorator {
      * @param i the beat being requested
      * @return
      */
+    @Override
     public Collection<Tone> getNotesAtBeat(int i) {
         return Collections.unmodifiableCollection(this.model.getNotesAtBeat(i));
     }
@@ -35,6 +36,7 @@ public class SafeMusicRepresentationDecorator {
      * Returns the length of the piece
      * @return
      */
+    @Override
     public int getLength() {
         return model.getLength();
     }
@@ -43,6 +45,7 @@ public class SafeMusicRepresentationDecorator {
      * Returns a list of Tones (Pitch & Octave) that must be displayed for a full range
      * @return
      */
+    @Override
     public List<Tone> displayNotes() {
         ArrayList<Tone> notes = new ArrayList<Tone>();
         Tone header = model.lowest();

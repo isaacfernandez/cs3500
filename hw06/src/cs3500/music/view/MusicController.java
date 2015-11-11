@@ -1,5 +1,9 @@
 package cs3500.music.view;
 
+import java.util.Objects;
+
+import javax.swing.text.ViewFactory;
+
 import cs3500.music.model.MusicRepresentation;
 
 /**
@@ -10,8 +14,8 @@ public class MusicController {
     private final MusicRepresentation model;
 
     public MusicController(MusicRepresentation model, String mode) {
-        this.model = model;
+        this.model = Objects.requireNonNull(model);
         //TODO
-        this.view = null;
+        this.view = MusicRepresentationViewFactory.makeView(mode);
     }
 }

@@ -5,14 +5,13 @@ package cs3500.music.view;
  */
 public interface MusicRepresentationView {
 
-
     /**
-     * Represents the data
+     * Represents the data statically, or sets up window
      */
-    void display(SafeMusicRepresentationDecorator m);
+    void display(SafeMusicRepresentation m);
 
     /**
      * The 'play' button for the view. Useless for those that statically display the data.
      */
-    void play(SafeMusicRepresentationDecorator m);
+    void play(SafeMusicRepresentation m);
 }

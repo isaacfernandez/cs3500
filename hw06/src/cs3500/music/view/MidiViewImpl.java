@@ -7,9 +7,9 @@ import cs3500.music.model.*;
 /**
  * A skeleton for MIDI playback
  */
-public class MidiViewImpl implements YourViewInterfaceHere {
-  private final Synthesizer synth;
-  private final Receiver receiver;
+public class MidiViewImpl implements MusicRepresentationView {
+  private Synthesizer synth;
+  private Receiver receiver;
 
   public MidiViewImpl() {
     try {
@@ -52,4 +52,20 @@ public class MidiViewImpl implements YourViewInterfaceHere {
     this.receiver.send(stop, this.synth.getMicrosecondPosition() + 200000);
     this.receiver.close(); // Only call this once you're done playing *all* notes
   }
+
+    /**
+     * Represents the data statically, or sets up window
+     */
+    @Override
+    public void display(SafeMusicRepresentation m) {
+        
+    }
+
+    /**
+     * The 'play' button for the view. Useless for those that statically display the data.
+     */
+    @Override
+    public void play(SafeMusicRepresentation m) {
+
+    }
 }
