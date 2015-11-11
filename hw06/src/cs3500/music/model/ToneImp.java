@@ -64,11 +64,9 @@ public final class ToneImp implements Tone {
     public int compare(Tone t) {
         if (this.octave < t.getOctave()) {
             return -1;
-        }
-        else if (this.octave > t.getOctave()) {
+        } else if (this.octave > t.getOctave()) {
             return 1;
-        }
-        else {
+        } else {
             return this.note.getValue() - t.getNote().getValue();
         }
     }
@@ -91,7 +89,7 @@ public final class ToneImp implements Tone {
 
     @Override
     public Tone nextTone() {
-        Note nextPitch =  Note.ValueToNote((this.getValue() % 12) + 1);
+        Note nextPitch = Note.ValueToNote((this.getValue() % 12) + 1);
         int oct = this.octave;
         if (Note.NoteToString(nextPitch).equals("C")) {
             oct++;
@@ -104,7 +102,7 @@ public final class ToneImp implements Tone {
     @Override
     public boolean equals(Object o) {
         if (o instanceof ToneImp) {
-            Tone t = (Tone)o;
+            Tone t = (Tone) o;
             return ((Tone) o).compare(this) == 0 && this.duration == ((ToneImp) o).duration;
         }
         return false;

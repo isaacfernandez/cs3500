@@ -99,7 +99,7 @@ public class Score implements MusicRepresentation {
                 }
             }
         }
-        return lowest;
+        return new ToneImp(lowest);
     }
 
     /**
@@ -117,7 +117,7 @@ public class Score implements MusicRepresentation {
                 }
             }
         }
-        return highest;
+        return new ToneImp(highest);
     }
 
     /**

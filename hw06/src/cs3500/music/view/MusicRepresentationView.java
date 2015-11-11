@@ -5,14 +5,14 @@ package cs3500.music.view;
  */
 public interface MusicRepresentationView {
 
-    //The constructor for a MusicRepresentationView should take a file
-    //The file should only contains lines formatted like
-    //0 4 D# 3
-    //<beat> <duration> <pitch> <octave>
-
 
     /**
      * Represents the data
      */
-    void display();
+    void display(SafeMusicRepresentationDecorator m);
+
+    /**
+     * The 'play' button for the view. Useless for those that statically display the data.
+     */
+    void play(SafeMusicRepresentationDecorator m);
 }
