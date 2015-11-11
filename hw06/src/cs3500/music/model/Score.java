@@ -38,7 +38,7 @@ public class Score implements MusicRepresentation {
      * WARN: Adding a note that sustains over another note with the same value can lead to
      * undocumented behavior
      */
-    public void addNote(int beat, int duration, Note note, int octave) {
+    public void addNote(int beat, int duration, Note note, int octave, int vol) {
         if (octave > this.maxOctave) {
             this.maxOctave = octave;
         }
@@ -46,7 +46,7 @@ public class Score implements MusicRepresentation {
             this.minOctave = octave;
         }
 
-        Tone n = new ToneImp(duration, note, octave);
+        Tone n = new ToneImp(duration, note, octave, vol);
         ArrayList<Tone> beatsAtN = this.piece.get(beat);
         if (beatsAtN == null) {
             beatsAtN = new ArrayList<Tone>();
@@ -90,7 +90,7 @@ public class Score implements MusicRepresentation {
      */
     @Override
     public Tone lowest() {
-        Tone lowest = new ToneImp(1, "B", 50);
+        Tone lowest = new ToneImp(1, "B", 50, 0);
         for (int n : this.piece.keySet()) {
             ArrayList<Tone> bAN = this.piece.get(n);
             for (Tone t : bAN) {
@@ -108,7 +108,7 @@ public class Score implements MusicRepresentation {
      */
     @Override
     public Tone highest() {
-        Tone highest = new ToneImp(1, "C", 0);
+        Tone highest = new ToneImp(1, "C", 0, 0);
         for (int n : this.piece.keySet()) {
             ArrayList<Tone> bAN = this.piece.get(n);
             for (Tone t : bAN) {
@@ -130,7 +130,7 @@ public class Score implements MusicRepresentation {
      */
     @Override
     public MusicRepresentation addNote(int beat, int duration, String note, int octave) {
-        this.addNote(beat, duration, Note.StringToNote(note), octave);
+        this.addNote(beat, duration, note, octave);
         return this;
     }
 

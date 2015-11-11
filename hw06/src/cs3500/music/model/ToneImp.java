@@ -6,6 +6,7 @@ package cs3500.music.model;
 public final class ToneImp implements Tone {
 
     public final int duration;
+    public final int volume;
 
     public Note getNote() {
         return note;
@@ -18,16 +19,18 @@ public final class ToneImp implements Tone {
     public final Note note;
     public final int octave;
 
-    public ToneImp(int duration, Note note, int octave) {
+    public ToneImp(int duration, Note note, int octave, int volume) {
         this.duration = duration;
         this.note = note;
         this.octave = octave;
+        this.volume = volume;
     }
 
-    public ToneImp(int duration, String note, int octave) {
+    public ToneImp(int duration, String note, int octave, int volume) {
         this.duration = duration;
         this.note = Note.StringToNote(note);
         this.octave = octave;
+        this.volume = volume;
     }
 
     public int getDuration() {
@@ -42,12 +45,14 @@ public final class ToneImp implements Tone {
         this.duration = t.duration;
         this.note = t.note;
         this.octave = t.octave;
+        this.volume = t.volume;
     }
 
     public ToneImp(Tone t) {
         this.duration = t.getDuration();
         this.note = t.getNote();
         this.octave = t.getOctave();
+        this.volume = t.getVolume();
     }
 
     //Returns a negative value if this is lower than t
@@ -68,6 +73,11 @@ public final class ToneImp implements Tone {
         return this.octave * 12 + this.note.getValue();
     }
 
+    @Override
+    public int getVolume() {
+        return this.volume;
+    }
+
 
     @Override
     public Tone nextTone() {
@@ -76,7 +86,7 @@ public final class ToneImp implements Tone {
         if (Note.NoteToString(nextPitch).equals("C")) {
             oct++;
         }
-        ToneImp ret = new ToneImp(1, nextPitch, oct);
+        ToneImp ret = new ToneImp(1, nextPitch, oct, this.volume);
         return ret;
     }
 

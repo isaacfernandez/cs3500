@@ -9,6 +9,8 @@ public interface Tone {
 
     int getValue();
 
+    int getVolume();
+
     Tone nextTone();
 
     //Override equality
