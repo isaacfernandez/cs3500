@@ -20,7 +20,7 @@ public class MusicRepresentationTextViewer implements MusicRepresentationView {
         MusicRepresentationTextViewer mp = new MusicRepresentationTextViewer(f);
     }
 
-    MusicRepresentationTextViewer(File f) {
+    public MusicRepresentationTextViewer(File f) {
         //Probably unnecessary once we use Lerner's builder method
         this.music = new Score();
         try {
