@@ -18,16 +18,19 @@ public final class ToneImp implements Tone {
 
     public final Note note;
     public final int octave;
+    public final int instrument;
 
-    public ToneImp(int duration, Note note, int octave, int volume) {
+    public ToneImp(int duration, Note note, int octave, int volume, int instrument) {
         this.duration = duration;
         this.note = note;
         this.octave = octave;
         this.volume = volume;
+        this.instrument = instrument;
     }
 
-    public ToneImp(int duration, String note, int octave, int volume) {
+    public ToneImp(int duration, String note, int octave, int volume, int instrument) {
         this.duration = duration;
+        this.instrument = instrument;
         this.note = Note.StringToNote(note);
         this.octave = octave;
         this.volume = volume;
@@ -46,6 +49,7 @@ public final class ToneImp implements Tone {
         this.note = t.note;
         this.octave = t.octave;
         this.volume = t.volume;
+        this.instrument = t.instrument;
     }
 
     public ToneImp(Tone t) {
@@ -53,6 +57,7 @@ public final class ToneImp implements Tone {
         this.note = t.getNote();
         this.octave = t.getOctave();
         this.volume = t.getVolume();
+        this.instrument = t.getInstrument();
     }
 
     //Returns a negative value if this is lower than t
@@ -78,6 +83,11 @@ public final class ToneImp implements Tone {
         return this.volume;
     }
 
+    @Override
+    public int getInstrument() {
+        return this.instrument;
+    }
+
 
     @Override
     public Tone nextTone() {
@@ -86,7 +96,7 @@ public final class ToneImp implements Tone {
         if (Note.NoteToString(nextPitch).equals("C")) {
             oct++;
         }
-        ToneImp ret = new ToneImp(1, nextPitch, oct, this.volume);
+        ToneImp ret = new ToneImp(1, nextPitch, oct, this.volume, instrument);
         return ret;
     }
 

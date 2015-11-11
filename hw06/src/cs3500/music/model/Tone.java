@@ -11,6 +11,8 @@ public interface Tone {
 
     int getVolume();
 
+    int getInstrument();
+
     Tone nextTone();
 
     //Override equality

@@ -33,7 +33,7 @@ public enum Note {
      * @param s One of { C C♯ D D♯ E F F♯ G G♯ A A♯ B }
      * @return Note n representing s
      */
-    static Note StringToNote(String s) {
+    public static Note StringToNote(String s) {
         //Remind me to install jdk7
         if (s.equals("C")) {
             return c;
@@ -74,16 +74,16 @@ public enum Note {
         throw new IllegalArgumentException("Invalid Note provided");
     }
 
-    static String NoteToString(Note n) {
+    public static String NoteToString(Note n) {
         return Note.ValueToString(n.getValue());
     }
 
-    static String ValueToString(int n) {
+    public static String ValueToString(int n) {
         String[] notes = { "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"};
-        return notes[n-1];
+        return notes[n];
     }
 
-    static Note ValueToNote(int n) {
+    public static Note ValueToNote(int n) {
         return Note.StringToNote(Note.ValueToString(n));
     }
 

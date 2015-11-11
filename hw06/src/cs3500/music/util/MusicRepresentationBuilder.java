@@ -1,6 +1,7 @@
 package cs3500.music.util;
 
 import cs3500.music.model.MusicRepresentation;
+import cs3500.music.model.Note;
 import cs3500.music.model.Score;
 
 /**
@@ -51,8 +52,9 @@ public class MusicRepresentationBuilder implements CompositionBuilder<MusicRepre
     @Override
     public CompositionBuilder<MusicRepresentation> addNote(int start, int end, int instrument, int pitch, int volume) {
         int duration = end - start;
-        //TODO
-        //MIDI pitch --> Note function
+        int note = pitch%12;
+        int octave = (pitch - note) / 12;
+        score.addNote(start, duration, Note.ValueToString(note), octave, volume, instrument);
         return this;
     }
 }

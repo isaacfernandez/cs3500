@@ -38,7 +38,7 @@ public class Score implements MusicRepresentation {
      * WARN: Adding a note that sustains over another note with the same value can lead to
      * undocumented behavior
      */
-    public void addNote(int beat, int duration, Note note, int octave, int vol) {
+    public void addNote(int beat, int duration, Note note, int octave, int vol, int instrument) {
         if (octave > this.maxOctave) {
             this.maxOctave = octave;
         }
@@ -46,7 +46,7 @@ public class Score implements MusicRepresentation {
             this.minOctave = octave;
         }
 
-        Tone n = new ToneImp(duration, note, octave, vol);
+        Tone n = new ToneImp(duration, note, octave, vol, instrument);
         ArrayList<Tone> beatsAtN = this.piece.get(beat);
         if (beatsAtN == null) {
             beatsAtN = new ArrayList<Tone>();
@@ -90,7 +90,7 @@ public class Score implements MusicRepresentation {
      */
     @Override
     public Tone lowest() {
-        Tone lowest = new ToneImp(1, "B", 50, 0);
+        Tone lowest = new ToneImp(1, "B", 50, 0, 0);
         for (int n : this.piece.keySet()) {
             ArrayList<Tone> bAN = this.piece.get(n);
             for (Tone t : bAN) {
@@ -108,7 +108,7 @@ public class Score implements MusicRepresentation {
      */
     @Override
     public Tone highest() {
-        Tone highest = new ToneImp(1, "C", 0, 0);
+        Tone highest = new ToneImp(1, "C", 0, 0, 0);
         for (int n : this.piece.keySet()) {
             ArrayList<Tone> bAN = this.piece.get(n);
             for (Tone t : bAN) {
@@ -129,8 +129,9 @@ public class Score implements MusicRepresentation {
      * @param octave   which octave the note is to be played in
      */
     @Override
-    public MusicRepresentation addNote(int beat, int duration, String note, int octave) {
-        this.addNote(beat, duration, note, octave);
+    public MusicRepresentation addNote(int beat, int duration, String note,
+                                       int octave, int volume, int instrument) {
+        this.addNote(beat, duration, note, octave, volume, instrument);
         return this;
     }
 

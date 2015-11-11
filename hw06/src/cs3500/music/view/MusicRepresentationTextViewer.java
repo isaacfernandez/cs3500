@@ -42,7 +42,7 @@ public class MusicRepresentationTextViewer implements MusicRepresentationView {
                     duration = Integer.parseInt(note[1]);
                     pitch = note[2];
                     oct = Integer.parseInt(note[3]);
-                    this.music.addNote(beat, duration, pitch, oct);
+                    //this.music.addNote(beat, duration, pitch, oct);
                 }
             } else {
                 System.out.println("File doesn't exist");

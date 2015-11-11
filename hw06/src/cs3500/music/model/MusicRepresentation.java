@@ -36,7 +36,7 @@ public interface MusicRepresentation {
      * @param octave which octave the note is to be played in
      * @return MusicRepresentation self, the mutated object
      */
-    MusicRepresentation addNote(int beat, int duration, String note, int octave);
+    MusicRepresentation addNote(int beat, int duration, String note, int octave,int volume, int instrument);
 
     /**
      * Removes the note at beat n. Assumed that only one instrument is playing at a specific beat
