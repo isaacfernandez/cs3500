@@ -123,18 +123,34 @@ public class ScoreTest {
     assertTrue(t1.equals(t1));
   }
 
+  /*
+  tests cloning tones
+   */
   @Test
-  public void testCloneTone() {
+  public void testCloneTone0() {
     Tone t = new ToneImp(1, "A", 1, 100, 0);
     Tone clone = new ToneImp(t);
     assertEquals(true, t.equals(t));
   }
 
   @Test
+  public void testCloneTone1() {
+    Tone t = new ToneImp(5, Note.b, 3, 55, 1);
+    Tone clone = new ToneImp(t);
+    assertEquals(true, t.equals(t));
+  }
+
+  /*
+  tests getLength on scores
+   */
+  @Test
   public void testGetLength() {
     assertEquals(5, this.testSong().getLength());
   }
 
+  /*
+  tests getRange on scores
+   */
   @Test
   public void testGetRange() {
     assertEquals(2, this.testSong().getRange());
@@ -145,6 +161,9 @@ public class ScoreTest {
         removeNoteAt(0, "A", 1).getRange());
   }
 
+  /*
+  tests highest on scores
+   */
   @Test
   public void testExtreme() {
     assertEquals(true, this.testSong().highest().equals(this.testSong().highest()));
@@ -152,6 +171,9 @@ public class ScoreTest {
     assertEquals(false, this.testSong().highest().equals(new ToneImp(2, "C#", 4, 100, 0)));
   }
 
+  /*
+  tests addNote on scores
+   */
   @Test
   public void testAddNote1() {
     MusicRepresentation n = new Score();
@@ -163,6 +185,9 @@ public class ScoreTest {
     assertEquals(6, m.countNotes());
   }
 
+  /*
+  tone tests, specifically nextTone
+   */
   @Test
   public void testNote() {
     Tone t = new ToneImp(1, Note.c, 1, 100, 0);
@@ -174,7 +199,9 @@ public class ScoreTest {
     assertEquals(new ToneImp(1, Note.c, 2, 100, 0), t2.nextTone());
   }
 
-
+  /*
+  tests removeNoteAt on scores
+   */
   @Test
   public void testRemoveNoteAt() {
     MusicRepresentation m = this.testSong();
@@ -185,18 +212,27 @@ public class ScoreTest {
         .removeNoteAt(0, "B", 4).countNotes()); //dont sustaining notes
   }
 
-  @Test
-  public void testExtremes() {
-    assertEquals(new ToneImp(3, "E", 3, 100, 0), this.testSong().lowest());
-    assertEquals(new ToneImp(2, "D#", 4, 100, 0), this.testSong().highest());
-  }
-
+  /*
+  tests removeNoteAt exceptions
+   */
   @Test(expected = IllegalArgumentException.class)
   public void testRemoveAtExcp() {
     MusicRepresentation m = this.testSong();
     assertEquals(3, m.removeNoteAt(0, "B", 4).countNotes());
   }
 
+  /*
+  tests lowest and highest on scores
+   */
+  @Test
+  public void testExtremes() {
+    assertEquals(new ToneImp(3, "E", 3, 100, 0), this.testSong().lowest());
+    assertEquals(new ToneImp(2, "D#", 4, 100, 0), this.testSong().highest());
+  }
+
+  /*
+  tests getNotesAtBeat on scores
+   */
   @Test
   public void testGetNotesAtBeat() {
     assertEquals(2, this.testSong().getNotesAtBeat(0).size());
