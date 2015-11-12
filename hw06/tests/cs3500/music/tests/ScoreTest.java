@@ -25,7 +25,61 @@ public class ScoreTest {
   }
 
   /*
-  tests equals and compare
+  tests constructor exceptions on tone
+   */
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testToneConstructorException0() {
+    Tone t = new ToneImp(0, "A", 1, 100, 0);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testToneConstructorException1() {
+    Tone t = new ToneImp(-2, Note.aS, 2, 90, 0);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testToneConstructorException2() {
+    Tone t = new ToneImp(2, "As", 5, 80, 1);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testToneConstructorException3() {
+    Tone t = new ToneImp(2, "C", -1, 90, 0);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testToneConstructorException4() {
+    Tone t = new ToneImp(1, Note.b, 10, 90, 0);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testToneConstructorException5() {
+    Tone t = new ToneImp(5, "D", 0, 100, 0);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testToneConstructorException6() {
+    Tone t = new ToneImp(5, Note.dS, 11, 100, 0);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testToneConstructorException7() {
+    Tone t = new ToneImp(1, Note.b, 10, -1, 0);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testToneConstructorException9() {
+    Tone t = new ToneImp(2, "As", 5, 128, 1);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testToneConstructorException10() {
+    Tone t = new ToneImp(2, Note.g, 5, 142, 1);
+  }
+
+  /*
+  tests equals and compare on tone
    */
   Tone t0 = new ToneImp(1, "A", 1, 100, 0);
   Tone t1 = new ToneImp(1, "A", 1, 100, 0);
