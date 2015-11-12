@@ -13,5 +13,7 @@ public interface SafeMusicRepresentation {
 
   int getLength();
 
+  Tone lowest();
+
   List<Tone> displayNotes();
 }

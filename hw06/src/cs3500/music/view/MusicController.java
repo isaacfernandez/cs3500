@@ -18,4 +18,8 @@ public class MusicController {
     //TODO
     this.view = MusicRepresentationViewFactory.makeView(mode);
   }
+
+  public void start() {
+    this.view.display(new SafeMusicRepresentationDecorator(this.model));
+  }
 }

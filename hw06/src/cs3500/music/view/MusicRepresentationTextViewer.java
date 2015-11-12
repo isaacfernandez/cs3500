@@ -1,11 +1,15 @@
 package cs3500.music.view;
 
+import com.sun.javafx.binding.StringFormatter;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.util.Collection;
 import java.util.List;
 
 import cs3500.music.model.MusicRepresentation;
+import cs3500.music.model.Note;
 import cs3500.music.model.Score;
 import cs3500.music.model.Tone;
 
@@ -15,24 +19,16 @@ import cs3500.music.model.Tone;
 public class MusicRepresentationTextViewer implements MusicRepresentationView {
 
   /**
-   * Creates a representation of the data idk what the view is suppose to take?
-   */
-  public void display() {
-    //Figure out how wide we'll need to display
-  }
-
-  /**
    * Given a list of notes and sustaining notes, rearranges them into a staff SIDEEFFECTS: Mutates
    * sustainedNotes s.t.  any new notes to be sustained are incremented, and notes previous being
    * sustained decreased in value
    */
-  private String getFormattedString(List<Tone> notes,
-                                    int[] sustained,
-                                    int lowEnd, int hiEnd) {
-    String[] marks = new String[1 + hiEnd - lowEnd];
+  private String getFormattedString(Collection<Tone> notes,
+                                    int[] sustained, int low) {
+    String[] marks = new String[sustained.length];
 
     for (Tone t : notes) {
-      int index = (t.getValue()) - lowEnd;
+      int index = (t.getValue()) - low;
       marks[index] = "X   "; //Note.NoteToString(t.note);
       if (t.getDuration() > 1) {
         sustained[index] = t.getDuration() - 1; //Account for the current playing note, 1 tick
@@ -70,7 +66,25 @@ public class MusicRepresentationTextViewer implements MusicRepresentationView {
    */
   @Override
   public void display(SafeMusicRepresentation m) {
-
+      List<Tone> range = m.displayNotes();
+      int[] sustainedNotes = new int[range.size()];
+      StringBuilder headBuilder = new StringBuilder();
+      //build header
+      for (Tone t:  range) {
+          String s = String.format("%1$2%2$2", Note.NoteToString(t.getNote()), t.getOctave());
+          headBuilder.append(s);
+      }
+      String header = headBuilder.toString();
+      StringBuilder builder = new StringBuilder();
+      int length = m.getLength();
+      for (int i = 0; i < length; i++) {
+        builder.append(this.getFormattedString(m.getNotesAtBeat(i),
+            sustainedNotes,
+            m.lowest().getValue()));
+          builder.append("\n");
+      }
+      String display = builder.toString();
+      System.out.println(display);
   }
 
   /**

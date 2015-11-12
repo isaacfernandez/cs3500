@@ -135,7 +135,7 @@ public class Score implements MusicRepresentation {
   @Override
   public MusicRepresentation addNote(int beat, int duration, String note,
                                      int octave, int volume, int instrument) {
-    this.addNote(beat, duration, note, octave, volume, instrument);
+    this.addNote(beat, duration, Note.StringToNote(note), octave, volume, instrument);
     return this;
   }
 
