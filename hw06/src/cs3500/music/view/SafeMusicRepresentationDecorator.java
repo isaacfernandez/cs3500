@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.List;
 
 import cs3500.music.model.MusicRepresentation;
+import cs3500.music.model.Score;
 import cs3500.music.model.Tone;
 import cs3500.music.model.ToneImp;
 
@@ -22,6 +23,12 @@ public class SafeMusicRepresentationDecorator implements SafeMusicRepresentation
     this.model = model;
   }
 
+  /**
+   * Create a safe music representation decorator with a blank score
+   */
+  public SafeMusicRepresentationDecorator() {
+    this.model = new Score();
+  }
   /**
    * Safely passes a reference to the set of notes at beat i
    *
