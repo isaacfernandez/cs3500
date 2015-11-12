@@ -115,7 +115,7 @@ public final class ToneImp implements Tone {
         || this.note == Note.aS || this.note == Note.b) && octave <= 10) {
       this.octave = octave;
     } else {
-      throw new IllegalArgumentException("Invalid octave!");
+      throw new IllegalArgumentException("Invalid octave!" +"" + Note.NoteToString(this.note));
     }
     //setting volume
     if (volume >= 0 && volume < 128) {
@@ -209,7 +209,7 @@ public final class ToneImp implements Tone {
 
   @Override
   public Tone nextTone() {
-    Note nextPitch = Note.ValueToNote((this.getValue() % 12) + 1);
+    Note nextPitch = Note.ValueToNote((this.getValue() + 1) % 12);
     int oct = octave;
     if (Note.NoteToString(nextPitch).equals("C")) {
       oct++;
