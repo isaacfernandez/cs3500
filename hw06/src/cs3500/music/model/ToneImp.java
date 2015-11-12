@@ -27,9 +27,9 @@ public final class ToneImp implements Tone {
 
   /** Octave of the tone.
    * INVARIANTS:
-   *      - octave > 0
-   *      - octave < 11
-   *      - if this.note == gS, a, aS, or b, octave < 10
+   *      - octave >= 0
+   *      - octave < 10
+   *      - if this.note == gS, a, aS, or b, octave < 9
    */
   public final int octave;
 
@@ -65,10 +65,10 @@ public final class ToneImp implements Tone {
     //setting note
     this.note = note;
     //setting octave
-    if (octave > 0 && octave < 10) {
+    if (octave >= 0 && octave < 9) {
       this.octave = octave;
     } else if (!(this.note == Note.gS || this.note == Note.a
-        || this.note == Note.aS || this.note == Note.b) && octave < 11) {
+        || this.note == Note.aS || this.note == Note.b) && octave < 10) {
       this.octave = octave;
     } else {
       throw new IllegalArgumentException("Invalid octave!");
@@ -109,10 +109,10 @@ public final class ToneImp implements Tone {
     //setting note
     this.note = Note.StringToNote(note);
     //setting octave
-    if (octave > 0 && octave < 10) {
+    if (octave >= 0 && octave < 9) {
       this.octave = octave;
     } else if (!(this.note == Note.gS || this.note == Note.a
-        || this.note == Note.aS || this.note == Note.b) && octave < 11) {
+        || this.note == Note.aS || this.note == Note.b) && octave < 10) {
       this.octave = octave;
     } else {
       throw new IllegalArgumentException("Invalid octave!");
@@ -148,10 +148,10 @@ public final class ToneImp implements Tone {
     this.note = t.getNote();
     //setting octave
     //setting octave
-    if (t.getOctave() > 0 && t.getOctave() < 10) {
+    if (t.getOctave() >= 0 && t.getOctave() < 9) {
       this.octave = t.getOctave();
     } else if (!(this.note == Note.gS || this.note == Note.a
-        || this.note == Note.aS || this.note == Note.b) && t.getOctave() < 11) {
+        || this.note == Note.aS || this.note == Note.b) && t.getOctave() < 10) {
       this.octave = t.getOctave();
     } else {
       throw new IllegalArgumentException("Invalid octave!");

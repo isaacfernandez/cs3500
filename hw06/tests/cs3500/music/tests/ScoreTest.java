@@ -50,27 +50,27 @@ public class ScoreTest {
 
   @Test(expected = IllegalArgumentException.class)
   public void testToneConstructorException4() {
-    Tone t = new ToneImp(1, Note.b, 10, 90, 0);
+    Tone t = new ToneImp(1, Note.b, 9, 90, 0);
   }
 
   @Test(expected = IllegalArgumentException.class)
   public void testToneConstructorException5() {
-    Tone t = new ToneImp(5, "D", 0, 100, 0);
+    Tone t = new ToneImp(5, "D", -1, 100, 0);
   }
 
   @Test(expected = IllegalArgumentException.class)
   public void testToneConstructorException6() {
-    Tone t = new ToneImp(5, Note.dS, 11, 100, 0);
+    Tone t = new ToneImp(5, Note.dS, 10, 100, 0);
   }
 
   @Test(expected = IllegalArgumentException.class)
   public void testToneConstructorException7() {
-    Tone t = new ToneImp(1, Note.b, 10, -1, 0);
+    Tone t = new ToneImp(1, Note.b, 6, -1, 0);
   }
 
   @Test(expected = IllegalArgumentException.class)
   public void testToneConstructorException9() {
-    Tone t = new ToneImp(2, "As", 5, 128, 1);
+    Tone t = new ToneImp(2, "A", 5, 128, 1);
   }
 
   @Test(expected = IllegalArgumentException.class)
@@ -138,6 +138,29 @@ public class ScoreTest {
     Tone t = new ToneImp(5, Note.b, 3, 55, 1);
     Tone clone = new ToneImp(t);
     assertEquals(true, t.equals(t));
+  }
+
+  /*
+  tests getValue on tones
+   */
+
+  Tone t6 = new ToneImp(10, "C", 5, 100, 1);
+  Tone t7 = new ToneImp(1, "C", 0, 10, 0);
+  Tone t8 = new ToneImp(2, Note.gS, 2, 90, 0);
+
+  @Test
+  public void testGetValue0() {
+    assertEquals(t6.getValue(), 60);
+  }
+
+  @Test
+  public void testGetValue1() {
+    assertEquals(t7.getValue(), 0);
+  }
+
+  @Test
+  public void testGetValue2() {
+    assertEquals(t8.getValue(), 32);
   }
 
   /*
