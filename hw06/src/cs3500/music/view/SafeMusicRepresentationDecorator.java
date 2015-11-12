@@ -45,6 +45,11 @@ public class SafeMusicRepresentationDecorator implements SafeMusicRepresentation
     return model.lowest();
   }
 
+  @Override
+  public int getTempo() {
+    return model.getTempo();
+  }
+
   /**
    * Returns a list of Tones (Pitch & Octave) that must be displayed for a full range
    */
