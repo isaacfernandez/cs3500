@@ -71,10 +71,11 @@ public class MusicRepresentationTextViewer implements MusicRepresentationView {
       StringBuilder headBuilder = new StringBuilder();
       //build header
       for (Tone t:  range) {
-          String s = String.format("%1$2%2$2", Note.NoteToString(t.getNote()), t.getOctave());
+          String s = String.format("%1$-4s", Note.NoteToString(t.getNote()) + "" +  t.getOctave());
           headBuilder.append(s);
       }
       String header = headBuilder.toString();
+      System.out.println(header);
       StringBuilder builder = new StringBuilder();
       int length = m.getLength();
       for (int i = 0; i < length; i++) {

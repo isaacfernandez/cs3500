@@ -55,8 +55,8 @@ public class SafeMusicRepresentationDecorator implements SafeMusicRepresentation
     Tone highest = model.highest();
     do {
       //Should split into a 'nextTone' method
-      header = header.nextTone();
       notes.add(new ToneImp(header));
+      header = header.nextTone();
     } while (highest.compare(header) >= 0);
     return notes;
   }

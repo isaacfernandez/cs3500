@@ -93,7 +93,7 @@ public class Score implements MusicRepresentation {
    */
   @Override
   public Tone lowest() {
-    Tone lowest = new ToneImp(1, "B", 50, 0, 0);
+    Tone lowest = new ToneImp(1, "G#", 8, 0, 0);
     for (int n : this.piece.keySet()) {
       ArrayList<Tone> bAN = this.piece.get(n);
       for (Tone t : bAN) {
