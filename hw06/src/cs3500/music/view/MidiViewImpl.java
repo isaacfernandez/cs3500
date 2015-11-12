@@ -48,6 +48,7 @@ public class MidiViewImpl implements MusicRepresentationView {
   public void playNote() throws InvalidMidiDataException {
     MidiMessage start = new ShortMessage(ShortMessage.NOTE_ON, 0, 60, 64);
     MidiMessage stop = new ShortMessage(ShortMessage.NOTE_OFF, 0, 60, 64);
+    // -------------------------------------------->ON/OFF, ?, note, vol
     this.receiver.send(start, -1);
     this.receiver.send(stop, this.synth.getMicrosecondPosition() + 200000);
     this.receiver.close(); // Only call this once you're done playing *all* notes
@@ -58,7 +59,7 @@ public class MidiViewImpl implements MusicRepresentationView {
      */
     @Override
     public void display(SafeMusicRepresentation m) {
-        
+
     }
 
     /**
