@@ -51,12 +51,14 @@ public class MusicGuiViewPanel extends JPanel {
     y = 50;
     int beat = 0;
     g.setColor(Color.BLACK);
-    for (int i = 0; i <= tones.size(); i = i + 1) {
+    while (x <= music.getLength()*30){
       g.fillRect(x, y, 2, height);
       g.drawString("" + beat, x - 2, 40);
       beat = beat + 4;
       x = x + 120;
     }
+    g.fillRect(x, y, 2, height + 2);
+    g.drawString("" + beat, x - 2, 40);
     x = 50;
     g.fillRect(x, y, music.getLength()*30, 2);
     y = y + 30;
@@ -76,4 +78,10 @@ public class MusicGuiViewPanel extends JPanel {
     this.music = m;
   }
 
+  @Override
+  public Dimension getPreferredSize() {
+    int x = 100 + music.getLength()*30;
+    int y = 100 + music.displayNotes().size()*30;
+    return new Dimension(x, y);
+  }
 }

@@ -11,7 +11,7 @@ import cs3500.music.util.MusicRepresentationBuilder;
 import cs3500.music.view.MusicController;
 
 /**
- * isaacf
+ *
  */
 
 public final class MusicEditor {

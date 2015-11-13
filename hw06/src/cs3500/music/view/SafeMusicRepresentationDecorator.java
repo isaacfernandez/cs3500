@@ -77,6 +77,4 @@ public class SafeMusicRepresentationDecorator implements SafeMusicRepresentation
     } while (highest.compare(header) >= 0);
     return notes;
   }
-
-
 }
