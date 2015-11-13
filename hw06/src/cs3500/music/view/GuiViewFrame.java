@@ -2,7 +2,7 @@ package cs3500.music.view;
 
 import java.awt.*;
 import java.awt.event.MouseListener; // Possibly of interest for handling mouse events
-
+import java.awt.event.*;
 import javax.swing.*;
 
 /**
@@ -16,6 +16,7 @@ public class GuiViewFrame extends javax.swing.JFrame implements MusicRepresentat
    * Creates new GuiView
    */
   public GuiViewFrame() {
+    super("Music Player");
     this.displayPanel = new MusicGuiViewPanel();
     this.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
     this.getContentPane().add(displayPanel);
@@ -31,7 +32,7 @@ public class GuiViewFrame extends javax.swing.JFrame implements MusicRepresentat
 
   @Override
   public Dimension getPreferredSize() {
-    return new Dimension(5000, 3000);
+    return new Dimension(1000, 600);
   }
 
   /**
