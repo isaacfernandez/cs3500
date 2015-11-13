@@ -53,6 +53,11 @@ public class SafeMusicRepresentationDecorator implements SafeMusicRepresentation
   }
 
   @Override
+  public Tone highest() {
+    return model.highest();
+  }
+
+  @Override
   public int getTempo() {
     return model.getTempo();
   }

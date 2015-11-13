@@ -127,4 +127,9 @@ public enum Note {
   public static Note ValueToNote(int n) {
     return Note.StringToNote(Note.ValueToString(n));
   }
+
+  @Override
+  public String toString() {
+    return NoteToString(this);
+  }
 }
