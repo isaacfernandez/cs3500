@@ -36,7 +36,7 @@ public final class ToneImp implements Tone {
   /**
    * The integer value of the instrument playing the tone.
    * INVARIANTS:
-   *      - //TODO
+   *      - 1 <= instrument <= 128
    */
   public final int instrument;
 
@@ -80,7 +80,11 @@ public final class ToneImp implements Tone {
       throw new IllegalArgumentException("Invalid volume!");
     }
     //setting instrument
-    this.instrument = instrument;
+    if (instrument >= 0 && instrument < 128) {
+      this.instrument = instrument;
+    } else {
+      throw new IllegalArgumentException("Invalid instrument!");
+    }
   }
 
   /**
@@ -124,7 +128,11 @@ public final class ToneImp implements Tone {
       throw new IllegalArgumentException("Invalid volume!");
     }
     //setting instrument
-    this.instrument = instrument;
+    if (instrument >= 0 && instrument < 128) {
+      this.instrument = instrument;
+    } else {
+      throw new IllegalArgumentException("Invalid instrument!");
+    }
   }
 
   /*
@@ -164,7 +172,11 @@ public final class ToneImp implements Tone {
       throw new IllegalArgumentException("Invalid volume!");
     }
     //setting instrument
-    this.instrument = t.getInstrument();
+    if (t.getInstrument() >= 0 && t.getInstrument() < 128) {
+      this.instrument = t.getInstrument();
+    } else {
+      throw new IllegalArgumentException("Invalid instrument!");
+    }
   }
 
   //Returns a negative value if this is lower than t

@@ -39,7 +39,7 @@ public class GuiViewFrame extends javax.swing.JFrame implements MusicRepresentat
 
   @Override
   public Dimension getPreferredSize() {
-    return new Dimension(1000, 600);
+    return new Dimension(1200, 700);
   }
 
   /**
