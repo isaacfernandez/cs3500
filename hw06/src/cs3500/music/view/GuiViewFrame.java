@@ -17,11 +17,18 @@ public class GuiViewFrame extends javax.swing.JFrame implements MusicRepresentat
    */
   public GuiViewFrame() {
     super("Music Player");
+    JPanel bkgnd = new JPanel();
     this.displayPanel = new MusicGuiViewPanel();
+    this.displayPanel.setBackground(Color.WHITE);
+    this.displayPanel.setPreferredSize(this.displayPanel.getPreferredSize());
     this.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-    this.getContentPane().add(displayPanel);
-    this.pack();
+    JScrollPane scroll = new JScrollPane(displayPanel,
+        ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,
+        ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+    scroll.setWheelScrollingEnabled(false);
+    this.getContentPane().add(scroll);
     this.setBackground(Color.WHITE);
+    this.pack();
     this.initialize();
   }
 
