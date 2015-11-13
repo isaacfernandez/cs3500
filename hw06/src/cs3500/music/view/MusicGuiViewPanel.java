@@ -32,20 +32,10 @@ public class MusicGuiViewPanel extends JPanel {
     int x = 50;
     int y = 50;
     List<Tone> tones = music.displayNotes();
-    Tone tone = music.lowest();
-   for (int i = 0; i < tones.size(); i = i + 1) {
-      x = 50;
-      g.drawString(tone.toString(), 20, y + 20);
-      tone = tone.nextTone();
-      for (int j = 0; j < music.getLength(); j = j + 1) {
-        g.drawRect(x, y, 120, 30);
-        x = x + 120;
-      }
-      y = y + 30;
-    }
-    x = 50;
-    y = 50;
     int highestVal = music.highest().getValue();
+    Tone tone = music.lowest();
+    int lowestVal = tone.getValue();
+    int height = (highestVal - lowestVal + 2) * 30;
     for (int i = 0; i < music.getLength(); i = i + 1) {
       Collection<Tone> c = music.getNotesAtBeat(i);
       for (Tone t : c) {
@@ -56,6 +46,25 @@ public class MusicGuiViewPanel extends JPanel {
         g.fillRect(x, y, 10, 30);
       }
       x = x + 30;
+    }
+    x = 50;
+    y = 50;
+    int beat = 0;
+    g.setColor(Color.BLACK);
+    for (int i = 0; i <= tones.size(); i = i + 1) {
+      g.fillRect(x, y, 2, height);
+      g.drawString("" + beat, x - 2, 40);
+      beat = beat + 4;
+      x = x + 120;
+    }
+    x = 50;
+    g.fillRect(x, y, music.getLength()*30, 2);
+    y = y + 30;
+    for (int i = 1; i <= tones.size() + 1; i = i + 1) {
+      g.fillRect(x, y, music.getLength()*30, 2);
+      g.drawString(tone.toString(), 20, y - 10);
+      tone = tone.nextTone();
+      y = y + 30;
     }
   }
 
