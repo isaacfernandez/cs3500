@@ -25,7 +25,7 @@ public class GuiViewFrame extends javax.swing.JFrame implements MusicRepresentat
     JScrollPane scroll = new JScrollPane(displayPanel,
         ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,
         ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
-    scroll.getViewport().setBackground(Color.WHITE);
+    scroll.setWheelScrollingEnabled(false);
     this.getContentPane().add(scroll);
     this.setBackground(Color.WHITE);
     this.pack();
