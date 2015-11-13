@@ -16,13 +16,18 @@ public class MusicRepresentationViewFactory {
   }
 
   static MusicRepresentationView makeView(String mode) {
+    return MusicRepresentationViewFactory.makeView(mode, new StringBuilder());
+  }
+  static MusicRepresentationView makeView(String mode, StringBuilder log) {
     switch (mode) {
       case "console":
         return new MusicRepresentationTextViewer();
+      case "testconsole":
+        return new MusicRepresentationTextViewer(log);
       case "midi":
         return new MidiViewImpl();
       case "testmidi":
-        return new MidiViewImpl(new TestSynthesizer());
+        return new MidiViewImpl(new TestSynthesizer(log));
       case "visual":
         return new GuiViewFrame();
       default:
