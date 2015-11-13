@@ -20,6 +20,8 @@ public class GuiViewFrame extends javax.swing.JFrame implements MusicRepresentat
     this.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
     this.getContentPane().add(displayPanel);
     this.pack();
+    this.setBackground(Color.WHITE);
+    this.initialize();
   }
 
   //@Override
@@ -29,7 +31,7 @@ public class GuiViewFrame extends javax.swing.JFrame implements MusicRepresentat
 
   @Override
   public Dimension getPreferredSize() {
-    return new Dimension(500, 300);
+    return new Dimension(5000, 3000);
   }
 
   /**
