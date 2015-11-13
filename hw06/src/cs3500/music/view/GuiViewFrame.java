@@ -48,4 +48,12 @@ public class GuiViewFrame extends javax.swing.JFrame implements MusicRepresentat
   @Override
   public void play(SafeMusicRepresentation m) {
   }
+
+  /**
+   * For testing purposes, return the log string builder
+   */
+  @Override
+  public Appendable getLog() {
+    throw new IllegalArgumentException("We can't test this");
+  }
 }

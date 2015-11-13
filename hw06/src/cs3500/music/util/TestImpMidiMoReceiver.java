@@ -54,6 +54,10 @@ public class TestImpMidiMoReceiver implements Receiver, Appendable {
 
   }
 
+  public String toString() {
+    return this.log.toString();
+  }
+
   /**
    * Appends the specified character sequence to this <tt>Appendable</tt>.
    *

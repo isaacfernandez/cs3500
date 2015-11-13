@@ -96,4 +96,12 @@ public class MidiViewImpl implements MusicRepresentationView {
     public void play(SafeMusicRepresentation m) {
 
     }
+
+  /**
+   * For testing purposes, return the log string builder
+   */
+  @Override
+  public Appendable getLog() {
+    return new StringBuilder(this.receiver.toString());
+  }
 }
