@@ -7,6 +7,7 @@ import javax.sound.midi.MidiDevice;
 import javax.sound.midi.MidiMessage;
 import javax.sound.midi.MidiSystem;
 import javax.sound.midi.Receiver;
+import javax.sound.midi.ShortMessage;
 
 /**
  * Created by isaacf on 11/12/15.
@@ -32,7 +33,12 @@ public class TestImpMidiMoReceiver implements Receiver, Appendable {
    */
   @Override
   public void send(MidiMessage message, long timeStamp) {
-    System.out.println(message.getMessage());
+    ShortMessage sm = (ShortMessage)message;
+    try {
+      this.append("note:" + sm.getData1() + " vol:" + sm.getData2() + " Time: " + timeStamp + "\n");
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
 
   /**
