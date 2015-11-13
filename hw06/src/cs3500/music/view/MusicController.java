@@ -12,14 +12,21 @@ import cs3500.music.model.MusicRepresentation;
 public class MusicController {
   private final MusicRepresentationView view;
   private final MusicRepresentation model;
+  String mode;
 
   public MusicController(MusicRepresentation model, String mode) {
+    this.mode = mode;
     this.model = Objects.requireNonNull(model);
-    //TODO
     this.view = MusicRepresentationViewFactory.makeView(mode);
   }
 
-  public void start() {
+  //Returns a string for debugging purposes
+  public String start() {
     this.view.display(new SafeMusicRepresentationDecorator(this.model));
+    if (this.mode.contains("test")) {
+      return ((StringBuilder) this.view.getLog()).toString();
+    } else {
+      return "";
+    }
   }
 }

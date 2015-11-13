@@ -78,7 +78,7 @@ public class MusicRepresentationTextViewer implements MusicRepresentationView {
           String s = String.format("%1$-4s", Note.NoteToString(t.getNote()) + "" +  t.getOctave());
           headBuilder.append(s);
       }
-      String header = headBuilder.toString();
+      String header = headBuilder.toString() + "\n";
     this.print(header);
     StringBuilder builder = new StringBuilder();
       int length = m.getLength();

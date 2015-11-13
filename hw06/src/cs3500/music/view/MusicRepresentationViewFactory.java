@@ -18,6 +18,7 @@ public class MusicRepresentationViewFactory {
   static MusicRepresentationView makeView(String mode) {
     return MusicRepresentationViewFactory.makeView(mode, new StringBuilder());
   }
+
   static MusicRepresentationView makeView(String mode, StringBuilder log) {
     switch (mode) {
       case "console":
