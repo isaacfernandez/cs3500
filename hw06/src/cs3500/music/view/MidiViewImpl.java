@@ -23,6 +23,16 @@ public class MidiViewImpl implements MusicRepresentationView {
     }
   }
 
+  //debug mode MidiViewImpl
+  public MidiViewImpl(Synthesizer testy) {
+    this.synth = testy;
+    try {
+      this.receiver = testy.getReceiver();
+    } catch (MidiUnavailableException e) {
+      e.printStackTrace();
+    }
+  }
+
   /**
    * Relevant classes and methods from the javax.sound.midi library:
    * <ul>
@@ -49,11 +59,11 @@ public class MidiViewImpl implements MusicRepresentationView {
 
   public void playNote(Collection<Tone> tones, int beat, int tempo) throws InvalidMidiDataException {
     for (Tone t : tones) {
-      MidiMessage start = new ShortMessage(ShortMessage.NOTE_ON, 0, t.getValue(), 127);
-      MidiMessage stop = new ShortMessage(ShortMessage.NOTE_OFF, 0, t.getValue(), 127);
+      MidiMessage start = new ShortMessage(ShortMessage.NOTE_ON, t.getInstrument(), t.getValue(), t.getVolume());
+      MidiMessage stop = new ShortMessage(ShortMessage.NOTE_OFF, t.getInstrument(), t.getValue(), t.getVolume());
       // -------------------------------------------->ON/OFF, instrument, note, vol
       this.receiver.send(start, -1);
-      int endTime = (t.getDuration() + beat) * tempo;
+      int endTime = (t.getDuration() + beat - 1) * tempo / 1000;
       this.receiver.send(stop, this.synth.getMicrosecondPosition() + endTime);
     }
 
@@ -67,8 +77,7 @@ public class MidiViewImpl implements MusicRepresentationView {
       for (int i = 0; i < m.getLength(); i++) {
         try {
           this.playNote(m.getNotesAtBeat(i), i, m.getTempo());
-          System.out.println("Playing notes at beat: " + i);
-          Thread.sleep(m.getTempo() / 100);
+          Thread.sleep(m.getTempo() / 1000);
         } catch (InvalidMidiDataException e) {
           System.out.println("Invalid midi");
           e.printStackTrace();
