@@ -1,5 +1,7 @@
 package cs3500.music.view;
 
+import java.util.Collection;
+
 import javax.sound.midi.*;
 
 import cs3500.music.model.*;
@@ -16,6 +18,16 @@ public class MidiViewImpl implements MusicRepresentationView {
       this.synth = MidiSystem.getSynthesizer();
       this.receiver = synth.getReceiver();
       this.synth.open();
+    } catch (MidiUnavailableException e) {
+      e.printStackTrace();
+    }
+  }
+
+  //debug mode MidiViewImpl
+  public MidiViewImpl(Synthesizer testy) {
+    this.synth = testy;
+    try {
+      this.receiver = testy.getReceiver();
     } catch (MidiUnavailableException e) {
       e.printStackTrace();
     }
@@ -45,13 +57,16 @@ public class MidiViewImpl implements MusicRepresentationView {
    *   https://en.wikipedia.org/wiki/General_MIDI</a>
    */
 
-  public void playNote() throws InvalidMidiDataException {
-    MidiMessage start = new ShortMessage(ShortMessage.NOTE_ON, 0, 60, 64);
-    MidiMessage stop = new ShortMessage(ShortMessage.NOTE_OFF, 0, 60, 64);
-    // -------------------------------------------->ON/OFF, ?, note, vol
-    this.receiver.send(start, -1);
-    this.receiver.send(stop, this.synth.getMicrosecondPosition() + 200000);
-    this.receiver.close(); // Only call this once you're done playing *all* notes
+  public void playNote(Collection<Tone> tones, int beat, int tempo) throws InvalidMidiDataException {
+    for (Tone t : tones) {
+      MidiMessage start = new ShortMessage(ShortMessage.NOTE_ON, t.getInstrument(), t.getValue(), t.getVolume());
+      MidiMessage stop = new ShortMessage(ShortMessage.NOTE_OFF, t.getInstrument(), t.getValue(), t.getVolume());
+      // -------------------------------------------->ON/OFF, instrument, note, vol
+      this.receiver.send(start, -1);
+      int endTime = (t.getDuration() + beat - 1) * tempo / 1000;
+      this.receiver.send(stop, this.synth.getMicrosecondPosition() + endTime);
+    }
+
   }
 
     /**
@@ -59,7 +74,19 @@ public class MidiViewImpl implements MusicRepresentationView {
      */
     @Override
     public void display(SafeMusicRepresentation m) {
-
+      for (int i = 0; i < m.getLength(); i++) {
+        try {
+          this.playNote(m.getNotesAtBeat(i), i, m.getTempo());
+          Thread.sleep(m.getTempo() / 1000);
+        } catch (InvalidMidiDataException e) {
+          System.out.println("Invalid midi");
+          e.printStackTrace();
+        } catch (InterruptedException e) {
+          System.out.println("I'm trying to sleep, shhh");
+          e.printStackTrace();
+        }
+      }
+      this.receiver.close(); // Only call this once you're done playing *all* notes
     }
 
     /**

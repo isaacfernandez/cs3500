@@ -17,5 +17,7 @@ public interface SafeMusicRepresentation {
 
   Tone highest();
 
+  int getTempo();
+
   List<Tone> displayNotes();
 }
