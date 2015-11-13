@@ -40,9 +40,9 @@ public class MusicGuiViewPanel extends JPanel {
       Collection<Tone> c = music.getNotesAtBeat(i);
       for (Tone t : c) {
         y = (highestVal- t.getValue())*30 + 50;
-        g.setColor(Color.CYAN);
+        g.setColor(new Color(118, 184, 118));
         g.fillRect(x, y, t.getDuration()*30, 30);
-        g.setColor(Color.BLUE);
+        g.setColor(new Color(0, 120, 20));
         g.fillRect(x, y, 10, 30);
       }
       x = x + 30;

@@ -65,10 +65,10 @@ public final class ToneImp implements Tone {
     //setting note
     this.note = note;
     //setting octave
-    if (octave >= 0 && octave < 9) {
+    if (octave >= 0 && octave <= 9) {
       this.octave = octave;
     } else if (!(this.note == Note.gS || this.note == Note.a
-        || this.note == Note.aS || this.note == Note.b) && octave < 10) {
+        || this.note == Note.aS || this.note == Note.b) && octave <= 10 && octave >= 0) {
       this.octave = octave;
     } else {
       throw new IllegalArgumentException("Invalid octave!");
@@ -112,7 +112,7 @@ public final class ToneImp implements Tone {
     if (octave >= 0 && octave <= 9) {
       this.octave = octave;
     } else if (!(this.note == Note.gS || this.note == Note.a
-        || this.note == Note.aS || this.note == Note.b) && octave <= 10) {
+        || this.note == Note.aS || this.note == Note.b) && octave <= 10 && octave >= 0) {
       this.octave = octave;
     } else {
       throw new IllegalArgumentException("Invalid octave!" +"" + Note.NoteToString(this.note));
@@ -151,7 +151,8 @@ public final class ToneImp implements Tone {
     if (t.getOctave() >= 0 && t.getOctave() <= 9) {
       this.octave = t.getOctave();
     } else if (!(this.note == Note.gS || this.note == Note.a
-        || this.note == Note.aS || this.note == Note.b) && t.getOctave() <= 10) {
+        || this.note == Note.aS || this.note == Note.b) && t.getOctave() <= 10
+        && t.getOctave() >= 0) {
       this.octave = t.getOctave();
     } else {
       throw new IllegalArgumentException("Invalid octave!");

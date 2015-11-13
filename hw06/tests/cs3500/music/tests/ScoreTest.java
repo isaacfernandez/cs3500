@@ -50,7 +50,7 @@ public class ScoreTest {
 
   @Test(expected = IllegalArgumentException.class)
   public void testToneConstructorException4() {
-    Tone t = new ToneImp(1, Note.b, 9, 90, 0);
+    Tone t = new ToneImp(1, Note.b, 10, 90, 0);
   }
 
   @Test(expected = IllegalArgumentException.class)
@@ -60,7 +60,7 @@ public class ScoreTest {
 
   @Test(expected = IllegalArgumentException.class)
   public void testToneConstructorException6() {
-    Tone t = new ToneImp(5, Note.dS, 10, 100, 0);
+    Tone t = new ToneImp(5, Note.dS, 11, 100, 0);
   }
 
   @Test(expected = IllegalArgumentException.class)
@@ -123,6 +123,10 @@ public class ScoreTest {
     assertTrue(t1.equals(t1));
   }
 
+  @Test
+  public void testEqualsAndCompare7() {
+    assertFalse(t1.equals(5));
+  }
   /*
   tests cloning tones
    */
@@ -143,10 +147,11 @@ public class ScoreTest {
   /*
   tests getValue on tones
    */
-
   Tone t6 = new ToneImp(10, "C", 5, 100, 1);
   Tone t7 = new ToneImp(1, "C", 0, 10, 0);
   Tone t8 = new ToneImp(2, Note.gS, 2, 90, 0);
+  Tone t9 = new ToneImp(3, Note.c, 10, 99, 0);
+  Tone t10 = new ToneImp(5, "D#", 10, 25, 0);
 
   @Test
   public void testGetValue0() {
@@ -161,6 +166,16 @@ public class ScoreTest {
   @Test
   public void testGetValue2() {
     assertEquals(t8.getValue(), 32);
+  }
+
+  @Test
+  public void testGetValue3() {
+    assertEquals(t9.getValue(), 120);
+  }
+
+  @Test
+  public void testGetValue4() {
+    assertEquals(t10.getValue(), 123);
   }
 
   /*
@@ -214,7 +229,7 @@ public class ScoreTest {
   @Test
   public void testNote() {
     Tone t = new ToneImp(1, Note.c, 1, 100, 0);
-    assertEquals(13, t.getValue());
+    assertEquals(12, t.getValue());
     assertEquals(t.getValue() + 1, t.nextTone().getValue());
     Tone t2 = new ToneImp(1, Note.b, 1, 100, 0);
     assertEquals(1, t2.getOctave());
@@ -261,4 +276,62 @@ public class ScoreTest {
     assertEquals(2, this.testSong().getNotesAtBeat(0).size());
   }
 
+  /*
+  tests toString on Note
+   */
+  @Test
+  public void testToStringNote0() {
+    assertEquals(Note.a.toString(), "A");
+  }
+
+  @Test
+  public void testToStringNote1() {
+    assertEquals(Note.aS.toString(), "A#");
+  }
+
+  @Test
+  public void testToStringNote2() {
+    assertEquals(Note.gS.toString(), "G#");
+  }
+
+  @Test
+  public void testToStringNote3() {
+    assertEquals(Note.b.toString(), "B");
+  }
+
+  /*
+  test toString on Tone
+   */
+  @Test
+  public void testToStringTone0() {
+    assertEquals(t0.toString(), "A1");
+  }
+
+  @Test
+  public void testToStringTone1() {
+    assertEquals(t2.toString(), "C1");
+  }
+
+  @Test
+  public void testToStringTone2() {
+    assertEquals(t8.toString(), "G#2");
+  }
+
+  @Test
+  public void testToStringTone3() {
+    assertEquals(t10.toString(), "D#10");
+  }
+
+  /*
+  tests getTempo and setTempo
+   */
+  @Test
+  public void testGetSetTempo() {
+    MusicRepresentation m = testSong();
+    assertEquals(m.getTempo(), 0);
+    m.setTempo(20000);
+    assertEquals(m.getTempo(), 20000);
+    m.setTempo(20);
+    assertEquals(m.getTempo(), 20);
+  }
 }

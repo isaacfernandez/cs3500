@@ -8,16 +8,20 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
- * Created by isaacf on 11/2/15.
+ * Implements musicRepresentation.
  */
 public class Score implements MusicRepresentation {
 
   private int minOctave;
   private int maxOctave;
-  private int tempo;
 
-  //All notes to play at beat n
-  private ArrayList<Tone> beat;
+  /**
+   * Tempo of this piece in microseconds.
+   *
+   * INVARIANTS:
+   *     -
+   */
+  private int tempo;
 
   //A map of all list of beats
   private HashMap<Integer, ArrayList> piece;
@@ -26,6 +30,7 @@ public class Score implements MusicRepresentation {
     this.minOctave = 12;
     this.maxOctave = 0;
     piece = new HashMap<Integer, ArrayList>();
+    this.tempo = 0;
   }
 
   /**
