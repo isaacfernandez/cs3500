@@ -1,22 +1,26 @@
 package cs3500.music.view;
 
-import com.sun.javafx.binding.StringFormatter;
-
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
+import java.io.IOException;
 import java.util.Collection;
 import java.util.List;
 
-import cs3500.music.model.MusicRepresentation;
 import cs3500.music.model.Note;
-import cs3500.music.model.Score;
 import cs3500.music.model.Tone;
 
 /**
  * TODO
  */
 public class MusicRepresentationTextViewer implements MusicRepresentationView {
+
+  private Appendable out;
+
+  public MusicRepresentationTextViewer() {
+    this.out = System.out;
+  }
+
+  public MusicRepresentationTextViewer(StringBuilder b) {
+    this.out = b;
+  }
 
   /**
    * Given a list of notes and sustaining notes, rearranges them into a staff SIDEEFFECTS: Mutates
@@ -75,8 +79,8 @@ public class MusicRepresentationTextViewer implements MusicRepresentationView {
           headBuilder.append(s);
       }
       String header = headBuilder.toString();
-      System.out.println(header);
-      StringBuilder builder = new StringBuilder();
+    this.print(header);
+    StringBuilder builder = new StringBuilder();
       int length = m.getLength();
       for (int i = 0; i < length; i++) {
         builder.append(this.getFormattedString(m.getNotesAtBeat(i),
@@ -85,7 +89,15 @@ public class MusicRepresentationTextViewer implements MusicRepresentationView {
           builder.append("\n");
       }
       String display = builder.toString();
-      System.out.println(display);
+      this.print(display);
+  }
+
+  private void print(String s) {
+    try {
+      this.out.append(s);
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
 
   /**
@@ -94,5 +106,13 @@ public class MusicRepresentationTextViewer implements MusicRepresentationView {
   @Override
   public void play(SafeMusicRepresentation m) {
 
+  }
+
+  /**
+   * For testing purposes, return the log string builder
+   */
+  @Override
+  public Appendable getLog() {
+    return this.out;
   }
 }

@@ -13,7 +13,11 @@ import javax.sound.midi.Receiver;
  */
 public class TestImpMidiMoReceiver implements Receiver, Appendable {
 
+  public StringBuilder log;
 
+  public TestImpMidiMoReceiver(StringBuilder l) {
+    this.log = l;
+  }
 
 
 
@@ -64,7 +68,7 @@ public class TestImpMidiMoReceiver implements Receiver, Appendable {
    */
   @Override
   public Appendable append(CharSequence csq) throws IOException {
-    return null;
+    return this.log.append(csq);
   }
 
   /**
@@ -89,7 +93,7 @@ public class TestImpMidiMoReceiver implements Receiver, Appendable {
    */
   @Override
   public Appendable append(CharSequence csq, int start, int end) throws IOException {
-    return null;
+    return this.log.append(csq, start, end);
   }
 
   /**
@@ -101,6 +105,6 @@ public class TestImpMidiMoReceiver implements Receiver, Appendable {
    */
   @Override
   public Appendable append(char c) throws IOException {
-    return null;
+    return this.log.append(c);
   }
 }

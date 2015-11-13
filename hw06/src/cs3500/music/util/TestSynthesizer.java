@@ -17,13 +17,18 @@ import javax.sound.midi.VoiceStatus;
  * Created by isaacf on 11/12/15.
  */
 public class TestSynthesizer implements Synthesizer {
+  private StringBuilder log;
 
   /**
    *All we need from this is for it to return a test receiver
    */
+
+  public TestSynthesizer(StringBuilder log) {
+    this.log = log;
+  }
   @Override
   public Receiver getReceiver() throws MidiUnavailableException {
-    return new TestImpMidiMoReceiver();
+    return new TestImpMidiMoReceiver(log);
   }
 
 

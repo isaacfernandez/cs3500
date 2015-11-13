@@ -14,4 +14,9 @@ public interface MusicRepresentationView {
      * The 'play' button for the view. Useless for those that statically display the data.
      */
     void play(SafeMusicRepresentation m);
+
+    /**
+     * For testing purposes, return the log string builder
+     */
+    Appendable getLog();
 }
