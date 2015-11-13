@@ -7,7 +7,7 @@ import javax.sound.midi.*;
 import cs3500.music.model.*;
 
 /**
- * A skeleton for MIDI playback
+ * Midi Playback
  */
 public class MidiViewImpl implements MusicRepresentationView {
   private Synthesizer synth;
@@ -57,11 +57,15 @@ public class MidiViewImpl implements MusicRepresentationView {
    *   https://en.wikipedia.org/wiki/General_MIDI</a>
    */
 
-  public void playNote(Collection<Tone> tones, int beat, int tempo) throws InvalidMidiDataException {
+  public void playNote(Collection<Tone> tones, int beat, int tempo)
+      throws InvalidMidiDataException {
     for (Tone t : tones) {
-      MidiMessage start = new ShortMessage(ShortMessage.NOTE_ON, t.getInstrument(), t.getValue(), t.getVolume());
-      MidiMessage stop = new ShortMessage(ShortMessage.NOTE_OFF, t.getInstrument(), t.getValue(), t.getVolume());
+      MidiMessage inst = new ShortMessage(ShortMessage.PROGRAM_CHANGE, 0,
+          t.getInstrument() - 1, 1);
+      MidiMessage start = new ShortMessage(ShortMessage.NOTE_ON, 0, t.getValue(), t.getVolume());
+      MidiMessage stop = new ShortMessage(ShortMessage.NOTE_OFF, 0, t.getValue(), t.getVolume());
       // -------------------------------------------->ON/OFF, instrument, note, vol
+      this.receiver.send(inst, -1);
       this.receiver.send(start, -1);
       int endTime = (t.getDuration() + beat - 1) * tempo / 1000;
       this.receiver.send(stop, this.synth.getMicrosecondPosition() + endTime);
