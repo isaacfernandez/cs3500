@@ -35,7 +35,7 @@ public class MusicGuiViewPanel extends JPanel {
     int highestVal = music.highest().getValue();
     Tone tone = music.lowest();
     int lowestVal = tone.getValue();
-    int height = (highestVal - lowestVal + 2) * 30;
+    int height = (highestVal - lowestVal + 1) * 30;
     for (int i = 0; i < music.getLength(); i = i + 1) {
       Collection<Tone> c = music.getNotesAtBeat(i);
       for (Tone t : c) {
@@ -62,10 +62,9 @@ public class MusicGuiViewPanel extends JPanel {
     x = 50;
     g.fillRect(x, y, music.getLength()*30, 2);
     y = y + 30;
-    for (int i = 1; i <= tones.size() + 1; i = i + 1) {
+    for (int i = tones.size() - 1; i >= 0 ; i = i - 1) {
       g.fillRect(x, y, music.getLength()*30, 2);
-      g.drawString(tone.toString(), 20, y - 10);
-      tone = tone.nextTone();
+      g.drawString(tones.get(i).toString(), 20, y - 10);
       y = y + 30;
     }
   }
