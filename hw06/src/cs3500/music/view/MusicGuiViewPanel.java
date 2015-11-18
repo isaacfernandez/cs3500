@@ -86,4 +86,8 @@ public class MusicGuiViewPanel extends JPanel {
     int y = 100 + music.displayNotes().size()*30;
     return new Dimension(x, y);
   }
+
+  public void displayAtBeat(SafeMusicRepresentation m, int beat) {
+    //TODO
+  }
 }

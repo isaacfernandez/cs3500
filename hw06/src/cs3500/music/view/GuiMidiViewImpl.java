@@ -1,9 +1,14 @@
 package cs3500.music.view;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.*;
+
 /**
  * Plays and displays music.
  */
-public class GuiMidiViewImpl implements MusicRepresentationView {
+public class GuiMidiViewImpl implements GuiView {
   /**
    * The GUI view of the music.
    *
@@ -19,7 +24,7 @@ public class GuiMidiViewImpl implements MusicRepresentationView {
    *      - This must be representing the same piece of music at the gui view.
    */
   private MidiViewImpl midi;
-
+  private Timer timer;
   /**
    * Constructs a new GuiMidiViewImpl.
    */
@@ -30,8 +35,19 @@ public class GuiMidiViewImpl implements MusicRepresentationView {
 
   @Override
   public void display(SafeMusicRepresentation m) {
-    gui.display(m);
-    midi.display(m);
+    this.gui.display(m);
+    this.midi.display(m);
+  }
+
+  /**
+   * Sets up the display as it should look during the given beat
+   *
+   * @param beat the time being displayed
+   */
+  @Override
+  public void displayAtBeat(SafeMusicRepresentation m, int beat) {
+    this.gui.display(m);
+    this.midi.displayAtBeat(m, beat);
   }
 
   @Override

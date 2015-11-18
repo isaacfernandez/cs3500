@@ -92,6 +92,29 @@ public class MusicRepresentationTextViewer implements MusicRepresentationView {
       this.print(display);
   }
 
+  /**
+   * Sets up the display as it should look during the given beat
+   *
+   * @param beat the time being displayed
+   */
+  @Override
+  public void displayAtBeat(SafeMusicRepresentation m, int beat) {
+    this.display(m);
+    //TODO: is this okay?
+    //Override the outlog to make sure we only display once
+    this.out = new Appendable() {
+      public Appendable append(CharSequence csq) throws IOException {
+        return null;
+      }
+      public Appendable append(CharSequence csq, int start, int end) throws IOException {
+        return null;
+      }
+      public Appendable append(char c) throws IOException {
+        return null;
+      }
+    };
+  }
+
   private void print(String s) {
     try {
       this.out.append(s);
