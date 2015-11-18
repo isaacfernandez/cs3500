@@ -47,7 +47,7 @@ public class GuiMidiViewImpl implements GuiView {
   @Override
   public void displayAtBeat(SafeMusicRepresentation m, int beat) {
     this.gui.display(m);
-   // this.midi.displayAtBeat(m, beat);
+    this.midi.displayAtBeat(m, beat);
   }
 
   @Override
