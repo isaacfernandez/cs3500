@@ -15,12 +15,18 @@ import cs3500.music.view.SafeMusicRepresentationDecorator;
 public class MusicController {
   private final MusicRepresentationView view;
   private final MusicRepresentation model;
+  private final KeyboardHandler handler;
   String mode;
 
   public MusicController(MusicRepresentation model, String mode) {
     this.mode = mode;
     this.model = Objects.requireNonNull(model);
     this.view = MusicRepresentationViewFactory.makeView(mode);
+    //make handler
+    this.handler = new KeyboardHandler();
+    //Add the handlers here
+    //this.handler.addPressedHandler(new Runnable());
+    
   }
 
   //Returns a string for debugging purposes
