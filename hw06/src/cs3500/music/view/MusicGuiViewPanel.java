@@ -14,6 +14,9 @@ import cs3500.music.model.Note;
 import cs3500.music.model.Score;
 import cs3500.music.model.Tone;
 
+/**
+ * Implementation of a visual representation (view) of a MusicRepresentation
+ */
 
 public class MusicGuiViewPanel extends JPanel {
 

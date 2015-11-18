@@ -6,6 +6,7 @@ import cs3500.music.util.TestSynthesizer;
 
 /**
  * Created by isaacf on 11/11/15.
+ * View Factory to abstract over different views
  */
 public class MusicRepresentationViewFactory {
 

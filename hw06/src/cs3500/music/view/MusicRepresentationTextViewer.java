@@ -8,7 +8,7 @@ import cs3500.music.model.Note;
 import cs3500.music.model.Tone;
 
 /**
- * TODO
+ * Console implementation of MusicRepresentationView
  */
 public class MusicRepresentationTextViewer implements MusicRepresentationView {
 
