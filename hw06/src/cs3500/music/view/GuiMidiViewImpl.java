@@ -24,7 +24,7 @@ public class GuiMidiViewImpl implements GuiView {
    *      - This must be representing the same piece of music at the gui view.
    */
   private MidiViewImpl midi;
-  private Timer timer;
+
   /**
    * Constructs a new GuiMidiViewImpl.
    */
@@ -47,7 +47,7 @@ public class GuiMidiViewImpl implements GuiView {
   @Override
   public void displayAtBeat(SafeMusicRepresentation m, int beat) {
     this.gui.display(m);
-    this.midi.displayAtBeat(m, beat);
+   // this.midi.displayAtBeat(m, beat);
   }
 
   @Override

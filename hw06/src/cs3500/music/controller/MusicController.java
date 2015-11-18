@@ -44,7 +44,7 @@ public class MusicController {
         view.displayAtBeat(sm, tickBeat());
       }
     });
-
+    timer.start();
     if (this.mode.contains("test")) {
       return ((StringBuilder) this.view.getLog()).toString();
     } else {
