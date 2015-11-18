@@ -37,7 +37,7 @@ public class GuiBeatPanel extends JPanel {
     int x = 50 + this.beat*30;
     int y = 50;
     Dimension pref = this.getComponent(0).getPreferredSize();
-    g.fillRect(x, y, 2, pref.height - 100);
+    g.fillRect(x, y, 3, pref.height - 100);
   }
 
 }

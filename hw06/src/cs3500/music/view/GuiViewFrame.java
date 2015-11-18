@@ -17,6 +17,7 @@ public class GuiViewFrame extends javax.swing.JFrame implements GuiView {
    */
   private GuiBeatPanel beatBar;
 
+  private JScrollPane scroll;
   /**
    * Creates new GuiView
    */
@@ -29,13 +30,14 @@ public class GuiViewFrame extends javax.swing.JFrame implements GuiView {
     this.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
     this.beatBar = new GuiBeatPanel();
     this.beatBar.add(displayPanel);
-    JScrollPane scroll = new JScrollPane(beatBar,
+    this.scroll = new JScrollPane(beatBar,
         ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,
         ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
-    scroll.setWheelScrollingEnabled(false);
+    this.scroll.setWheelScrollingEnabled(false);
+    this.scroll.getHorizontalScrollBar().setValue(0);
     //JScrollBar hor = scroll.getHorizontalScrollBar();
     //hor.setValue(hor.getMaximum());
-    this.getContentPane().add(scroll);
+    this.getContentPane().add(this.scroll);
     this.setBackground(Color.WHITE);
     this.pack();
     this.initialize();
@@ -73,6 +75,7 @@ public class GuiViewFrame extends javax.swing.JFrame implements GuiView {
     }
     this.beatBar.setBeat(beat);
     this.beatBar.repaint();
+    this.scroll.getHorizontalScrollBar().setValue(beat*30);
 }
 
   /**
