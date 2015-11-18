@@ -93,6 +93,15 @@ public class MidiViewImpl implements MusicRepresentationView {
       this.receiver.close(); // Only call this once you're done playing *all* notes
     }
 
+  public void displayAtBeat(SafeMusicRepresentation m, int i) {
+    try {
+      this.playNote(m.getNotesAtBeat(i), i, m.getTempo());
+    } catch (InvalidMidiDataException e) {
+      System.out.println("Invalid midi");
+      e.printStackTrace();
+    }
+  }
+
     /**
      * The 'play' button for the view. Useless for those that statically display the data.
      */
