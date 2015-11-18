@@ -42,9 +42,10 @@ public class MusicController {
     timer = new javax.swing.Timer(model.getTempo() / 1000, new ActionListener( ) {
       public void actionPerformed(ActionEvent e) {
         view.displayAtBeat(sm, tickBeat());
+        System.out.println("Calling the view");
       }
     });
-
+    timer.start();
     if (this.mode.contains("test")) {
       return ((StringBuilder) this.view.getLog()).toString();
     } else {

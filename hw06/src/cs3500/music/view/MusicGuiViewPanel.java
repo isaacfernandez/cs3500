@@ -76,8 +76,12 @@ public class MusicGuiViewPanel extends JPanel {
    * Change what music representation is being drawn to m
    * @param m music representation
    */
-  public void changeMusic(SafeMusicRepresentation m) {
+  public boolean changeMusic(SafeMusicRepresentation m) {
+    if (this.music.equals(m)) {
+      return false;
+    }
     this.music = m;
+    return true;
   }
 
   @Override
