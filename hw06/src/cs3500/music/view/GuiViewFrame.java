@@ -6,7 +6,7 @@ import java.awt.event.*;
 import javax.swing.*;
 
 /**
- * A skeleton Frame (i.e., a window) in Swing
+ * Mother GuiViewFrame
  */
 public class GuiViewFrame extends javax.swing.JFrame implements MusicRepresentationView {
 

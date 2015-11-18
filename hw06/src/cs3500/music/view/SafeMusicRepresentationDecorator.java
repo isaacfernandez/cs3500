@@ -11,7 +11,7 @@ import cs3500.music.model.Tone;
 import cs3500.music.model.ToneImp;
 
 /**
- * Implementation of SafeMusicRepresentation.
+ * Wraps around a MusicRepresentation to present a safe version to a view.
  */
 public class SafeMusicRepresentationDecorator implements SafeMusicRepresentation {
   //Protects the Model from the View
