@@ -26,8 +26,11 @@ public class GuiViewFrame extends javax.swing.JFrame implements GuiView {
         ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,
         ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
     scroll.setWheelScrollingEnabled(false);
-    //JScrollBar hor = scroll.getHorizontalScrollBar();
-    //hor.setValue(hor.getMaximum());
+    scroll.getHorizontalScrollBar().addAdjustmentListener(new AdjustmentListener() {
+      public void adjustmentValueChanged(AdjustmentEvent e) {
+        e.getAdjustable().setValue(e.getAdjustable().getValue());
+      }
+    });
     this.getContentPane().add(scroll);
     this.setBackground(Color.WHITE);
     this.pack();
