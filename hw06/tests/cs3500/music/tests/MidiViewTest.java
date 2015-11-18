@@ -10,7 +10,7 @@ import cs3500.music.model.MusicRepresentation;
 import cs3500.music.util.CompositionBuilder;
 import cs3500.music.util.MusicReader;
 import cs3500.music.util.MusicRepresentationBuilder;
-import cs3500.music.view.MusicController;
+import cs3500.music.controller.MusicController;
 
 import static org.junit.Assert.assertEquals;
 

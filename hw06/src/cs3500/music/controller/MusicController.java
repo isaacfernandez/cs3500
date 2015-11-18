@@ -1,10 +1,13 @@
-package cs3500.music.view;
+package cs3500.music.controller;
 
 import java.util.Objects;
 
 import javax.swing.text.ViewFactory;
 
 import cs3500.music.model.MusicRepresentation;
+import cs3500.music.view.MusicRepresentationView;
+import cs3500.music.view.MusicRepresentationViewFactory;
+import cs3500.music.view.SafeMusicRepresentationDecorator;
 
 /**
  * Representation of a controller for a MusicRepresentation.

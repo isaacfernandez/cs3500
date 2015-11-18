@@ -16,7 +16,7 @@ public class MusicRepresentationViewFactory {
     this.m = m;
   }
 
-  static MusicRepresentationView makeView(String mode) {
+  public static MusicRepresentationView makeView(String mode) {
     return MusicRepresentationViewFactory.makeView(mode, new StringBuilder());
   }
 
