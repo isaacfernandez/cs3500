@@ -10,12 +10,6 @@ import cs3500.music.util.TestSynthesizer;
  */
 public class MusicRepresentationViewFactory {
 
-  private final SafeMusicRepresentation m;
-
-  MusicRepresentationViewFactory(SafeMusicRepresentation m) {
-    this.m = m;
-  }
-
   public static MusicRepresentationView makeView(String mode) {
     return MusicRepresentationViewFactory.makeView(mode, new StringBuilder());
   }
