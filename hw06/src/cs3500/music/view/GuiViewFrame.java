@@ -13,6 +13,11 @@ public class GuiViewFrame extends javax.swing.JFrame implements GuiView {
   private final MusicGuiViewPanel displayPanel;
 
   /**
+   * A panel with a bar indicating the curent beat.
+   */
+  private GuiBeatPanel beatBar;
+
+  /**
    * Creates new GuiView
    */
   public GuiViewFrame() {
@@ -22,7 +27,9 @@ public class GuiViewFrame extends javax.swing.JFrame implements GuiView {
     this.displayPanel.setBackground(Color.WHITE);
     this.displayPanel.setPreferredSize(this.displayPanel.getPreferredSize());
     this.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-    JScrollPane scroll = new JScrollPane(displayPanel,
+    this.beatBar = new GuiBeatPanel();
+    this.beatBar.add(displayPanel);
+    JScrollPane scroll = new JScrollPane(beatBar,
         ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,
         ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
     scroll.setWheelScrollingEnabled(false);
@@ -61,8 +68,12 @@ public class GuiViewFrame extends javax.swing.JFrame implements GuiView {
    */
   @Override
   public void displayAtBeat(SafeMusicRepresentation m, int beat) {
-    this.displayPanel.displayAtBeat(m, beat);
-  }
+    if (this.displayPanel.changeMusic(m)) {
+      this.displayPanel.repaint();
+    }
+    this.beatBar.setBeat(beat);
+    this.beatBar.repaint();
+}
 
   /**
    * The 'play' button for the view. Useless for those that statically display the data.
@@ -78,4 +89,5 @@ public class GuiViewFrame extends javax.swing.JFrame implements GuiView {
   public Appendable getLog() {
     throw new IllegalArgumentException("We can't test this");
   }
+
 }
