@@ -11,13 +11,12 @@ import cs3500.music.util.MusicRepresentationBuilder;
 import cs3500.music.view.MusicController;
 
 /**
- *
+ * Main entry point into the program, instantiates controller.
  */
 
 public final class MusicEditor {
   public static void main(String[] args) {
     MusicReader mr = new MusicReader();
-    //Who needs validation
     String filename = args[0];
     String view = args[1];
     try {

@@ -14,7 +14,7 @@ import javax.sound.midi.Transmitter;
 import javax.sound.midi.VoiceStatus;
 
 /**
- * Created by isaacf on 11/12/15.
+ * Test synthesizer.
  */
 public class TestSynthesizer implements Synthesizer {
   private StringBuilder log;
@@ -42,8 +42,8 @@ public class TestSynthesizer implements Synthesizer {
    * latency measures the worst-case delay between the time a MIDI message is delivered to the
    * synthesizer and the time that the synthesizer actually produces the corresponding result. <p>
    * Although the latency is expressed in microseconds, a synthesizer's actual measured delay may
-   * vary over a wider range than this resolution suggests.  For example, a synthesizer might have a
-   * worst-case delay of a few milliseconds or more.
+   * vary over a wider range than this resolution suggests.  For example, a synthesizer might have
+   * a worst-case delay of a few milliseconds or more.
    *
    * @return the worst-case delay, in microseconds
    */
@@ -55,10 +55,10 @@ public class TestSynthesizer implements Synthesizer {
   /**
    * Obtains the set of MIDI channels controlled by this synthesizer.  Each non-null element in the
    * returned array is a <code>MidiChannel</code> that receives the MIDI messages sent on that
-   * channel number. <p> The MIDI 1.0 specification provides for 16 channels, so this method returns
-   * an array of at least 16 elements.  However, if this synthesizer doesn't make use of all 16
-   * channels, some of the elements of the array might be <code>null</code>, so you should check
-   * each element before using it.
+   * channel number. <p> The MIDI 1.0 specification provides for 16 channels, so this method
+   * returns an array of at least 16 elements.  However, if this synthesizer doesn't make use of
+   * all 16 channels, some of the elements of the array might be <code>null</code>, so you should
+   * check each element before using it.
    *
    * @return an array of the <code>MidiChannel</code> objects managed by this
    * <code>Synthesizer</code>.  Some of the array elements may be <code>null</code>.
@@ -70,10 +70,10 @@ public class TestSynthesizer implements Synthesizer {
 
   /**
    * Obtains the current status of the voices produced by this synthesizer. If this class of
-   * <code>Synthesizer</code> does not provide voice information, the returned array will always be
-   * of length 0.  Otherwise, its length is always equal to the total number of voices, as returned
-   * by <code>getMaxPolyphony()</code>.  (See the <code>VoiceStatus</code> class description for an
-   * explanation of synthesizer voices.)
+   * <code>Synthesizer</code> does not provide voice information, the returned array will always
+   * be of length 0.  Otherwise, its length is always equal to the total number of voices, as
+   * returned by <code>getMaxPolyphony()</code>.  (See the <code>VoiceStatus</code> class
+   * description for an explanation of synthesizer voices.)
    *
    * @return an array of <code>VoiceStatus</code> objects that supply information about the
    * corresponding synthesizer voices
@@ -106,10 +106,11 @@ public class TestSynthesizer implements Synthesizer {
   /**
    * Makes a particular instrument available for synthesis.  This instrument is loaded into the
    * patch location specified by its <code>Patch</code> object, so that if a program-change message
-   * is received (or has been received) that causes that patch to be selected, subsequent notes will
-   * be played using the sound of <code>instrument</code>.  If the specified instrument is already
-   * loaded, this method does nothing and returns <code>true</code>. <p> The instrument must be part
-   * of a soundbank that this <code>Synthesizer</code> supports.  (To make sure, you can use the
+   * is received (or has been received) that causes that patch to be selected, subsequent notes
+   * will be played using the sound of <code>instrument</code>.  If the specified instrument is
+   * already loaded, this method does nothing and returns <code>true</code>. <p> The instrument
+   * must be part of a soundbank that this <code>Synthesizer</code> supports.  (To make sure, you
+   * can use the
    * <code>getSoundbank</code> method of <code>Instrument</code> and the
    * <code>isSoundbankSupported</code> method of <code>Synthesizer</code>.)
    *
@@ -117,8 +118,8 @@ public class TestSynthesizer implements Synthesizer {
    * @return <code>true</code> if the instrument is successfully loaded (or already had been),
    * <code>false</code> if the instrument could not be loaded (for example, if the synthesizer has
    * insufficient memory to load it)
-   * @throws IllegalArgumentException if this <code>Synthesizer</code> doesn't support the specified
-   *                                  instrument's soundbank
+   * @throws IllegalArgumentException if this <code>Synthesizer</code> doesn't support the
+   *                  specified instrument's soundbank
    * @see #unloadInstrument
    * @see #loadInstruments
    * @see #loadAllInstruments
@@ -135,8 +136,8 @@ public class TestSynthesizer implements Synthesizer {
    * Unloads a particular instrument.
    *
    * @param instrument instrument to unload
-   * @throws IllegalArgumentException if this <code>Synthesizer</code> doesn't support the specified
-   *                                  instrument's soundbank
+   * @throws IllegalArgumentException if this <code>Synthesizer</code> doesn't support the
+   *                            specified instrument's soundbank
    * @see #loadInstrument
    * @see #unloadInstruments
    * @see #unloadAllInstruments
@@ -150,10 +151,10 @@ public class TestSynthesizer implements Synthesizer {
 
   /**
    * Remaps an instrument. Instrument <code>to</code> takes the place of instrument
-   * <code>from</code>.<br> For example, if <code>from</code> was located at bank number 2, program
-   * number 11, remapping causes that bank and program location to be occupied instead by
-   * <code>to</code>.<br> If the function succeeds,  instrument <code>from</code> is unloaded. <p>To
-   * cancel the remapping reload instrument <code>from</code> by invoking one of {@link
+   * <code>from</code>.<br> For example, if <code>from</code> was located at bank number 2,
+   * program number 11, remapping causes that bank and program location to be occupied instead by
+   * <code>to</code>.<br> If the function succeeds,  instrument <code>from</code> is unloaded.
+   * <p>To cancel the remapping reload instrument <code>from</code> by invoking one of {@link
    * #loadInstrument}, {@link #loadInstruments} or {@link #loadAllInstruments}.
    *
    * @param from the <code>Instrument</code> object to be replaced
@@ -189,18 +190,18 @@ public class TestSynthesizer implements Synthesizer {
   }
 
   /**
-   * Obtains a list of instruments that come with the synthesizer.  These instruments might be built
-   * into the synthesizer, or they might be part of a default soundbank provided with the
+   * Obtains a list of instruments that come with the synthesizer.  These instruments might be
+   * built into the synthesizer, or they might be part of a default soundbank provided with the
    * synthesizer, etc. <p> Note that you don't use this method  to find out which instruments are
    * currently loaded onto the synthesizer; for that purpose, you use
    * <code>getLoadedInstruments()</code>. Nor does the method indicate all the instruments that can
-   * be loaded onto the synthesizer; it only indicates the subset that come with the synthesizer. To
-   * learn whether another instrument can be loaded, you can invoke <code>isSoundbankSupported()</code>,
-   * and if the instrument's <code>Soundbank</code> is supported, you can try loading the
-   * instrument.
+   * be loaded onto the synthesizer; it only indicates the subset that come with the synthesizer.
+   * To learn whether another instrument can be loaded, you can invoke
+   * <code>isSoundbankSupported()</code>, and if the instrument's <code>Soundbank</code> is
+   * supported, you can try loading the instrument.
    *
-   * @return list of available instruments. If the synthesizer has no instruments coming with it, an
-   * array of length 0 is returned.
+   * @return list of available instruments. If the synthesizer has no instruments coming with it,
+   * an array of length 0 is returned.
    * @see #getLoadedInstruments
    * @see #isSoundbankSupported(Soundbank)
    * @see #loadInstrument
@@ -229,7 +230,8 @@ public class TestSynthesizer implements Synthesizer {
    * <code>Soundbank</code>.
    *
    * @param soundbank the <code>Soundbank</code> whose are instruments are to be loaded
-   * @return <code>true</code> if the instruments are all successfully loaded (or already had been),
+   * @return <code>true</code> if the instruments are all successfully loaded (or already had
+   *         been),
    * <code>false</code> if any instrument could not be loaded (for example, if the
    * <code>Synthesizer</code> had insufficient memory)
    * @throws IllegalArgumentException if the requested soundbank is incompatible with this
@@ -265,7 +267,8 @@ public class TestSynthesizer implements Synthesizer {
    *
    * @param soundbank the <code>Soundbank</code> containing the instruments to load
    * @param patchList list of patches for which instruments should be loaded
-   * @return <code>true</code> if the instruments are all successfully loaded (or already had been),
+   * @return <code>true</code> if the instruments are all successfully loaded (or already had
+   *                             been),
    * <code>false</code> if any instrument could not be loaded (for example, if the
    * <code>Synthesizer</code> had insufficient memory)
    * @throws IllegalArgumentException thrown if the soundbank is not supported.
@@ -314,9 +317,9 @@ public class TestSynthesizer implements Synthesizer {
    * Opens the device, indicating that it should now acquire any system resources it requires and
    * become operational.
    *
-   * <p>An application opening a device explicitly with this call has to close the device by calling
-   * {@link #close}. This is necessary to release system resources and allow applications to exit
-   * cleanly.
+   * <p>An application opening a device explicitly with this call has to close the device by
+   * calling {@link #close}. This is necessary to release system resources and allow applications
+   * to exit cleanly.
    *
    * <p> Note that some devices, once closed, cannot be reopened.  Attempts to reopen such a device
    * will always result in a MidiUnavailableException.

@@ -10,7 +10,7 @@ import javax.swing.*;
  */
 public class GuiViewFrame extends javax.swing.JFrame implements MusicRepresentationView {
 
-  private final MusicGuiViewPanel displayPanel; // You may want to refine this to a subtype of JPanel
+  private final MusicGuiViewPanel displayPanel;
 
   /**
    * Creates new GuiView

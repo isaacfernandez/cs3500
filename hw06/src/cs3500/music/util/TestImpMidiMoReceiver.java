@@ -10,7 +10,7 @@ import javax.sound.midi.Receiver;
 import javax.sound.midi.ShortMessage;
 
 /**
- * Created by isaacf on 11/12/15.
+ * Mock receiver for testing.
  */
 public class TestImpMidiMoReceiver implements Receiver, Appendable {
 
@@ -20,12 +20,9 @@ public class TestImpMidiMoReceiver implements Receiver, Appendable {
     this.log = l;
   }
 
-
-
-
   /**
-   * Sends a MIDI message and time-stamp to this receiver. If time-stamping is not supported by this
-   * receiver, the time-stamp value should be -1.
+   * Sends a MIDI message and time-stamp to this receiver. If time-stamping is not supported by
+   * this receiver, the time-stamp value should be -1.
    *
    * @param message   the MIDI message to send
    * @param timeStamp the time-stamp for the message, in microseconds.
@@ -35,7 +32,8 @@ public class TestImpMidiMoReceiver implements Receiver, Appendable {
   public void send(MidiMessage message, long timeStamp) {
     ShortMessage sm = (ShortMessage)message;
     try {
-      this.append("note:" + sm.getData1() + " vol:" + sm.getData2() + " Time: " + timeStamp + "\n");
+      this.append("note:" + sm.getData1() + " vol:" + sm.getData2() + " Time: " + timeStamp
+          + "\n");
     } catch (IOException e) {
       e.printStackTrace();
     }
@@ -49,9 +47,10 @@ public class TestImpMidiMoReceiver implements Receiver, Appendable {
    * device, the device is implicitly closed by this method. This is true unless the device is kept
    * open by other <code>Receiver</code> or <code>Transmitter</code> instances that opened the
    * device implicitly, and unless the device has been opened explicitly. If the device this
-   * <code>Receiver</code> is retrieved from is closed explicitly by calling {@link MidiDevice#close
-   * MidiDevice.close}, the <code>Receiver</code> is closed, too.  For a detailed description of
-   * open/close behaviour see the class description of {@link MidiDevice MidiDevice}.
+   * <code>Receiver</code> is retrieved from is closed explicitly by calling {@link
+   * MidiDevice#close MidiDevice.close}, the <code>Receiver</code> is closed, too.  For a detailed
+   * description of open/close behaviour see the class description of
+   * {@link MidiDevice MidiDevice}.
    *
    * @see MidiSystem#getReceiver
    */
@@ -90,9 +89,9 @@ public class TestImpMidiMoReceiver implements Receiver, Appendable {
    * <pre>
    *     out.append(csq.subSequence(start, end)) </pre>
    *
-   * @param csq   The character sequence from which a subsequence will be appended.  If <tt>csq</tt>
-   *              is <tt>null</tt>, then characters will be appended as if <tt>csq</tt> contained
-   *              the four characters <tt>"null"</tt>.
+   * @param csq   The character sequence from which a subsequence will be appended.  If
+   *              <tt>csq</tt> is <tt>null</tt>, then characters will be appended as if
+   *              <tt>csq</tt> contained the four characters <tt>"null"</tt>.
    * @param start The index of the first character in the subsequence
    * @param end   The index of the character following the last character in the subsequence
    * @return A reference to this <tt>Appendable</tt>
