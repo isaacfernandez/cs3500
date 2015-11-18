@@ -1,7 +1,6 @@
 package cs3500.music.view;
 
 /**
- * Created by isaacf on 11/2/15.
  * Interface to be implemented by all testable, displayable views
  */
 public interface MusicRepresentationView {

@@ -6,7 +6,6 @@ import java.util.List;
 import cs3500.music.model.Tone;
 
 /**
- * Created by isaacf on 11/11/15.
  * A simplified form of MusicRepresentation that is unmodifiable
  */
 public interface SafeMusicRepresentation {

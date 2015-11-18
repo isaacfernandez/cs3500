@@ -8,7 +8,7 @@ import javax.swing.*;
 /**
  * Mother GuiViewFrame
  */
-public class GuiViewFrame extends javax.swing.JFrame implements MusicRepresentationView {
+public class GuiViewFrame extends javax.swing.JFrame implements GuiView {
 
   private final MusicGuiViewPanel displayPanel;
 
