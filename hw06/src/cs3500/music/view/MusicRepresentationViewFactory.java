@@ -32,6 +32,8 @@ public class MusicRepresentationViewFactory {
         return new MidiViewImpl(new TestSynthesizer(log));
       case "visual":
         return new GuiViewFrame();
+      case "visualmidi":
+        return new GuiMidiViewImpl();
       default:
         throw new IllegalArgumentException("Not a valid view mode");
     }
