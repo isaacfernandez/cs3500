@@ -1,5 +1,6 @@
 package cs3500.music.view;
 
+import cs3500.music.controller.KeyboardHandler;
 import cs3500.music.model.MusicRepresentation;
 import cs3500.music.util.TestImpMidiMoReceiver;
 import cs3500.music.util.TestSynthesizer;
@@ -10,7 +11,10 @@ import cs3500.music.util.TestSynthesizer;
  */
 public class MusicRepresentationViewFactory {
 
-  public static MusicRepresentationView makeView(String mode) {
+  private static KeyboardHandler kb;
+
+  public static MusicRepresentationView makeView(String mode, KeyboardHandler handler) {
+    MusicRepresentationViewFactory.kb = handler;
     return MusicRepresentationViewFactory.makeView(mode, new StringBuilder());
   }
 
@@ -27,7 +31,9 @@ public class MusicRepresentationViewFactory {
       case "visual":
         return new GuiViewFrame();
       case "visualmidi":
-        return new GuiMidiViewImpl();
+        GuiView g =  new GuiMidiViewImpl();
+        g.addKeyListener(MusicRepresentationViewFactory.kb);
+        return g;
       default:
         throw new IllegalArgumentException("Not a valid view mode");
     }

@@ -28,15 +28,16 @@ public class MusicController {
   public MusicController(MusicRepresentation model, String mode) {
     this.mode = mode;
     this.model = Objects.requireNonNull(model);
-    this.view = MusicRepresentationViewFactory.makeView(mode);
+
     //make handler
+
     this.handler = new KeyboardHandler();
     //TODO
     //Add the handlers here
     this.handler.addPressedHandler(KeyEvent.VK_END, new JumpToEnd(this));
     this.handler.addPressedHandler(KeyEvent.VK_HOME, new JumpToBeginning(this));
     //this.handler.addPressedHandler(new Runnable());
-    
+    this.view = MusicRepresentationViewFactory.makeView(mode, this.handler);
   }
 
   //Returns a string for debugging purposes
