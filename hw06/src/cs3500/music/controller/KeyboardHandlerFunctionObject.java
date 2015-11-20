@@ -47,6 +47,7 @@ class JumpToBeginning extends KeyboardHandlerFunctionObject implements Runnable 
    * executing thread. <p> The general contract of the method <code>run</code> is that it may take
    * any action whatsoever.
    *
+   * This Method calls the controller that created it to set its beat to 0, ie, jump to start
    * @see Thread#run()
    */
   @Override

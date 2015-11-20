@@ -2,6 +2,7 @@ package cs3500.music.controller;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -12,6 +13,13 @@ public class KeyboardHandler implements KeyListener {
   private Map<Integer, Runnable> keyTypedEvents;
   private Map<Integer, Runnable> keyPressedEvents;
   private Map<Integer, Runnable> keyReleasedEvents;
+
+  public KeyboardHandler() {
+    this.keyTypedEvents = new HashMap<Integer, Runnable>();
+    this.keyPressedEvents = new HashMap<Integer, Runnable>();
+    this.keyReleasedEvents = new HashMap<Integer, Runnable>();
+  }
+
   /**
    * Invoked when a key has been typed. See the class description for {@link KeyEvent} for a
    * definition of a key typed event.
@@ -50,6 +58,7 @@ public class KeyboardHandler implements KeyListener {
 
   /**
    * Adds a handler to handle KeyPressed Events
+   * @param keycode see KeyEvents
    * @param r Runnable, the handler
    */
   public void addPressedHandler(int keycode, Runnable r) {

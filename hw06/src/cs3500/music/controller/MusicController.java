@@ -2,6 +2,7 @@ package cs3500.music.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.util.Objects;
 
 import javax.swing.*;
@@ -32,7 +33,8 @@ public class MusicController {
     this.handler = new KeyboardHandler();
     //TODO
     //Add the handlers here
-    this.handler.addPressedHandler(new JumpToBeginning(this));
+    this.handler.addPressedHandler(KeyEvent.VK_END, new JumpToEnd(this));
+    this.handler.addPressedHandler(KeyEvent.VK_HOME, new JumpToBeginning(this));
     //this.handler.addPressedHandler(new Runnable());
     
   }
