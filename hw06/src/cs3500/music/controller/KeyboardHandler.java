@@ -42,25 +42,26 @@ public class KeyboardHandler implements KeyListener {
   /**
    * Adds a handler to handle KeyTyped Events
    * @param r Runnable, the handler
+   *
    */
-  public void addTypedHandler(Runnable r) {
-      //TODO
+  public void addTypedHandler(int keycode, Runnable r) {
+    this.keyTypedEvents.put(keycode, r);
   }
 
   /**
    * Adds a handler to handle KeyPressed Events
    * @param r Runnable, the handler
    */
-  public void addPressedHandler(Runnable r) {
-      //TODO
+  public void addPressedHandler(int keycode, Runnable r) {
+    this.keyPressedEvents.put(keycode, r);
   }
 
   /**
    * Adds a handler to handle KeyReleased Events
    * @param r Runnable, the handler
    */
-  public void addReleasedHandler(Runnable r) {
-    //TODO
+  public void addReleasedHandler(int keycode, Runnable r) {
+    this.keyReleasedEvents.put(keycode, r);
   }
 
   private void lookupEvent(Map<Integer, Runnable> runnables, KeyEvent e)  {

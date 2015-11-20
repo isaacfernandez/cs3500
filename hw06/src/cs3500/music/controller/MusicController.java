@@ -32,6 +32,7 @@ public class MusicController {
     this.handler = new KeyboardHandler();
     //TODO
     //Add the handlers here
+    this.handler.addPressedHandler(new JumpToBeginning(this));
     //this.handler.addPressedHandler(new Runnable());
     
   }
@@ -56,6 +57,12 @@ public class MusicController {
   public int tickBeat() {
     return this.beat++;
   }
+  public void setBeat(int i) {
+    this.beat = i;
+  }
 
+  public SafeMusicRepresentation getModel() {
+    return new SafeMusicRepresentationDecorator(this.model);
+  }
 
 }
