@@ -60,8 +60,12 @@ public class MusicController {
   }
 
   public int tickBeat() {
-    return this.beat++;
+    if (this.model.getLength() > this.beat) {
+      return this.beat++;
+    }
+    return this.beat;
   }
+  
   public void setBeat(int i) {
     this.beat = i;
   }

@@ -32,7 +32,6 @@ public class GuiBeatPanel extends JPanel {
   @Override
   public void paint(Graphics g) {
     this.getComponent(0).paint(g);
-    this.setOpaque(false);
     g.setColor(Color.RED);
     int x = 50 + this.beat*30;
     int y = 50;
