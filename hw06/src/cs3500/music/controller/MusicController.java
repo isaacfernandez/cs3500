@@ -36,6 +36,8 @@ public class MusicController {
     //Add the handlers here
     this.handler.addPressedHandler(KeyEvent.VK_END, new JumpToEnd(this));
     this.handler.addPressedHandler(KeyEvent.VK_HOME, new JumpToBeginning(this));
+    this.handler.addPressedHandler(KeyEvent.VK_LEFT, new ScrollBackward(this));
+    this.handler.addPressedHandler(KeyEvent.VK_RIGHT, new ScrollForward(this));
     //this.handler.addPressedHandler(new Runnable());
     this.view = MusicRepresentationViewFactory.makeView(mode, this.handler);
   }
@@ -64,8 +66,20 @@ public class MusicController {
     this.beat = i;
   }
 
-  public SafeMusicRepresentation getModel() {
-    return new SafeMusicRepresentationDecorator(this.model);
+  public MusicRepresentation getModel() {
+    return this.model;
   }
+
+  public void scroll(int beats) {
+    this.setBeat(this.beat + beats);
+    if (this.beat < 0) {
+      this.beat = 0;
+    }
+    else if (this.beat > this.model.getLength()) {
+      this.beat = this.model.getLength();
+    }
+  }
+
+
 
 }

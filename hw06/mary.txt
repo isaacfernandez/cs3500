@@ -1,4 +1,4 @@
-tempo 200000
+tempo 100000
 note 0 2 1 64 72
 note 0 7 1 55 70
 note 2 4 1 62 72

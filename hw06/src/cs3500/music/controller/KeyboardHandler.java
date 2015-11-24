@@ -6,7 +6,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by isaacf on 11/18/15.
+ * Created by isaacf on 11/18/15
+ * I plan on asking him about restructuring this better
  */
 public class KeyboardHandler implements KeyListener {
 
