@@ -34,6 +34,8 @@ public class MusicController {
     //TODO
     //Add the handlers here
     this.handler.addPressedHandler(KeyEvent.VK_END, new JumpToEnd(this));
+    this.handler.addPressedHandler(KeyEvent.VK_K, new JumpToEnd(this));
+    this.handler.addPressedHandler(KeyEvent.VK_J, new JumpToBeginning(this));
     this.handler.addPressedHandler(KeyEvent.VK_HOME, new JumpToBeginning(this));
     this.handler.addPressedHandler(KeyEvent.VK_LEFT, new ScrollBackward(this));
     this.handler.addPressedHandler(KeyEvent.VK_RIGHT, new ScrollForward(this));
