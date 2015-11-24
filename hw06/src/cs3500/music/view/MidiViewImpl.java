@@ -95,7 +95,6 @@ public class MidiViewImpl implements MusicRepresentationView {
 
   public void displayAtBeat(SafeMusicRepresentation m, int i) {
     try {
-      System.out.println("Playing note at " + i);
       this.playNote(m.getNotesAtBeat(i), i, m.getTempo());
     } catch (InvalidMidiDataException e) {
       System.out.println("Invalid midi");

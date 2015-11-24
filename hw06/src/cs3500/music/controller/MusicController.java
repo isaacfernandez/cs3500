@@ -6,7 +6,6 @@ import java.awt.event.KeyEvent;
 import java.util.Objects;
 
 import javax.swing.*;
-import javax.swing.text.ViewFactory;
 
 import cs3500.music.model.MusicRepresentation;
 import cs3500.music.view.MusicRepresentationView;
@@ -48,7 +47,6 @@ public class MusicController {
     timer = new javax.swing.Timer(model.getTempo() / 1000, new ActionListener( ) {
       public void actionPerformed(ActionEvent e) {
         view.displayAtBeat(sm, tickBeat());
-        System.out.println("Calling the view");
       }
     });
     timer.start();
