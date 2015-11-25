@@ -8,6 +8,8 @@ import java.awt.event.MouseMotionListener;
 
 import javax.swing.*;
 
+import cs3500.music.model.Tone;
+
 /**
  * Plays and displays music.
  */
@@ -71,10 +73,6 @@ public class GuiMidiViewImpl implements GuiView {
     this.gui.addKeyListener(listener);
   }
 
-  /**
-   * MouseListener for GUI view.
-   */
-  @Override
   public void addMouseListener(MouseListener l) {
     System.out.println("Mouse listener added");
     this.gui.addMouseListener(l);
@@ -83,5 +81,15 @@ public class GuiMidiViewImpl implements GuiView {
   @Override
   public void addMouseMotionListener(MouseMotionListener l) {
     this.gui.addMouseMotionListener(l);
+  }
+
+  @Override
+  public Tone toneAt(int x, int y) {
+    return this.gui.toneAt(x, y);
+  }
+
+  @Override
+  public int beatAt(int x, int y) {
+    return this.gui.beatAt(x, y);
   }
 }

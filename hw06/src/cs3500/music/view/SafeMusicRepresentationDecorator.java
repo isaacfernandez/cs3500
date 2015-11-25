@@ -62,7 +62,7 @@ public class SafeMusicRepresentationDecorator implements SafeMusicRepresentation
   public int getTempo() {
     return model.getTempo();
   }
-  
+
   @Override
   public List<Tone> displayNotes() {
     ArrayList<Tone> notes = new ArrayList<Tone>();

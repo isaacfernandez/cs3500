@@ -79,7 +79,6 @@ class MouseMode implements MouseInputListener {
 
 class deleteMouseMode extends MouseMode {
 
-
   /**
    * Invoked when the mouse button has been clicked (pressed and released) on a component.
    */
@@ -93,6 +92,15 @@ class deleteMouseMode extends MouseMode {
     super.mc.getModel().removeNoteAt(t.getX());
      **/
     System.out.println("Did this fire?");
+
+    /*
+    Tone t = view.toneAt(e.getX(), e.getY());
+    int beat = view.beatAt(e.getX(), e.getY());
+    System.out.println(beat); //testing testing 1 2 3
+    if (t != null) {
+      super.mc.getModel().removeNoteAt(beat, t.getNote().toString(), t.getOctave());
+    }
+    */
     super.mc.mouseMode(new doNothingMouseMode());
   }
 
@@ -109,5 +117,13 @@ class doNothingMouseMode extends MouseMode {
   }
   doNothingMouseMode() {
     super(null);
+  }
+
+  @Override
+  public void mouseClicked(MouseEvent e) {
+    GuiView view = (GuiView) super.mc.view;
+    Tone t = view.toneAt(e.getX(), e.getY());
+    int beat = view.beatAt(e.getX(), e.getY());
+    System.out.println(beat); //testing testing 1 2 3
   }
 }

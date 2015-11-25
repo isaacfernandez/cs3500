@@ -5,6 +5,8 @@ import java.awt.event.MouseListener; // Possibly of interest for handling mouse 
 import java.awt.event.*;
 import javax.swing.*;
 
+import cs3500.music.model.Tone;
+
 /**
  * Mother GuiViewFrame
  */
@@ -94,4 +96,18 @@ public class GuiViewFrame extends javax.swing.JFrame implements GuiView {
     throw new IllegalArgumentException("We can't test this");
   }
 
+
+  @Override
+  public Tone toneAt(int x, int y) {
+    return null;
+  }
+
+  @Override
+  public int beatAt(int x, int y) {
+    if (x < 50) {
+      return 0;
+    } else {
+      return (x - 50) / 30;
+    }
+  }
 }
