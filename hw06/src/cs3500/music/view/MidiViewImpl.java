@@ -10,9 +10,19 @@ import cs3500.music.model.*;
  * Midi Playback
  */
 public class MidiViewImpl implements MusicRepresentationView {
+  /**
+   * The synthesizer for this midi view.
+   */
   private Synthesizer synth;
+
+  /**
+   * The reciever for the synthesizer for this midi view.
+   */
   private Receiver receiver;
 
+  /**
+   * Constructs a new MidiViewImpl
+   */
   public MidiViewImpl() {
     try {
       this.synth = MidiSystem.getSynthesizer();
@@ -23,7 +33,11 @@ public class MidiViewImpl implements MusicRepresentationView {
     }
   }
 
-  //debug mode MidiViewImpl
+  /**
+   * Constructs a debug mode MidiViewImpl.
+   *
+   * @param testy test synthesizer
+   */
   public MidiViewImpl(Synthesizer testy) {
     this.synth = testy;
     try {
@@ -60,14 +74,17 @@ public class MidiViewImpl implements MusicRepresentationView {
   public void playNote(Collection<Tone> tones, int beat, int tempo)
       throws InvalidMidiDataException {
     for (Tone t : tones) {
-      MidiMessage inst = new ShortMessage(ShortMessage.PROGRAM_CHANGE, 0,
-          t.getInstrument() - 1, 1);
+  //    MidiMessage inst = new ShortMessage(ShortMessage.PROGRAM_CHANGE, 1,
+   //       1, 1);
       MidiMessage start = new ShortMessage(ShortMessage.NOTE_ON, 0, t.getValue(), t.getVolume());
       MidiMessage stop = new ShortMessage(ShortMessage.NOTE_OFF, 0, t.getValue(), t.getVolume());
       // -------------------------------------------->ON/OFF, instrument, note, vol
-      this.receiver.send(inst, -1);
+  //    this.receiver.send(inst, -1);
+      System.out.println(this.synth.getChannels()[0].getProgram());
+      this.synth.getChannels()[0].programChange(t.getInstrument() + 1);
       this.receiver.send(start, -1);
       int endTime = (t.getDuration() + beat - 1) * tempo / 1000;
+      System.out.println(this.synth.getChannels()[0].getProgram());
       this.receiver.send(stop, this.synth.getMicrosecondPosition() + endTime);
     }
 
@@ -93,6 +110,7 @@ public class MidiViewImpl implements MusicRepresentationView {
       this.receiver.close(); // Only call this once you're done playing *all* notes
     }
 
+  @Override
   public void displayAtBeat(SafeMusicRepresentation m, int i) {
     try {
       this.playNote(m.getNotesAtBeat(i), i, m.getTempo());
@@ -102,13 +120,12 @@ public class MidiViewImpl implements MusicRepresentationView {
     }
   }
 
-    /**
-     * The 'play' button for the view. Useless for those that statically display the data.
-     */
-    @Override
-    public void play(SafeMusicRepresentation m) {
-
-    }
+  /**
+   * * The 'play' button for the view. Useless for those that statically display the data.
+   */
+  @Override
+  public void play(SafeMusicRepresentation m) {
+  }
 
   /**
    * For testing purposes, return the log string builder

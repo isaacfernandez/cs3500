@@ -16,15 +16,56 @@ import cs3500.music.view.SafeMusicRepresentationDecorator;
 /**
  * Representation of a controller for a MusicRepresentation.
  */
-public class MusicController {
-  public final MusicRepresentationView view;
+  public class MusicController {
+
+  /**
+   * The view for this controller.
+   * INVARIANT:
+   *      -- must be non-null
+   */
+  private final MusicRepresentationView view;
+
+  /**
+   * The model for this controller.
+   * INVARIANT:
+   *      -- must be non-null
+   */
   private final MusicRepresentation model;
+
+  /**
+   * The KeyboardHandler (which is a KeyListener) that this controller is using.
+   * INVARIANT:
+   *      -- must be non-null
+   */
   private final KeyboardHandler handler;
+
+
   private final MouseHandlerPointer mhandler;
+
+  /**
+   * The beat the music piece is on.
+   * INVARIANT:
+   *      -- beat >= 0
+   */
   private int beat = 0;
+
+  /**
+   * TODO
+   */
   private Timer timer;
+
+  /**
+   * The type of view this controller is using.
+   */
   String mode;
 
+  /**
+   * Constructs a new MusicController with model {@code model}, mode {@code mode},
+   * keyboard handlers, and a new view of the mode specified.
+   *
+   * @param model the piece being represented
+   * @param mode the type of view being created
+   */
   public MusicController(MusicRepresentation model, String mode) {
     this.mode = mode;
     this.model = Objects.requireNonNull(model);
@@ -45,7 +86,13 @@ public class MusicController {
     this.mhandler = new MouseHandlerPointer();
   }
 
-  //Returns a string for debugging purposes
+
+  /**
+   * Starts playing the music piece.
+   * Returns a String for debugging purposes.
+   *
+   * @return a string for debugging purposes
+   */
   public String start() {
     final SafeMusicRepresentation sm = new SafeMusicRepresentationDecorator(this.model);
     timer = new javax.swing.Timer(model.getTempo() / 1000, new ActionListener( ) {
@@ -61,21 +108,49 @@ public class MusicController {
     }
   }
 
+
   public void mouseMode(MouseMode mr) {
     this.mhandler.setHandler(mr);
   }
 
+  /**
+   * Increments the {@code beat} of the piece by one, unless the piece is at its end (in which case it
+   * keeps the {@code beat} the same). Returns the new {@code beat}.
+   *
+   * @return the new beat
+   */
+
   public int tickBeat() {
-    return this.beat++;
+    if (this.model.getLength() > this.beat) {
+      return this.beat++;
+    }
+    return this.beat;
   }
+
+  /**
+   * Set the {@code beat} to the given int {@code i}. If {@code i} is greater than the length of
+   * the song, {@code beat} is set to the length of the song. Throws an
+   * {@code IllegalArgumentException} if i < 0.
+   *
+   * @param i new beat of song
+   * @throws IllegalArgumentException i < 0
+   */
   public void setBeat(int i) {
-    this.beat = i;
+    if (i < 0) {
+      throw new IllegalArgumentException("Beat of song cannot be negative!");
+    } else if (i > this.model.getLength()) {
+      this.beat = this.model.getLength();
+    } else {
+      this.beat = i;
+    }
   }
 
-  public MusicRepresentation getModel() {
-    return this.model;
-  }
-
+  /**
+   * Sets the {@code beat} of the song ahead (or, behind, if negative) by {@code beats} number of
+   * beats.
+   *
+   * @param beats number of beats to change beat by
+   */
   public void scroll(int beats) {
     this.setBeat(this.beat + beats);
     if (this.beat < 0) {
@@ -85,6 +160,12 @@ public class MusicController {
       this.beat = this.model.getLength();
     }
   }
-
-
+  /**
+   * Returns the music representation of this controller.
+   *
+   * @return the model
+   */
+  public MusicRepresentation getModel() {
+    return this.model;
+  }
 }

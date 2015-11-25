@@ -17,31 +17,32 @@ public class SafeMusicRepresentationDecorator implements SafeMusicRepresentation
   //Protects the Model from the View
   //should be be an interface?
 
+  /**
+   * The MusicRepresentation this safe representation represents.
+   */
   private final MusicRepresentation model;
 
+  /**
+   * Constructs a new SafeMusicRepresentationDecorator from the given {@code model}
+   *
+   * @param model the music piece
+   */
   public SafeMusicRepresentationDecorator(MusicRepresentation model) {
     this.model = model;
   }
 
   /**
-   * Create a safe music representation decorator with a blank score
+   * Constructs a safe music representation decorator with a blank score
    */
   public SafeMusicRepresentationDecorator() {
     this.model = new Score();
   }
-  /**
-   * Safely passes a reference to the set of notes at beat i
-   *
-   * @param i the beat being requested
-   */
+
   @Override
   public Collection<Tone> getNotesAtBeat(int i) {
     return Collections.unmodifiableCollection(this.model.getNotesAtBeat(i));
   }
 
-  /**
-   * Returns the length of the piece
-   */
   @Override
   public int getLength() {
     return model.getLength();
@@ -61,10 +62,7 @@ public class SafeMusicRepresentationDecorator implements SafeMusicRepresentation
   public int getTempo() {
     return model.getTempo();
   }
-
-  /**
-   * Returns a list of Tones (Pitch & Octave) that must be displayed for a full range
-   */
+  
   @Override
   public List<Tone> displayNotes() {
     ArrayList<Tone> notes = new ArrayList<Tone>();

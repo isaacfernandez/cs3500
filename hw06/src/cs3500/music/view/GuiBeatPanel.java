@@ -23,7 +23,9 @@ public class GuiBeatPanel extends JPanel {
   }
 
   /**
-   * Sets beat to the given number.
+   * Sets {@code beat} to the given integer {@code beat}
+   *
+   * @param beat the beat to set this.beat to
    */
   public void setBeat(int beat) {
     this.beat = beat;
@@ -32,7 +34,6 @@ public class GuiBeatPanel extends JPanel {
   @Override
   public void paint(Graphics g) {
     this.getComponent(0).paint(g);
-    this.setOpaque(false);
     g.setColor(Color.RED);
     int x = 50 + this.beat*30;
     int y = 50;
