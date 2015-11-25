@@ -23,7 +23,9 @@ public class GuiBeatPanel extends JPanel {
   }
 
   /**
-   * Sets beat to the given number.
+   * Sets {@code beat} to the given integer {@code beat}
+   *
+   * @param beat the beat to set this.beat to
    */
   public void setBeat(int beat) {
     this.beat = beat;
