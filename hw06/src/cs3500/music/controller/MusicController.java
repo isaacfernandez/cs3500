@@ -83,17 +83,9 @@ import cs3500.music.view.SafeMusicRepresentationDecorator;
     this.handler.addPressedHandler(KeyEvent.VK_RIGHT, new ScrollForward(this));
     this.handler.addPressedHandler(KeyEvent.VK_D, new deleteMode(this));
     //this.handler.addPressedHandler(new Runnable());
-<<<<<<< HEAD
     this.view = MusicRepresentationViewFactory.makeView(mode,
         this.handler,
         this.mhandler);
-
-=======
-    this.view = MusicRepresentationViewFactory.makeView(mode, this.handler);
-    MouseHandlerPointer mh = new MouseHandlerPointer();
-    mh.setHandler(new doNothingMouseMode(this));
-    this.mhandler = mh;
->>>>>>> 2afe0604c6866d65af6a7cc2591bdbe925a40a08
   }
 
 
