@@ -23,7 +23,7 @@ import cs3500.music.view.SafeMusicRepresentationDecorator;
    * INVARIANT:
    *      -- must be non-null
    */
-  private final MusicRepresentationView view;
+  protected final MusicRepresentationView view;
 
   /**
    * The model for this controller.
@@ -81,9 +81,12 @@ import cs3500.music.view.SafeMusicRepresentationDecorator;
     this.handler.addPressedHandler(KeyEvent.VK_HOME, new JumpToBeginning(this));
     this.handler.addPressedHandler(KeyEvent.VK_LEFT, new ScrollBackward(this));
     this.handler.addPressedHandler(KeyEvent.VK_RIGHT, new ScrollForward(this));
+    this.handler.addPressedHandler(KeyEvent.VK_D, new deleteMode(this));
     //this.handler.addPressedHandler(new Runnable());
     this.view = MusicRepresentationViewFactory.makeView(mode, this.handler);
-    this.mhandler = new MouseHandlerPointer();
+    MouseHandlerPointer mh = new MouseHandlerPointer();
+    mh.setHandler(new doNothingMouseMode(this));
+    this.mhandler = mh;
   }
 
 
@@ -129,15 +132,14 @@ import cs3500.music.view.SafeMusicRepresentationDecorator;
 
   /**
    * Set the {@code beat} to the given int {@code i}. If {@code i} is greater than the length of
-   * the song, {@code beat} is set to the length of the song. Throws an
-   * {@code IllegalArgumentException} if i < 0.
+   * the song, {@code beat} is set to the length of the song. Sets beat to 0 if trying to set beat
+   * to negative.
    *
    * @param i new beat of song
-   * @throws IllegalArgumentException i < 0
    */
   public void setBeat(int i) {
     if (i < 0) {
-      throw new IllegalArgumentException("Beat of song cannot be negative!");
+      this.beat = 0;
     } else if (i > this.model.getLength()) {
       this.beat = this.model.getLength();
     } else {

@@ -80,11 +80,9 @@ public class MidiViewImpl implements MusicRepresentationView {
       MidiMessage stop = new ShortMessage(ShortMessage.NOTE_OFF, 0, t.getValue(), t.getVolume());
       // -------------------------------------------->ON/OFF, instrument, note, vol
   //    this.receiver.send(inst, -1);
-      System.out.println(this.synth.getChannels()[0].getProgram());
       this.synth.getChannels()[0].programChange(t.getInstrument() + 1);
       this.receiver.send(start, -1);
       int endTime = (t.getDuration() + beat - 1) * tempo / 1000;
-      System.out.println(this.synth.getChannels()[0].getProgram());
       this.receiver.send(stop, this.synth.getMicrosecondPosition() + endTime);
     }
 

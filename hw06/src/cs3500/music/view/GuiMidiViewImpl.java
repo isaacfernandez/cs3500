@@ -6,6 +6,8 @@ import java.awt.event.KeyListener;
 
 import javax.swing.*;
 
+import cs3500.music.model.Tone;
+
 /**
  * Plays and displays music.
  */
@@ -67,5 +69,15 @@ public class GuiMidiViewImpl implements GuiView {
   @Override
   public void addKeyListener(KeyListener listener) {
     this.gui.addKeyListener(listener);
+  }
+
+  @Override
+  public Tone toneAt(int x, int y) {
+    return this.gui.toneAt(x, y);
+  }
+
+  @Override
+  public int beatAt(int x, int y) {
+    return this.gui.beatAt(x, y);
   }
 }
