@@ -59,6 +59,9 @@ import cs3500.music.view.SafeMusicRepresentationDecorator;
    */
   String mode;
 
+  //Keep track if we're paused or not
+  private boolean paused;
+
   /**
    * Constructs a new MusicController with model {@code model}, mode {@code mode},
    * keyboard handlers, and a new view of the mode specified.
@@ -67,6 +70,7 @@ import cs3500.music.view.SafeMusicRepresentationDecorator;
    * @param mode the type of view being created
    */
   public MusicController(MusicRepresentation model, String mode) {
+    this.paused = false;
     this.mode = mode;
     this.model = Objects.requireNonNull(model);
 
@@ -82,6 +86,7 @@ import cs3500.music.view.SafeMusicRepresentationDecorator;
     this.handler.addPressedHandler(KeyEvent.VK_LEFT, new ScrollBackward(this));
     this.handler.addPressedHandler(KeyEvent.VK_RIGHT, new ScrollForward(this));
     this.handler.addPressedHandler(KeyEvent.VK_D, new deleteMode(this));
+    this.handler.addPressedHandler(KeyEvent.VK_SPACE, new PausePlayback(this));
     //this.handler.addPressedHandler(new Runnable());
     this.view = MusicRepresentationViewFactory.makeView(mode,
         this.handler,
@@ -99,6 +104,9 @@ import cs3500.music.view.SafeMusicRepresentationDecorator;
     final SafeMusicRepresentation sm = new SafeMusicRepresentationDecorator(this.model);
     timer = new javax.swing.Timer(model.getTempo() / 1000, new ActionListener( ) {
       public void actionPerformed(ActionEvent e) {
+        if (paused) {
+          return;
+        }
         view.displayAtBeat(sm, tickBeat());
       }
     });
@@ -162,6 +170,12 @@ import cs3500.music.view.SafeMusicRepresentationDecorator;
       this.beat = this.model.getLength();
     }
   }
+
+  //Hits the pause button. If we're paused, unpause and vice versa
+  public void pauseButton() {
+    this.paused = !this.paused;
+  }
+
   /**
    * Returns the music representation of this controller.
    *

@@ -100,7 +100,7 @@ class ScrollForward extends KeyboardHandlerFunctionObject implements Runnable {
   }
 }
 
-//Move playback forward by 12 beats
+//Move playback backwards by 10 beats
 class ScrollBackward extends KeyboardHandlerFunctionObject implements Runnable {
 
   protected ScrollBackward(MusicController cb) {
@@ -118,6 +118,19 @@ class ScrollBackward extends KeyboardHandlerFunctionObject implements Runnable {
   @Override
   public void run() {
     super.cb.scroll(-10);
+  }
+}
+
+//Move playback backwards by 10 beats
+class PausePlayback extends KeyboardHandlerFunctionObject implements Runnable {
+
+  protected PausePlayback(MusicController cb) {
+    super(cb);
+  }
+
+  @Override
+  public void run() {
+    super.cb.pauseButton();
   }
 }
 
