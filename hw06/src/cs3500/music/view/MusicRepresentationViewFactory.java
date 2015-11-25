@@ -16,6 +16,7 @@ public class MusicRepresentationViewFactory {
 
   public static MusicRepresentationView makeView(String mode, KeyboardHandler handler, MouseHandlerPointer mhandler) {
     MusicRepresentationViewFactory.kb = handler;
+    MusicRepresentationViewFactory.p = mhandler;
     return MusicRepresentationViewFactory.makeView(mode, new StringBuilder());
   }
 
