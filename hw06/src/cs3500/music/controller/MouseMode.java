@@ -86,7 +86,8 @@ class deleteMouseMode extends MouseMode {
   @Override
   public void mouseClicked(MouseEvent e) {
     GuiView view = (GuiView) super.mc.view;
-    Tone t = view.ToneAt(e.getX(), e.getY());
+    //We need these methods
+    Tone t = view.toneAt(e.getX(), e.getY());
     int beat = view.beatAt(e.getY());
     super.mc.getModel().removeNoteAt(t.getX());
     super.mc.mouseMode(new doNothingMouseMode());
