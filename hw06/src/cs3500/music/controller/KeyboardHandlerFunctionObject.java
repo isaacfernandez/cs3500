@@ -137,6 +137,7 @@ class deleteMode extends KeyboardHandlerFunctionObject implements Runnable {
    */
   @Override
   public void run() {
-    //this.cb.mouseMode();
+    System.out.println("D mode engaged");
+    this.cb.mouseMode(new deleteMouseMode(super.cb));
   }
 }

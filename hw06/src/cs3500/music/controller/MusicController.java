@@ -23,7 +23,7 @@ import cs3500.music.view.SafeMusicRepresentationDecorator;
    * INVARIANT:
    *      -- must be non-null
    */
-  private final MusicRepresentationView view;
+  protected final MusicRepresentationView view;
 
   /**
    * The model for this controller.
@@ -71,7 +71,7 @@ import cs3500.music.view.SafeMusicRepresentationDecorator;
     this.model = Objects.requireNonNull(model);
 
     //make handler
-
+    this.mhandler = new MouseHandlerPointer();
     this.handler = new KeyboardHandler();
     //TODO
     //Add the handlers here
@@ -81,9 +81,12 @@ import cs3500.music.view.SafeMusicRepresentationDecorator;
     this.handler.addPressedHandler(KeyEvent.VK_HOME, new JumpToBeginning(this));
     this.handler.addPressedHandler(KeyEvent.VK_LEFT, new ScrollBackward(this));
     this.handler.addPressedHandler(KeyEvent.VK_RIGHT, new ScrollForward(this));
+    this.handler.addPressedHandler(KeyEvent.VK_D, new deleteMode(this));
     //this.handler.addPressedHandler(new Runnable());
-    this.view = MusicRepresentationViewFactory.makeView(mode, this.handler);
-    this.mhandler = new MouseHandlerPointer();
+    this.view = MusicRepresentationViewFactory.makeView(mode,
+        this.handler,
+        this.mhandler);
+
   }
 
 
@@ -110,6 +113,7 @@ import cs3500.music.view.SafeMusicRepresentationDecorator;
 
 
   public void mouseMode(MouseMode mr) {
+    System.out.println("Setting new mouse mode");
     this.mhandler.setHandler(mr);
   }
 

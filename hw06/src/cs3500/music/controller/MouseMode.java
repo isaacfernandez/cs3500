@@ -28,7 +28,7 @@ class MouseMode implements MouseInputListener {
    */
   @Override
   public void mousePressed(MouseEvent e) {
-
+    System.out.println("Pressed!");
   }
 
   /**
@@ -86,12 +86,14 @@ class deleteMouseMode extends MouseMode {
   @Override
   public void mouseClicked(MouseEvent e) {
     GuiView view = (GuiView) super.mc.view;
+    /**
     //We need these methods
     Tone t = view.toneAt(e.getX(), e.getY());
     int beat = view.beatAt(e.getY());
     super.mc.getModel().removeNoteAt(t.getX());
+     **/
+    System.out.println("Did this fire?");
     super.mc.mouseMode(new doNothingMouseMode());
-
   }
 
 

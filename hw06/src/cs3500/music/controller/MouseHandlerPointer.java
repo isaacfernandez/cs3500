@@ -25,7 +25,8 @@ public class MouseHandlerPointer implements MouseInputListener{
      */
     @Override
     public void mouseClicked(MouseEvent e) {
-        this.handler.mouseClicked(e);
+      System.out.println("Pointer registered click");
+      this.handler.mouseClicked(e);
     }
 
     /**
@@ -33,7 +34,8 @@ public class MouseHandlerPointer implements MouseInputListener{
      */
     @Override
     public void mousePressed(MouseEvent e) {
-        this.handler.mousePressed(e);
+      System.out.println("Pointer registered pressed");
+      this.handler.mousePressed(e);
     }
 
     /**
@@ -41,7 +43,8 @@ public class MouseHandlerPointer implements MouseInputListener{
      */
     @Override
     public void mouseReleased(MouseEvent e) {
-        this.handler.mouseReleased(e);
+      System.out.println("Pointer registered Mouse released");
+      this.handler.mouseReleased(e);
     }
 
     /**

@@ -3,6 +3,8 @@ package cs3500.music.view;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 
 import javax.swing.*;
 
@@ -67,5 +69,19 @@ public class GuiMidiViewImpl implements GuiView {
   @Override
   public void addKeyListener(KeyListener listener) {
     this.gui.addKeyListener(listener);
+  }
+
+  /**
+   * MouseListener for GUI view.
+   */
+  @Override
+  public void addMouseListener(MouseListener l) {
+    System.out.println("Mouse listener added");
+    this.gui.addMouseListener(l);
+  }
+
+  @Override
+  public void addMouseMotionListener(MouseMotionListener l) {
+    this.gui.addMouseMotionListener(l);
   }
 }

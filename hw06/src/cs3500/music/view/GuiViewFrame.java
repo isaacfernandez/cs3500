@@ -73,6 +73,7 @@ public class GuiViewFrame extends javax.swing.JFrame implements GuiView {
     if (this.displayPanel.changeMusic(m)) {
       this.displayPanel.repaint();
     }
+
     this.beatBar.setBeat(beat);
     this.beatBar.repaint();
     this.scroll.getHorizontalScrollBar().setValue(beat*30);
