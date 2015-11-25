@@ -17,9 +17,10 @@ import cs3500.music.view.SafeMusicRepresentationDecorator;
  * Representation of a controller for a MusicRepresentation.
  */
 public class MusicController {
-  private final MusicRepresentationView view;
+  public final MusicRepresentationView view;
   private final MusicRepresentation model;
   private final KeyboardHandler handler;
+  private final MouseHandlerPointer mhandler;
   private int beat = 0;
   private Timer timer;
   String mode;
@@ -41,6 +42,7 @@ public class MusicController {
     this.handler.addPressedHandler(KeyEvent.VK_RIGHT, new ScrollForward(this));
     //this.handler.addPressedHandler(new Runnable());
     this.view = MusicRepresentationViewFactory.makeView(mode, this.handler);
+    this.mhandler = new MouseHandlerPointer();
   }
 
   //Returns a string for debugging purposes
@@ -57,6 +59,10 @@ public class MusicController {
     } else {
       return "";
     }
+  }
+
+  public void mouseMode(MouseMode mr) {
+    this.mhandler.setHandler(mr);
   }
 
   public int tickBeat() {
@@ -79,7 +85,6 @@ public class MusicController {
       this.beat = this.model.getLength();
     }
   }
-
 
 
 }
