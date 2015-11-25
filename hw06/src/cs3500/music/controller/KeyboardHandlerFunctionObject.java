@@ -8,31 +8,12 @@ import cs3500.music.view.GuiView;
  * Maybe this should be within the controller for direct access to the view?
  */
 public abstract class KeyboardHandlerFunctionObject {
+  static final int SKIP_FF = 5;
+  static final int SKIP_RW = -10;
   protected final MusicController cb;
 
   protected KeyboardHandlerFunctionObject(MusicController cb) {
     this.cb = cb;
-  }
-}
-
-
-class Scroll extends KeyboardHandlerFunctionObject implements Runnable {
-
-  Scroll(MusicController cb) {
-    super(cb);
-  }
-
-  /**
-   * When an object implementing interface <code>Runnable</code> is used to create a thread,
-   * starting the thread causes the object's <code>run</code> method to be called in that separately
-   * executing thread. <p> The general contract of the method <code>run</code> is that it may take
-   * any action whatsoever.
-   *
-   * @see Thread#run()
-   */
-  @Override
-  public void run() {
-
   }
 }
 
@@ -67,9 +48,6 @@ class JumpToEnd extends KeyboardHandlerFunctionObject implements Runnable {
 
   /**
    * When an object implementing interface <code>Runnable</code> is used to create a thread,
-   * starting the thread causes the object's <code>run</code> method to be called in that separately
-   * executing thread. <p> The general contract of the method <code>run</code> is that it may take
-   * any action whatsoever.
    *
    * @see Thread#run()
    */
@@ -96,7 +74,7 @@ class ScrollForward extends KeyboardHandlerFunctionObject implements Runnable {
    */
   @Override
   public void run() {
-    super.cb.scroll(5);
+    super.cb.scroll(SKIP_FF);
   }
 }
 
@@ -117,7 +95,7 @@ class ScrollBackward extends KeyboardHandlerFunctionObject implements Runnable {
    */
   @Override
   public void run() {
-    super.cb.scroll(-10);
+    super.cb.scroll(SKIP_RW);
   }
 }
 

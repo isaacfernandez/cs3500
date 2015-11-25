@@ -47,7 +47,7 @@ import cs3500.music.view.SafeMusicRepresentationDecorator;
    * INVARIANT:
    *      -- beat >= 0
    */
-  private int beat = 0;
+  protected int beat = 0;
 
   /**
    * TODO
@@ -183,5 +183,10 @@ import cs3500.music.view.SafeMusicRepresentationDecorator;
    */
   public MusicRepresentation getModel() {
     return this.model;
+  }
+
+  //for testing
+  protected boolean getPaused() {
+    return this.paused;
   }
 }
