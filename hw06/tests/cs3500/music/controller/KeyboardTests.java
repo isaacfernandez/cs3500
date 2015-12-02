@@ -108,7 +108,8 @@ public class KeyboardTests {
 class MockMusicController extends MusicController {
 
   /**
-   * Constructs a new MusicController with model {@code model}, mode {@code mode}, keyboard handlers,
+   * Constructs a new MusicController with model {@code model}, mode {@code mode}, keyboard
+   * handlers,
    * and a new view of the mode specified.
    *
    * @param model the piece being represented

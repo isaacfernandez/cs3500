@@ -20,6 +20,9 @@ import cs3500.music.model.Tone;
 
 public class MusicGuiViewPanel extends JPanel {
 
+  /**
+   * The music piece represented in this panel.
+   */
   private SafeMusicRepresentation music;
 
   /**

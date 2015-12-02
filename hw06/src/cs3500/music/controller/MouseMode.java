@@ -8,9 +8,19 @@ import cs3500.music.controller.MusicController;
 import cs3500.music.model.Tone;
 import cs3500.music.view.GuiView;
 
+/**
+ * A mouse mode for a music controller.
+ */
 class MouseMode implements MouseInputListener {
+  /**
+   * The music controller this mousemode is for.
+   */
   protected MusicController mc;
 
+  /**
+   * Constructs a new MouseMode with the given music controller.
+   * @param mc music controller
+   */
   MouseMode(MusicController mc) {
     this.mc = mc;
   }
@@ -77,6 +87,9 @@ class MouseMode implements MouseInputListener {
   }
 }
 
+/**
+ * For deleting notes.
+ */
 class deleteMouseMode extends MouseMode {
 
   /**
@@ -85,39 +98,41 @@ class deleteMouseMode extends MouseMode {
   @Override
   public void mouseClicked(MouseEvent e) {
     GuiView view = (GuiView) super.mc.view;
-    /**
-    //We need these methods
-    Tone t = view.toneAt(e.getX(), e.getY());
-    int beat = view.beatAt(e.getY());
-    super.mc.getModel().removeNoteAt(t.getX());
-     **/
-    System.out.println("Did this fire?");
-
-    /*
     Tone t = view.toneAt(e.getX(), e.getY());
     int beat = view.beatAt(e.getX(), e.getY());
-    System.out.println(beat); //testing testing 1 2 3
     if (t != null) {
       super.mc.getModel().removeNoteAt(beat, t.getNote().toString(), t.getOctave());
     }
-    */
-    super.mc.mouseMode(new doNothingMouseMode());
   }
 
-
+  /**
+   * Constructs a new deleteMouseMode with the given music controller.
+   * @param mc music controller
+   */
   deleteMouseMode(MusicController mc) {
     super(mc);
   }
 }
 
+/**
+ * For when the mouse should not be doing anything.
+ */
 class doNothingMouseMode extends MouseMode {
 
+  /**
+   * Constructs a new doNothingMouseMode with the given music controller.
+   * @param mc music controller
+   */
   doNothingMouseMode(MusicController mc) {
     super(mc);
   }
-  doNothingMouseMode() {
-    super(null);
-  }
+
+  /**
+   * Constructs a new doNothingMouseMode with a null controller.
+   */
+//  doNothingMouseMode() {
+//    super(null);
+ // }
 
   @Override
   public void mouseClicked(MouseEvent e) {

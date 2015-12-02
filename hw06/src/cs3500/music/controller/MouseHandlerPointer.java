@@ -5,20 +5,33 @@ import java.awt.event.MouseEvent;
 import javax.swing.event.MouseInputListener;
 
 /**
- * Created by isaacf on 11/24/15.
+ * A pointer to a mouse input handler for a music piece.
  */
-
 public class MouseHandlerPointer implements MouseInputListener {
+  /**
+   * The MouseInputListener this points to.
+   */
   private MouseInputListener handler;
 
-  public MouseHandlerPointer() {
-    this.handler = new doNothingMouseMode();
+  /**
+   * Constructs a new MouseHandlerPointer.
+   */
+  public MouseHandlerPointer(MusicController mc) {
+    this.handler = new doNothingMouseMode(mc);
   }
 
+  /**
+   * Returns the MouseInputListener this points to
+   * @return handler
+   */
   public MouseInputListener getHandler() {
     return handler;
   }
 
+  /**
+   * Sets handler to the given {@code handler}
+   * @param handler
+   */
   public void setHandler(MouseInputListener handler) {
     this.handler = handler;
   }

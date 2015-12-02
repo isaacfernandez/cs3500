@@ -6,8 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by isaacf on 11/18/15
- * I plan on asking him about restructuring this better
+ * A Keyboard handler for a music piece.
  */
 public class KeyboardHandler implements KeyListener {
 
@@ -15,6 +14,9 @@ public class KeyboardHandler implements KeyListener {
   private Map<Integer, Runnable> keyPressedEvents;
   private Map<Integer, Runnable> keyReleasedEvents;
 
+  /**
+   * Constructs a new keyboard handler with no events.
+   */
   public KeyboardHandler() {
     this.keyTypedEvents = new HashMap<Integer, Runnable>();
     this.keyPressedEvents = new HashMap<Integer, Runnable>();
@@ -74,6 +76,11 @@ public class KeyboardHandler implements KeyListener {
     this.keyReleasedEvents.put(keycode, r);
   }
 
+  /**
+   * Looks up key event.
+   * @param runnables map of runnables
+   * @param e key event
+   */
   private void lookupEvent(Map<Integer, Runnable> runnables, KeyEvent e)  {
     Runnable cb = runnables.get(e.getKeyCode());
     if (cb == null) {

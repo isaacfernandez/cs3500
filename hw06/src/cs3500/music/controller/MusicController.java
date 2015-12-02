@@ -50,7 +50,7 @@ import cs3500.music.view.SafeMusicRepresentationDecorator;
   protected int beat = 0;
 
   /**
-   * TODO
+   * Timer for this controller.
    */
   private Timer timer;
 
@@ -59,7 +59,9 @@ import cs3500.music.view.SafeMusicRepresentationDecorator;
    */
   String mode;
 
-  //Keep track if we're paused or not
+  /**
+   * True when the song is pause.
+   */
   private boolean paused;
 
   /**
@@ -75,7 +77,7 @@ import cs3500.music.view.SafeMusicRepresentationDecorator;
     this.model = Objects.requireNonNull(model);
 
     //make handler
-    this.mhandler = new MouseHandlerPointer();
+    this.mhandler = new MouseHandlerPointer(this);
     this.handler = new KeyboardHandler();
     //TODO
     //Add the handlers here
@@ -118,15 +120,19 @@ import cs3500.music.view.SafeMusicRepresentationDecorator;
     }
   }
 
-
+  /**
+   * Sets the mouse mode.
+   *
+   * @param mr mouse mode
+   */
   public void mouseMode(MouseMode mr) {
     System.out.println("Setting new mouse mode");
     this.mhandler.setHandler(mr);
   }
 
   /**
-   * Increments the {@code beat} of the piece by one, unless the piece is at its end (in which case it
-   * keeps the {@code beat} the same). Returns the new {@code beat}.
+   * Increments the {@code beat} of the piece by one, unless the piece is at its end (in which case
+   * it keeps the {@code beat} the same). Returns the new {@code beat}.
    *
    * @return the new beat
    */
@@ -171,7 +177,9 @@ import cs3500.music.view.SafeMusicRepresentationDecorator;
     }
   }
 
-  //Hits the pause button. If we're paused, unpause and vice versa
+  /**
+   * Hits the pause button. If we're paused, unpause and vice versa.
+   */
   public void pauseButton() {
     this.paused = !this.paused;
   }
@@ -185,7 +193,10 @@ import cs3500.music.view.SafeMusicRepresentationDecorator;
     return this.model;
   }
 
-  //for testing
+  /**
+   * Returns true when this controller is paused. For testing.
+   * @return is it paused?
+   */
   protected boolean getPaused() {
     return this.paused;
   }

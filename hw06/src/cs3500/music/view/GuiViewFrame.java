@@ -12,6 +12,9 @@ import cs3500.music.model.Tone;
  */
 public class GuiViewFrame extends javax.swing.JFrame implements GuiView {
 
+  /**
+   * Panel that displays music.
+   */
   private final MusicGuiViewPanel displayPanel;
 
   /**
@@ -19,6 +22,9 @@ public class GuiViewFrame extends javax.swing.JFrame implements GuiView {
    */
   private GuiBeatPanel beatBar;
 
+  /**
+   * The scroll pane.
+   */
   private JScrollPane scroll;
   /**
    * Creates new GuiView
@@ -109,5 +115,13 @@ public class GuiViewFrame extends javax.swing.JFrame implements GuiView {
     } else {
       return (x - 50) / 30;
     }
+  }
+
+  @Override
+  public void addMouseListener(MouseListener l) {
+   // this.displayPanel.addMouseListener(l);
+   // this.beatBar.addMouseListener(l);
+    this.scroll.addMouseListener(l);
+    super.addMouseListener(l);
   }
 }
