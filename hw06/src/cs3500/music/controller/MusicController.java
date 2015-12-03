@@ -8,10 +8,10 @@ import java.util.Objects;
 import javax.swing.*;
 
 import cs3500.music.model.MusicRepresentation;
-import cs3500.music.view.MusicRepresentationView;
-import cs3500.music.view.MusicRepresentationViewFactory;
-import cs3500.music.view.SafeMusicRepresentation;
-import cs3500.music.view.SafeMusicRepresentationDecorator;
+import cs3500.music.viewmine.MusicRepresentationView;
+import cs3500.music.viewmine.MusicRepresentationViewFactory;
+import cs3500.music.viewmine.SafeMusicRepresentation;
+import cs3500.music.viewmine.SafeMusicRepresentationDecorator;
 
 /**
  * Representation of a controller for a MusicRepresentation.

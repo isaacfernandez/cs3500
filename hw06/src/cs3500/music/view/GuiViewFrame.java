@@ -1,127 +1,60 @@
 package cs3500.music.view;
 
 import java.awt.*;
-import java.awt.event.MouseListener; // Possibly of interest for handling mouse events
-import java.awt.event.*;
+
 import javax.swing.*;
 
-import cs3500.music.model.Tone;
+import cs3500.music.model.MusicModel;
 
 /**
- * Mother GuiViewFrame
+ * A skeleton Frame (i.e., a window) in Swing
  */
-public class GuiViewFrame extends javax.swing.JFrame implements GuiView {
+public class GuiViewFrame extends javax.swing.JFrame implements ViewInterface {
+    private MusicModel m;
 
-  /**
-   * Panel that displays music.
-   */
-  private final MusicGuiViewPanel displayPanel;
+    private final JPanel displayPanel; // You may want to refine this to a subtype of JPanel
 
-  /**
-   * A panel with a bar indicating the curent beat.
-   */
-  private GuiBeatPanel beatBar;
+    /**
+     * Creates new GuiView
+     */
+    public GuiViewFrame(MusicModel m) {
+        this.m = m;
+        this.displayPanel = new ConcreteGuiViewPanel(m);
+        this.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        this.getContentPane().add(displayPanel);
+        this.pack();
+    }
 
-  /**
-   * The scroll pane.
-   */
-  private JScrollPane scroll;
-  /**
-   * Creates new GuiView
-   */
   public GuiViewFrame() {
-    super("Music Player");
-    JPanel bkgnd = new JPanel();
-    this.displayPanel = new MusicGuiViewPanel();
-    this.displayPanel.setBackground(Color.WHITE);
-    this.displayPanel.setPreferredSize(this.displayPanel.getPreferredSize());
+    this.displayPanel = new ConcreteGuiViewPanel();
     this.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-    this.beatBar = new GuiBeatPanel();
-    this.beatBar.add(displayPanel);
-    this.scroll = new JScrollPane(beatBar,
-        ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,
-        ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
-    this.scroll.setWheelScrollingEnabled(false);
-    this.scroll.getHorizontalScrollBar().setValue(0);
-    //JScrollBar hor = scroll.getHorizontalScrollBar();
-    //hor.setValue(hor.getMaximum());
-    this.getContentPane().add(this.scroll);
-    this.setBackground(Color.WHITE);
+    this.getContentPane().add(displayPanel);
     this.pack();
-    this.initialize();
   }
 
-  //@Override
-  public void initialize() {
-    this.setVisible(true);
-  }
+//    @Override
+    public void initialize() {
+        this.setVisible(true);
+    }
 
   @Override
   public Dimension getPreferredSize() {
-    return new Dimension(1200, 700);
+    return new Dimension(m.endBeat() * 12,
+            ((m.highestPitch().getPitch() - m.lowestPitch().getPitch()) * 10) + 100);
   }
 
-  /**
-   * Represents the data statically, or sets up window
-   */
-  @Override
-  public void display(SafeMusicRepresentation m) {
-    if (this.displayPanel.changeMusic(m)) {
-      this.displayPanel.repaint();
-    }
-  }
+    @Override
+    public void playPiece(MusicModel m) {
 
-  /**
-   * Sets up the display as it should look during the given beat
-   *
-   * @param beat the time being displayed
-   */
-  @Override
-  public void displayAtBeat(SafeMusicRepresentation m, int beat) {
-    if (this.displayPanel.changeMusic(m)) {
-      this.displayPanel.repaint();
     }
 
-    this.beatBar.setBeat(beat);
-    this.beatBar.repaint();
-    this.scroll.getHorizontalScrollBar().setValue(beat*30);
-}
+    @Override
+    public void playBeat(MusicModel m, int beat) {
 
-  /**
-   * The 'play' button for the view. Useless for those that statically display the data.
-   */
-  @Override
-  public void play(SafeMusicRepresentation m) {
-  }
-
-  /**
-   * For testing purposes, return the log string builder
-   */
-  @Override
-  public Appendable getLog() {
-    throw new IllegalArgumentException("We can't test this");
-  }
-
-
-  @Override
-  public Tone toneAt(int x, int y) {
-    return null;
-  }
-
-  @Override
-  public int beatAt(int x, int y) {
-    if (x < 50) {
-      return 0;
-    } else {
-      return (x - 50) / 30;
     }
-  }
 
-  @Override
-  public void addMouseListener(MouseListener l) {
-   // this.displayPanel.addMouseListener(l);
-   // this.beatBar.addMouseListener(l);
-    this.scroll.addMouseListener(l);
-    super.addMouseListener(l);
-  }
+    @Override
+    public void playFromBeat(MusicModel m, int beat) {
+
+    }
 }
