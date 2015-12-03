@@ -1,9 +1,7 @@
-package cs3500.music.view;
+package cs3500.music.viewmine;
 
 import cs3500.music.controller.KeyboardHandler;
 import cs3500.music.controller.MouseHandlerPointer;
-import cs3500.music.model.MusicRepresentation;
-import cs3500.music.util.TestImpMidiMoReceiver;
 import cs3500.music.util.TestSynthesizer;
 
 /**

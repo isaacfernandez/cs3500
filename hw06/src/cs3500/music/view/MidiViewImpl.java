@@ -1,135 +1,134 @@
 package cs3500.music.view;
 
 import java.util.Collection;
+import java.util.Map;
 
-import javax.sound.midi.*;
+import javax.sound.midi.InvalidMidiDataException;
+import javax.sound.midi.MidiMessage;
+import javax.sound.midi.MidiSystem;
+import javax.sound.midi.MidiUnavailableException;
+import javax.sound.midi.Receiver;
+import javax.sound.midi.ShortMessage;
+import javax.sound.midi.Synthesizer;
 
-import cs3500.music.model.*;
+import cs3500.music.model.MusicModel;
+import cs3500.music.model.Note;
 
-/**
- * Midi Playback
- */
-public class MidiViewImpl implements MusicRepresentationView {
-  /**
-   * The synthesizer for this midi view.
-   */
-  private Synthesizer synth;
+public class MidiViewImpl implements ViewInterface {
+    private final Synthesizer synth;
+    private final Receiver receiver;
+    private StringBuilder output;
 
-  /**
-   * The reciever for the synthesizer for this midi view.
-   */
-  private Receiver receiver;
+    private Synthesizer testSynth = null;
+    private Receiver testReceiver = null;
 
-  /**
-   * Constructs a new MidiViewImpl
-   */
-  public MidiViewImpl() {
-    try {
-      this.synth = MidiSystem.getSynthesizer();
-      this.receiver = synth.getReceiver();
-      this.synth.open();
-    } catch (MidiUnavailableException e) {
-      e.printStackTrace();
-    }
-  }
-
-  /**
-   * Constructs a debug mode MidiViewImpl.
-   *
-   * @param testy test synthesizer
-   */
-  public MidiViewImpl(Synthesizer testy) {
-    this.synth = testy;
-    try {
-      this.receiver = testy.getReceiver();
-    } catch (MidiUnavailableException e) {
-      e.printStackTrace();
-    }
-  }
-
-  /**
-   * Relevant classes and methods from the javax.sound.midi library:
-   * <ul>
-   *   <li>{@link MidiSystem#getSynthesizer()}</li>
-   *   <li>{@link Synthesizer}
-   *   <ul>
-   *     <li>{@link Synthesizer#open()}</li>
-   *     <li>{@link Synthesizer#getReceiver()}</li>
-   *     <li>{@link Synthesizer#getChannels()}</li> </ul> </li>
-   *     <li>{@link Receiver}
-   *     <ul>
-   *       <li>{@link Receiver#send(MidiMessage, long)}</li>
-   *       <li>{@link Receiver#close()}</li> </ul> </li>
-   *       <li>{@link MidiMessage}</li>
-   *       <li>{@link ShortMessage}</li>
-   *       <li>{@link MidiChannel}
-   *       <ul>
-   *         <li>{@link MidiChannel#getProgram()}</li>
-   *         <li>{@link MidiChannel#programChange(int)}</li> </ul> </li></ul>
-   *
-   * @see <a href="https://en.wikipedia.org/wiki/General_MIDI">
-   *   https://en.wikipedia.org/wiki/General_MIDI</a>
-   */
-
-  public void playNote(Collection<Tone> tones, int beat, int tempo)
-      throws InvalidMidiDataException {
-    for (Tone t : tones) {
-  //    MidiMessage inst = new ShortMessage(ShortMessage.PROGRAM_CHANGE, 1,
-   //       1, 1);
-      MidiMessage start = new ShortMessage(ShortMessage.NOTE_ON, 0, t.getValue(), t.getVolume());
-      MidiMessage stop = new ShortMessage(ShortMessage.NOTE_OFF, 0, t.getValue(), t.getVolume());
-      // -------------------------------------------->ON/OFF, instrument, note, vol
-  //    this.receiver.send(inst, -1);
-      this.synth.getChannels()[0].programChange(t.getInstrument() + 1);
-      this.receiver.send(start, -1);
-      int endTime = (t.getDuration() + beat - 1) * tempo / 1000;
-      this.receiver.send(stop, this.synth.getMicrosecondPosition() + endTime);
+    private MidiViewImpl(boolean debug, StringBuilder o) {
+        if (debug == true) {
+            try {
+                testSynth = new MockSynthesizer(o);
+                testReceiver = testSynth.getReceiver();
+                testSynth.open();
+            } catch (MidiUnavailableException e) {
+                e.printStackTrace();
+            }
+            this.synth = testSynth;
+            this.receiver = testReceiver;
+            this.output = o;
+        } else {
+            try {
+                testSynth = MidiSystem.getSynthesizer();
+                testReceiver = testSynth.getReceiver();
+                testSynth.open();
+            } catch (MidiUnavailableException e) {
+                e.printStackTrace();
+            }
+            this.synth = testSynth;
+            this.receiver = testReceiver;
+        }
     }
 
-  }
+    public static final class MidiViewImplBuilder {
+        private boolean debug = false;
+        StringBuilder output;
+
+        public MidiViewImpl build() {
+            return new MidiViewImpl(debug, output);
+        }
+
+        public MidiViewImplBuilder setDebug() {
+            this.debug = true;
+            return this;
+        }
+
+        public MidiViewImplBuilder setNoDebug() {
+            this.debug = false;
+            return this;
+        }
+
+        public MidiViewImplBuilder setStringBuilder(StringBuilder o){
+            this.output = o;
+            return this;
+        }
+
+    }
 
     /**
-     * Represents the data statically, or sets up window
+     * Helper function to play a given note
+     * @param n The note to play
+     * @param tempo The tempo in microseconds to play it at
+     * @throws InvalidMidiDataException If MIDI throws an invalid data exception
+     */
+    private void playNote(Note n, int tempo) throws InvalidMidiDataException {
+        MidiMessage start = new ShortMessage(ShortMessage.NOTE_ON, n.getInstrument() - 1,
+                n.getPitch(), n.getVolume());
+        MidiMessage stop = new ShortMessage(ShortMessage.NOTE_OFF, n.getInstrument() - 1,
+                n.getPitch(), n.getVolume());
+        this.receiver.send(start, (n.getStartBeat() * tempo));
+        this.receiver.send(stop, this.synth.getMicrosecondPosition() + (n.getDuration() * tempo));
+    }
+
+    /**
+     * Plays a piece the entire way through
+     * @param m The MusicModel to play
+     * @throws InvalidMidiDataException If MIDI throws an invalid data exception
      */
     @Override
-    public void display(SafeMusicRepresentation m) {
-      for (int i = 0; i < m.getLength(); i++) {
-        try {
-          this.playNote(m.getNotesAtBeat(i), i, m.getTempo());
-          Thread.sleep(m.getTempo() / 1000);
-        } catch (InvalidMidiDataException e) {
-          System.out.println("Invalid midi");
-          e.printStackTrace();
-        } catch (InterruptedException e) {
-          System.out.println("I'm trying to sleep, shhh");
-          e.printStackTrace();
+    public void playPiece(MusicModel m) throws InvalidMidiDataException {
+        Map<Integer, Collection<Note>> allNotes = m.sortedNotes();
+        for (Integer i : allNotes.keySet()){
+            playBeat(m, i);
         }
-      }
-      this.receiver.close(); // Only call this once you're done playing *all* notes
+        this.receiver.close();
     }
 
-  @Override
-  public void displayAtBeat(SafeMusicRepresentation m, int i) {
-    try {
-      this.playNote(m.getNotesAtBeat(i), i, m.getTempo());
-    } catch (InvalidMidiDataException e) {
-      System.out.println("Invalid midi");
-      e.printStackTrace();
+    /**
+     * Plays all of the notes starting on a given beat
+     * @param m The MusicModel to play
+     * @param beat The beat which all of the notes to be played starts
+     * @throws InvalidMidiDataException If MIDI throws an invalid data exception
+     */
+    @Override
+    public void playBeat(MusicModel m, int beat) throws InvalidMidiDataException {
+        Collection<Note> noteList = m.notesAtBeat(beat);
+        for (Note n : noteList){
+            playNote(n, m.getTempo());
+        }
     }
-  }
 
-  /**
-   * * The 'play' button for the view. Useless for those that statically display the data.
-   */
-  @Override
-  public void play(SafeMusicRepresentation m) {
-  }
-
-  /**
-   * For testing purposes, return the log string builder
-   */
-  @Override
-  public Appendable getLog() {
-    return new StringBuilder(this.receiver.toString());
-  }
+    /**
+     * Plays an entire piece starting from a given note
+     * @param m The MusicModel to play
+     * @param beat The beat to start on
+     * @throws InvalidMidiDataException If MIDI throws an invalid data exception
+     */
+    @Override
+    public void playFromBeat(MusicModel m, int beat) throws InvalidMidiDataException {
+        Map<Integer, Collection<Note>> allNotes = m.sortedNotes();
+        for (Integer i : allNotes.keySet()){
+            if (i > beat){
+                playBeat(m, i);
+            }
+        }
+        this.receiver.close();
+    }
 }

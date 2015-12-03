@@ -4,9 +4,8 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.event.MouseInputListener;
 
-import cs3500.music.controller.MusicController;
 import cs3500.music.model.Tone;
-import cs3500.music.view.GuiView;
+import cs3500.music.viewmine.GuiView;
 
 class MouseMode implements MouseInputListener {
   protected MusicController mc;

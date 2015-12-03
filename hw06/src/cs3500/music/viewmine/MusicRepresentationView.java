@@ -1,4 +1,4 @@
-package cs3500.music.view;
+package cs3500.music.viewmine;
 
 /**
  * Interface to be implemented by all testable, displayable views

@@ -1,17 +1,11 @@
-package cs3500.music.view;
+package cs3500.music.viewmine;
 
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Objects;
 import java.util.*;
 
 import javax.swing.*;
 
-import cs3500.music.model.MusicRepresentation;
-import cs3500.music.model.Note;
-import cs3500.music.model.Score;
 import cs3500.music.model.Tone;
 
 /**

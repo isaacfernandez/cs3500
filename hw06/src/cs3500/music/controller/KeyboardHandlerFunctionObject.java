@@ -1,8 +1,5 @@
 package cs3500.music.controller;
 
-import cs3500.music.model.MusicRepresentation;
-import cs3500.music.view.GuiView;
-
 /**
  * Created by isaacf on 11/18/15.
  * Maybe this should be within the controller for direct access to the view?
