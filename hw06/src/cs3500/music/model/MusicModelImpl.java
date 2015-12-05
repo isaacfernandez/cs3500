@@ -46,7 +46,7 @@ public class MusicModelImpl extends Score implements MusicModel {
     List<Tone> tones = super.getNotesAtBeat(beat);
     LinkedList<Note> notes = new LinkedList<Note>();
     for (Tone t : tones) {
-      notes.add(new ToneToNoteAdapter(t));
+      notes.add(new ToneToNoteAdapter(t, beat));
     }
     return notes;
   }
