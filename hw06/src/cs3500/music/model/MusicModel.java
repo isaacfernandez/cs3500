@@ -1,20 +1,32 @@
 package cs3500.music.model;
-// ASK if its okay to change this, originally:: package cs3500.hw05;
+
 import java.util.Collection;
 import java.util.Map;
 
-
 /**
- * DO NOT EDIT THIS
- * CODE COMES FROM THE OTHER PEOPLE
- *
- * Interface for a MusicModel. All {@code MusicModels} must guarantee at least this suite of things.
+ * Interface for a MusicModel. All {@code MusicModels} must guarantee at least this suite of things
  */
 
-/* TODO: All note in a pitch, regardless of time
-
- */
 public interface MusicModel {
+
+    /**
+     * Gets the tempo in microseconds of the piece
+     * @return The tempo of the piece in microseconds
+     */
+    int getTempo();
+
+    /**
+     * Gets the bpm of the piece
+     * @return The bpm of the piece in beats per minute
+     */
+    int getBpm();
+
+    /**
+     * Returns a Collection of all of the Notes at a given pitch
+     * @param pitch The pitch queried
+     * @return The Collection of all Notes at a given pitch
+     */
+    Collection<Note> allNotesOfPitch(int pitch);
 
     /**
      * Returns a Map from integer to a Collection of Notes.<br>
@@ -39,8 +51,8 @@ public interface MusicModel {
     void addNote(Note n);
 
     /**
-     * Removes a note from a piece. As there cannot be two of the exact same notes in a piece, there
-     * should be no ambiguity as to which note to remove.
+     * Removes a note from a piece. As there cannot be two of the exact same notes in a piece,
+     * there should be no ambiguity as to which note to remove.
      *
      * @param n The Note to remove from the piece.
      */
@@ -50,7 +62,7 @@ public interface MusicModel {
      * Returns a Collection of all of the Notes starting at beat {@code beat}
      *
      * @param beat The beat to query
-     * @return An unsorted Collection of all Notes in the piece that are occurring at a certain beat
+     * @return An unsorted Collection ofall Notes in the piece that are occurring at a certain beat
      */
     Collection<Note> notesAtBeat(int beat);
 
@@ -61,5 +73,25 @@ public interface MusicModel {
      */
     int endBeat();
 
+    /**
+     * Returns the Lowest pitch of a piece
+     * @return
+     */
+    Note lowestPitch();
+
+    /**
+     * Returns the Highest pitch of a piece
+     * @return
+     */
+    Note highestPitch();
+
+    /**
+     * Gets a listing of ALL of the notes playing on a given beat, not just those starting at that
+     * beat
+     * @param beat The beat to query
+     * @return An unsorted Collection of all Notes in the piece that occur on a beat, not just
+     * start on it.
+     */
+    Collection<Note> notesPlayingAtBeat(int beat);
 
 }

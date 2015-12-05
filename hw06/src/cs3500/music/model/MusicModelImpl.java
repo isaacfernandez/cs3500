@@ -12,8 +12,6 @@ public class MusicModelImpl extends Score implements MusicModel {
   }
 
   @Override
-
-  @Override
   public int endBeat() {
     return super.getLength();
   }
