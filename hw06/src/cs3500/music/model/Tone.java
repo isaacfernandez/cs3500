@@ -63,5 +63,5 @@ public interface Tone {
    *
    * @return note of tone
    */
-  Note getNote();
+  NoteEnum getNote();
 }

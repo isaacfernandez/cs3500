@@ -15,7 +15,7 @@ package cs3500.music.model;
  *      - A sharp
  *      - B natural
  */
-public enum Note {
+public enum NoteEnum {
   c(0),
   cS(1),
   d(2),
@@ -31,7 +31,7 @@ public enum Note {
 
   private final int val; //gives us a 0-11 index, also to compare higher / lower
 
-  Note(int val) {
+  NoteEnum(int val) {
     this.val = val;
   }
 
@@ -52,7 +52,7 @@ public enum Note {
    * @return Note n representing s
    * @throws IllegalArgumentException invalid note
    */
-  public static Note StringToNote(String s) {
+  public static NoteEnum StringToNote(String s) {
     //Remind me to install jdk7
     if (s.equals("C")) {
       return c;
@@ -99,8 +99,8 @@ public enum Note {
    * @param n note
    * @return string representation of n
    */
-  public static String NoteToString(Note n) {
-    return Note.ValueToString(n.getValue());
+  public static String NoteToString(NoteEnum n) {
+    return NoteEnum.ValueToString(n.getValue());
   }
 
   /**
@@ -124,8 +124,8 @@ public enum Note {
    * @return note representation of n
    * @throws IllegalArgumentException invalid value
    */
-  public static Note ValueToNote(int n) {
-    return Note.StringToNote(Note.ValueToString(n));
+  public static NoteEnum ValueToNote(int n) {
+    return NoteEnum.StringToNote(NoteEnum.ValueToString(n));
   }
 
   @Override

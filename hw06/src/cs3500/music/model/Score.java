@@ -43,7 +43,7 @@ public class Score implements MusicRepresentation {
    * @return MusicRepresentation self, the mutated object WARN: Adding a note that sustains over
    * another note with the same value can lead to undocumented behavior
    */
-  public void addNote(int beat, int duration, Note note, int octave, int vol, int instrument) {
+  public void addNote(int beat, int duration, NoteEnum note, int octave, int vol, int instrument) {
     if (octave > this.maxOctave) {
       this.maxOctave = octave;
     }
@@ -140,7 +140,7 @@ public class Score implements MusicRepresentation {
   @Override
   public MusicRepresentation addNote(int beat, int duration, String note,
                                      int octave, int volume, int instrument) {
-    this.addNote(beat, duration, Note.StringToNote(note), octave, volume, instrument);
+    this.addNote(beat, duration, NoteEnum.StringToNote(note), octave, volume, instrument);
     return this;
   }
 
@@ -158,7 +158,7 @@ public class Score implements MusicRepresentation {
     }
 
     for (Tone t : ref) {
-      if (t.getNote().equals(Note.StringToNote(note)) && octave == t.getOctave()) {
+      if (t.getNote().equals(NoteEnum.StringToNote(note)) && octave == t.getOctave()) {
         ref.remove(t);
         this.piece.put(beat, ref);
         if (octave == this.minOctave || octave == this.maxOctave) {

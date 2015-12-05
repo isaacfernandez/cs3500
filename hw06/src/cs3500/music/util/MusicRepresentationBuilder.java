@@ -1,7 +1,7 @@
 package cs3500.music.util;
 
 import cs3500.music.model.MusicRepresentation;
-import cs3500.music.model.Note;
+import cs3500.music.model.NoteEnum;
 import cs3500.music.model.Score;
 
 /**
@@ -55,7 +55,7 @@ public class MusicRepresentationBuilder implements CompositionBuilder<MusicRepre
     int duration = end - start;
     int note = pitch % 12;
     int octave = (pitch - note) / 12;
-    score.addNote(start, duration, Note.ValueToString(note), octave, volume, instrument);
+    score.addNote(start, duration, NoteEnum.ValueToString(note), octave, volume, instrument);
     return this;
   }
 }

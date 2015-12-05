@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.Collection;
 import java.util.List;
 
-import cs3500.music.model.Note;
+import cs3500.music.model.NoteEnum;
 import cs3500.music.model.Tone;
 
 /**
@@ -75,7 +75,8 @@ public class MusicRepresentationTextViewer implements MusicRepresentationView {
       StringBuilder headBuilder = new StringBuilder();
       //build header
       for (Tone t:  range) {
-          String s = String.format("%1$-4s", Note.NoteToString(t.getNote()) + "" +  t.getOctave());
+          String s = String.format("%1$-4s",
+              NoteEnum.NoteToString(t.getNote()) + "" +  t.getOctave());
           headBuilder.append(s);
       }
       String header = headBuilder.toString() + "\n";

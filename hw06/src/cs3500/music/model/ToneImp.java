@@ -23,7 +23,7 @@ public final class ToneImp implements Tone {
   /**
    * Note of the tone.
    */
-  public final Note note;
+  public final NoteEnum note;
 
   /** Octave of the tone.
    * INVARIANTS:
@@ -55,7 +55,7 @@ public final class ToneImp implements Tone {
    * @throws IllegalArgumentException invalid volume
    * @throws IllegalArgumentException invalid instrument
    */
-  public ToneImp(int duration, Note note, int octave, int volume, int instrument) {
+  public ToneImp(int duration, NoteEnum note, int octave, int volume, int instrument) {
     //setting duration
     if (duration > 0) {
       this.duration = duration;
@@ -67,8 +67,8 @@ public final class ToneImp implements Tone {
     //setting octave
     if (octave >= 0 && octave <= 9) {
       this.octave = octave;
-    } else if (!(this.note == Note.gS || this.note == Note.a
-        || this.note == Note.aS || this.note == Note.b) && octave <= 10 && octave >= 0) {
+    } else if (!(this.note == NoteEnum.gS || this.note == NoteEnum.a
+        || this.note == NoteEnum.aS || this.note == NoteEnum.b) && octave <= 10 && octave >= 0) {
       this.octave = octave;
     } else {
       throw new IllegalArgumentException("Invalid octave!");
@@ -111,15 +111,15 @@ public final class ToneImp implements Tone {
       throw new IllegalArgumentException("Invalid duration!");
     }
     //setting note
-    this.note = Note.StringToNote(note);
+    this.note = NoteEnum.StringToNote(note);
     //setting octave
     if (octave >= 0 && octave <= 9) {
       this.octave = octave;
-    } else if (!(this.note == Note.gS || this.note == Note.a
-        || this.note == Note.aS || this.note == Note.b) && octave <= 10 && octave >= 0) {
+    } else if (!(this.note == NoteEnum.gS || this.note == NoteEnum.a
+        || this.note == NoteEnum.aS || this.note == NoteEnum.b) && octave <= 10 && octave >= 0) {
       this.octave = octave;
     } else {
-      throw new IllegalArgumentException("Invalid octave!" +"" + Note.NoteToString(this.note));
+      throw new IllegalArgumentException("Invalid octave!" +"" + NoteEnum.NoteToString(this.note));
     }
     //setting volume
     if (volume >= 0 && volume < 128) {
@@ -158,8 +158,8 @@ public final class ToneImp implements Tone {
     //setting octave
     if (t.getOctave() >= 0 && t.getOctave() <= 9) {
       this.octave = t.getOctave();
-    } else if (!(this.note == Note.gS || this.note == Note.a
-        || this.note == Note.aS || this.note == Note.b) && t.getOctave() <= 10
+    } else if (!(this.note == NoteEnum.gS || this.note == NoteEnum.a
+        || this.note == NoteEnum.aS || this.note == NoteEnum.b) && t.getOctave() <= 10
         && t.getOctave() >= 0) {
       this.octave = t.getOctave();
     } else {
@@ -196,7 +196,7 @@ public final class ToneImp implements Tone {
   }
 
   @Override
-  public Note getNote() {
+  public NoteEnum getNote() {
     return note;
   }
 
@@ -222,9 +222,9 @@ public final class ToneImp implements Tone {
 
   @Override
   public Tone nextTone() {
-    Note nextPitch = Note.ValueToNote((this.getValue() + 1) % 12);
+    NoteEnum nextPitch = NoteEnum.ValueToNote((this.getValue() + 1) % 12);
     int oct = octave;
-    if (Note.NoteToString(nextPitch).equals("C")) {
+    if (NoteEnum.NoteToString(nextPitch).equals("C")) {
       oct++;
     }
     ToneImp ret = new ToneImp(1, nextPitch, oct, volume, instrument);
