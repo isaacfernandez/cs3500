@@ -9,7 +9,7 @@ public class ToneToNoteAdapter extends ToneImp implements Note{
    * Constructs a new ToneToNoteAdapter
    * @param t ToneImp to clone
    */
-  public ToneToNoteAdapter(ToneImp t) {
+  public ToneToNoteAdapter(Tone t) {
     super(t);
   }
 
