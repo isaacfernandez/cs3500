@@ -3,7 +3,7 @@ package cs3500.music.model;
 /**
  * Implementation of Tone.
  */
-public final class ToneImp implements Tone {
+public class ToneImp implements Tone {
 
   /**
    * Duration of the tone as an integer number of beats.

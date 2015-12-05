@@ -5,6 +5,14 @@ package cs3500.music.model;
  */
 public class ToneToNoteAdapter extends ToneImp implements Note{
 
+  /**
+   * Constructs a new ToneToNoteAdapter
+   * @param t ToneImp to clone
+   */
+  public ToneToNoteAdapter(ToneImp t) {
+    super(t);
+  }
+
   //TODO?
   @Override
   public void setVolume(int vol) {
@@ -20,7 +28,7 @@ public class ToneToNoteAdapter extends ToneImp implements Note{
   //TODO
   @Override
   public String getPitchInOctave() {
-    //what does this do?
+    return super.getNote().toString();
   }
 
   //TODO
@@ -47,10 +55,9 @@ public class ToneToNoteAdapter extends ToneImp implements Note{
     //also gonna suck
   }
 
-  //TODO
   @Override
   public int getPitch() {
-    return 0; //fffffffuuu
+    return super.getValue();
   }
 
   //TODO
