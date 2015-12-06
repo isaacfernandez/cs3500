@@ -45,7 +45,6 @@ public class GuiViewFrame extends javax.swing.JFrame implements ViewInterface {
 
     @Override
     public void playPiece(MusicModel m) {
-
     }
 
     @Override

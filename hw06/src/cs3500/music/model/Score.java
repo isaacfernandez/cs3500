@@ -24,7 +24,7 @@ public class Score implements MusicRepresentation {
   private int tempo;
 
   //A map of all list of beats
-  private HashMap<Integer, ArrayList> piece;
+  protected HashMap<Integer, ArrayList> piece;
 
   public Score() {
     this.minOctave = 12;

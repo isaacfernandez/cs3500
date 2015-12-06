@@ -4,15 +4,23 @@ import java.util.Collection;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.List;
+import java.util.ArrayList;
 
 /**
  * Adapter from MusicRepresentation to MusicModel/
  */
 public class MusicModelImpl extends Score implements MusicModel {
 
+  /**
+   * Constructs a new MusicModelImpl as a default score.
+   */
+  public MusicModelImpl() {
+    super();
+  }
+
   @Override
   public int getBpm() {
-    //TODO
+    return 0;//TODO
   }
 
   @Override
@@ -58,17 +66,36 @@ public class MusicModelImpl extends Score implements MusicModel {
 
   @Override
   public Note lowestPitch() {
-    return null;
+    Tone t = super.lowest();
+    return new ToneToNoteAdapter(t, 0); //can use arbitrary beat because they never
+    // actually use the beat of this
+
   }
 
   @Override
   public Note highestPitch() {
-    return null;
+    Tone t = super.highest();
+    return new ToneToNoteAdapter(t, 0); //can use arbitrary beat because they never
+    // actually use the beat of this
   }
 
+  //TODO test this
+  //this is kind of ugly...
   @Override
   public Collection<Note> notesPlayingAtBeat(int beat) {
-    return null;
+    LinkedList<Note> notes = new LinkedList<Note>();
+    Tone tempTone = new ToneImp(1, NoteEnum.c, 1, 1, 1);
+    ArrayList<Tone> tempList = new ArrayList<Tone>();
+    for (int n = 0; n <= beat; n = n + 1) {
+      tempList = this.piece.get(n);
+      for (int i = 0; i < tempList.size(); i = i + 1) {
+        tempTone = tempList.get(i);
+        if (n + tempTone.getDuration() > beat) { //inclusive or exclusive?
+          notes.add(new ToneToNoteAdapter(tempTone, n));
+        }
+      }
+    }
+    return notes;
   }
 
 
