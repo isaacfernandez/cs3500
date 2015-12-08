@@ -53,7 +53,13 @@ public class MusicModelImpl extends Score implements MusicModel {
 
   @Override
   public Collection<Note> allNotes() {
-    return null; //TODO (i don't think they know what "unsorted" means)
+    LinkedList<Note> notes = new LinkedList<Note>();
+    for (int x : this.piece.keySet()) {
+      for (Tone t : this.piece.get(x)) {
+        notes.add(new ToneToNoteAdapter(t, x));
+      }
+    }
+    return notes;
   }
 
   @Override
@@ -115,6 +121,4 @@ public class MusicModelImpl extends Score implements MusicModel {
     }
     return notes;
   }
-
-
 }
