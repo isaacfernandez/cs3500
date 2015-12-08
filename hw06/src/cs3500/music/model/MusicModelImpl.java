@@ -39,8 +39,8 @@ public class MusicModelImpl extends Score implements MusicModel {
 
   @Override
   public Map<Integer, Collection<Note>> sortedNotes() {
-    HashMap<Integer, LinkedList<Note>> notes = new HashMap<Integer, LinkedList<Note>>();
-    LinkedList<Note> tempList = new LinkedList<Note>();
+    Map<Integer, Collection<Note>> notes = new HashMap<>();
+    LinkedList<Note> tempList = new LinkedList<>();
     for (int x : this.piece.keySet()) {
       for (Tone t: this.piece.get(x)) {
         tempList.add(new ToneToNoteAdapter(t, x));
