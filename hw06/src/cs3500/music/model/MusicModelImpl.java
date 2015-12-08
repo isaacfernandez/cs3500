@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import java.util.Map;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Adapter from MusicRepresentation to MusicModel/
@@ -20,17 +21,34 @@ public class MusicModelImpl extends Score implements MusicModel {
 
   @Override
   public int getBpm() {
-    return 0;//TODO
+    return 0;//TODO i literally don't know what they want here
   }
 
   @Override
   public Collection<Note> allNotesOfPitch(int pitch) {
-    return null; //TODO
+    LinkedList<Note> notes = new LinkedList<Note>();
+    for (int x : this.piece.keySet()) {
+      for (Tone t : this.piece.get(x)) {
+        if (t.getValue() == pitch) {
+          notes.add(new ToneToNoteAdapter(t, x));
+        }
+      }
+    }
+    return notes;
   }
 
   @Override
   public Map<Integer, Collection<Note>> sortedNotes() {
-    return null; //TODO
+    HashMap<Integer, LinkedList<Note>> notes = new HashMap<Integer, LinkedList<Note>>();
+    LinkedList<Note> tempList = new LinkedList<Note>();
+    for (int x : this.piece.keySet()) {
+      for (Tone t: this.piece.get(x)) {
+        tempList.add(new ToneToNoteAdapter(t, x));
+      }
+      notes.put(x, tempList);
+      tempList.clear();
+    }
+    return notes; //TODO ??????
   }
 
   @Override

@@ -36,7 +36,7 @@ public interface Tone {
    */
   Tone nextTone();
 
-  //Override equality so that tones with the same value and
+  //Override equality so tones with the same value, duration, volume, and instrument are equal.
   @Override
   boolean equals(Object o);
 

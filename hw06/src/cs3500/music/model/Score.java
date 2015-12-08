@@ -19,17 +19,17 @@ public class Score implements MusicRepresentation {
    * Tempo of this piece in microseconds.
    *
    * INVARIANTS:
-   *     -
+   *
    */
   private int tempo;
 
   //A map of all list of beats
-  protected HashMap<Integer, ArrayList> piece;
+  protected HashMap<Integer, ArrayList<Tone>> piece;
 
   public Score() {
     this.minOctave = 12;
     this.maxOctave = 0;
-    piece = new HashMap<Integer, ArrayList>();
+    piece = new HashMap<Integer, ArrayList<Tone>>();
     this.tempo = 0;
   }
 
