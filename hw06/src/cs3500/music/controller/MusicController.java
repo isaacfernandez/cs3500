@@ -5,13 +5,21 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.util.Objects;
 
+import javax.sound.midi.InvalidMidiDataException;
 import javax.swing.*;
 
+import cs3500.music.model.MusicModel;
 import cs3500.music.model.MusicRepresentation;
+import cs3500.music.view.*;
+
+/*
+import cs3500.music.viewmine.GuiViewFrame;
 import cs3500.music.viewmine.MusicRepresentationView;
 import cs3500.music.viewmine.MusicRepresentationViewFactory;
 import cs3500.music.viewmine.SafeMusicRepresentation;
 import cs3500.music.viewmine.SafeMusicRepresentationDecorator;
+*/
+
 
 /**
  * Representation of a controller for a MusicRepresentation.
@@ -23,14 +31,14 @@ import cs3500.music.viewmine.SafeMusicRepresentationDecorator;
    * INVARIANT:
    *      -- must be non-null
    */
-  protected final MusicRepresentationView view;
+  protected final ViewInterface view;
 
   /**
    * The model for this controller.
    * INVARIANT:
    *      -- must be non-null
    */
-  private final MusicRepresentation model;
+  private final MusicModel model;
 
   /**
    * The KeyboardHandler (which is a KeyListener) that this controller is using.
@@ -71,7 +79,7 @@ import cs3500.music.viewmine.SafeMusicRepresentationDecorator;
    * @param model the piece being represented
    * @param mode the type of view being created
    */
-  public MusicController(MusicRepresentation model, String mode) {
+  public MusicController(MusicModel model, String mode) {
     this.paused = false;
     this.mode = mode;
     this.model = Objects.requireNonNull(model);
@@ -90,11 +98,11 @@ import cs3500.music.viewmine.SafeMusicRepresentationDecorator;
     this.handler.addPressedHandler(KeyEvent.VK_D, new deleteMode(this));
     this.handler.addPressedHandler(KeyEvent.VK_SPACE, new PausePlayback(this));
     //this.handler.addPressedHandler(new Runnable());
-    this.view = MusicRepresentationViewFactory.makeView(mode,
+    /*this.view = MusicRepresentationViewFactory.makeView(mode,
         this.handler,
-        this.mhandler);
+        this.mhandler);*/
+    this.view = new GuiViewFrame(); //Assuming this works
   }
-
 
   /**
    * Starts playing the music piece.
@@ -102,22 +110,21 @@ import cs3500.music.viewmine.SafeMusicRepresentationDecorator;
    *
    * @return a string for debugging purposes
    */
-  public String start() {
-    final SafeMusicRepresentation sm = new SafeMusicRepresentationDecorator(this.model);
+  public void start() {
+    final MusicModel m = this.model;
     timer = new javax.swing.Timer(model.getTempo() / 1000, new ActionListener( ) {
       public void actionPerformed(ActionEvent e) {
         if (paused) {
           return;
         }
-        view.displayAtBeat(sm, tickBeat());
+        try {
+          view.playBeat(m, tickBeat());
+        } catch (InvalidMidiDataException e1) {
+          e1.printStackTrace();
+        }
       }
     });
     timer.start();
-    if (this.mode.contains("test")) {
-      return ((StringBuilder) this.view.getLog()).toString();
-    } else {
-      return "";
-    }
   }
 
   /**

@@ -7,7 +7,7 @@ import java.util.Map;
  * Interface for a MusicModel. All {@code MusicModels} must guarantee at least this suite of things
  */
 
-public interface MusicModel {
+public interface MusicModel extends MusicRepresentation {
 
     /**
      * Gets the tempo in microseconds of the piece
