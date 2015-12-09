@@ -2,6 +2,10 @@ Commented out unused implementation leaks & imports in their view. (ConcreteGuiV
 Commented out implementation leaking imports in their view. (ConcreteGuiViewPanel)
 Rewrote part of paint method that used implementations that we don't have access to, replaced with
 some math that should do the same thing. (ConcreteGuiViewPanel)
+Rewrote part of playPiece method that used implementations that we don't have access to, replaced with
+some math that should do the same thing. (ConsoleView)
+Rewrote part of playBeat method that used implementations that we don't have access to, replaced with
+some math that should do the same thing. (ConsoleView)
 
 
 
