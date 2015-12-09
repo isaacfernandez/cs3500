@@ -1,5 +1,6 @@
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio
-
+.idea/misc.xml
+.idea/modules.xml
 
 hw06/out/
 *.iml
