@@ -2,6 +2,7 @@ package cs3500.music.view;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -11,6 +12,7 @@ import javax.swing.*;
 
 import cs3500.music.controller.MouseAndKeyHandler;
 import cs3500.music.model.MusicModel;
+import cs3500.music.model.MusicModelImpl;
 import cs3500.music.model.Note;
 //import cs3500.music.model.NoteImpl;
 //import cs3500.music.model.Piece;
@@ -34,16 +36,18 @@ public class ConcreteGuiViewPanel extends JPanel implements ViewInterface {
   int endBeat;
   Collection<Collection<Rectangle>> forPrint = new ArrayList<>();
   MusicModel m;
-  MouseAndKeyHandler mkHandler = new MouseAndKeyHandler(); //implementation leak??
-
-  public ConcreteGuiViewPanel(MusicModel m) {
+  MouseAndKeyHandler mkHandler; //= new MouseAndKeyHandler();
+  /**
+   * Commented out their code there to be able to parametrize this
+   */
+  public ConcreteGuiViewPanel(MusicModel m, MouseAndKeyHandler mk) {
     this.m = m;
     JFrame frame = new JFrame();
-
+    this.mkHandler = mk;
     frame.addKeyListener(mkHandler);
     frame.addMouseListener(mkHandler);
-    generateListOfFuncs();
-
+    //generateListOfFuncs();
+    //We comment out their method so that our handler comes through and sticks
   }
 
   public ConcreteGuiViewPanel() {
@@ -145,7 +149,9 @@ public class ConcreteGuiViewPanel extends JPanel implements ViewInterface {
   @Override
   public void playBeat(MusicModel m, int beat) {
     Collection<Note> notesAtBeat = m.notesPlayingAtBeat(beat);
-    Collection<Note> notesAtBeatByPitch = Piece.sortNotesByPitch(notesAtBeat);
+    //Sort notes by Piece.sortNotesByPitch(notesAtBeat);
+    //we create a static method in MusicModelImpl to implement this functionality
+    Collection<Note> notesAtBeatByPitch = MusicModelImpl.sortNotesByPitch(notesAtBeat);
     Collection<Rectangle> shapeList = new ArrayList<Rectangle>();
     int start = this.totalStart.getPitch();
     for (Note n : notesAtBeatByPitch) {
