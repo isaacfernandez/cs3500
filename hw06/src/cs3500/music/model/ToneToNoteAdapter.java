@@ -1,10 +1,18 @@
 package cs3500.music.model;
 
+import com.sun.javaws.exceptions.InvalidArgumentException;
+
 /**
  * Adapter from our Tone to their note
  */
 public class ToneToNoteAdapter extends ToneImp implements Note {
 
+  /**
+   * The beat the tone/note thing starts at.
+   *
+   * INVARIANTS:
+   *    -- startBeat >= 0
+   */
   private int startBeat;
 
   /**
@@ -20,11 +28,16 @@ public class ToneToNoteAdapter extends ToneImp implements Note {
    * @throws IllegalArgumentException invalid octave
    * @throws IllegalArgumentException invalid volume
    * @throws IllegalArgumentException invalid instrument
+   * @throws IllegalArgumentException invalid start beat
    */
   public ToneToNoteAdapter(int duration, NoteEnum note, int octave, int volume, int instrument,
                            int startBeat) {
     super(duration, note, octave, volume, instrument);
-    this.startBeat = startBeat;
+    if (this.startBeat >= 0) {
+      this.startBeat = startBeat;
+    } else {
+      throw new IllegalArgumentException("Bad start beat!");
+    }
   }
 
   /**
@@ -41,21 +54,31 @@ public class ToneToNoteAdapter extends ToneImp implements Note {
    * @throws IllegalArgumentException invalid octave
    * @throws IllegalArgumentException invalid volume
    * @throws IllegalArgumentException invalid instrument
+   * @throws IllegalArgumentException invalid start beat
    */
   public ToneToNoteAdapter(int duration, String note, int octave, int volume, int instrument,
                            int startBeat) {
     super(duration, note, octave, volume, instrument);
-    this.startBeat = startBeat;
+    if (this.startBeat >= 0) {
+      this.startBeat = startBeat;
+    } else {
+      throw new IllegalArgumentException("Bad start beat!");
+    }
   }
 
   /**
    * Constructs a tone that has the same duration, note, octave, and volume as given Tone {@code t}.
    *
    * @param t tone
+   * @throws IllegalArgumentException invalid start beat
    */
   public ToneToNoteAdapter(Tone t, int startBeat) {
     super(t);
-    this.startBeat = startBeat;
+    if (this.startBeat >= 0) {
+      this.startBeat = startBeat;
+    } else {
+      throw new IllegalArgumentException("Bad start beat!");
+    }
   }
 
   @Override
@@ -149,4 +172,17 @@ public class ToneToNoteAdapter extends ToneImp implements Note {
   public boolean starting(int beat) {
     return this.startBeat == beat;
   }
+
+  @Override
+  public boolean equals(Object o) {
+    if (o instanceof ToneToNoteAdapter) {
+      return this.getValue() == ((ToneToNoteAdapter) o).getValue()
+          && this.getDuration() == ((ToneToNoteAdapter) o).getDuration()
+          && this.getVolume() == ((ToneToNoteAdapter) o).getVolume()
+          && this.getInstrument() == ((ToneToNoteAdapter) o).getInstrument()
+          && this.getStartBeat() == ((ToneToNoteAdapter) o).getStartBeat();
+    }
+    return false;
+  }
+
 }

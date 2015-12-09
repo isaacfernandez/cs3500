@@ -4,6 +4,7 @@ import org.junit.Test;
 
 import cs3500.music.model.MusicRepresentation;
 import cs3500.music.model.Note;
+import cs3500.music.model.NoteEnum;
 import cs3500.music.model.Score;
 import cs3500.music.model.Tone;
 import cs3500.music.model.ToneImp;
@@ -35,7 +36,7 @@ public class ScoreTest {
 
   @Test(expected = IllegalArgumentException.class)
   public void testToneConstructorException1() {
-    Tone t = new ToneImp(-2, Note.aS, 2, 90, 0);
+    Tone t = new ToneImp(-2, NoteEnum.aS, 2, 90, 0);
   }
 
   @Test(expected = IllegalArgumentException.class)
@@ -50,7 +51,7 @@ public class ScoreTest {
 
   @Test(expected = IllegalArgumentException.class)
   public void testToneConstructorException4() {
-    Tone t = new ToneImp(1, Note.b, 10, 90, 0);
+    Tone t = new ToneImp(1, NoteEnum.b, 10, 90, 0);
   }
 
   @Test(expected = IllegalArgumentException.class)
@@ -60,12 +61,12 @@ public class ScoreTest {
 
   @Test(expected = IllegalArgumentException.class)
   public void testToneConstructorException6() {
-    Tone t = new ToneImp(5, Note.dS, 11, 100, 0);
+    Tone t = new ToneImp(5, NoteEnum.dS, 11, 100, 0);
   }
 
   @Test(expected = IllegalArgumentException.class)
   public void testToneConstructorException7() {
-    Tone t = new ToneImp(1, Note.b, 6, -1, 0);
+    Tone t = new ToneImp(1, NoteEnum.b, 6, -1, 0);
   }
 
   @Test(expected = IllegalArgumentException.class)
@@ -75,7 +76,7 @@ public class ScoreTest {
 
   @Test(expected = IllegalArgumentException.class)
   public void testToneConstructorException10() {
-    Tone t = new ToneImp(2, Note.g, 5, 142, 1);
+    Tone t = new ToneImp(2, NoteEnum.g, 5, 142, 1);
   }
 
   /*
@@ -139,7 +140,7 @@ public class ScoreTest {
 
   @Test
   public void testCloneTone1() {
-    Tone t = new ToneImp(5, Note.b, 3, 55, 1);
+    Tone t = new ToneImp(5, NoteEnum.b, 3, 55, 1);
     Tone clone = new ToneImp(t);
     assertEquals(true, t.equals(t));
   }
@@ -149,8 +150,8 @@ public class ScoreTest {
    */
   Tone t6 = new ToneImp(10, "C", 5, 100, 1);
   Tone t7 = new ToneImp(1, "C", 0, 10, 0);
-  Tone t8 = new ToneImp(2, Note.gS, 2, 90, 0);
-  Tone t9 = new ToneImp(3, Note.c, 10, 99, 0);
+  Tone t8 = new ToneImp(2, NoteEnum.gS, 2, 90, 0);
+  Tone t9 = new ToneImp(3, NoteEnum.c, 10, 99, 0);
   Tone t10 = new ToneImp(5, "D#", 10, 25, 0);
 
   @Test
@@ -228,13 +229,13 @@ public class ScoreTest {
    */
   @Test
   public void testNote() {
-    Tone t = new ToneImp(1, Note.c, 1, 100, 0);
+    Tone t = new ToneImp(1, NoteEnum.c, 1, 100, 0);
     assertEquals(12, t.getValue());
     assertEquals(t.getValue() + 1, t.nextTone().getValue());
-    Tone t2 = new ToneImp(1, Note.b, 1, 100, 0);
+    Tone t2 = new ToneImp(1, NoteEnum.b, 1, 100, 0);
     assertEquals(1, t2.getOctave());
     assertEquals(2, t2.nextTone().getOctave());
-    assertEquals(new ToneImp(1, Note.c, 2, 100, 0), t2.nextTone());
+    assertEquals(new ToneImp(1, NoteEnum.c, 2, 100, 0), t2.nextTone());
   }
 
   /*
@@ -281,22 +282,22 @@ public class ScoreTest {
    */
   @Test
   public void testToStringNote0() {
-    assertEquals(Note.a.toString(), "A");
+    assertEquals(NoteEnum.a.toString(), "A");
   }
 
   @Test
   public void testToStringNote1() {
-    assertEquals(Note.aS.toString(), "A#");
+    assertEquals(NoteEnum.aS.toString(), "A#");
   }
 
   @Test
   public void testToStringNote2() {
-    assertEquals(Note.gS.toString(), "G#");
+    assertEquals(NoteEnum.gS.toString(), "G#");
   }
 
   @Test
   public void testToStringNote3() {
-    assertEquals(Note.b.toString(), "B");
+    assertEquals(NoteEnum.b.toString(), "B");
   }
 
   /*

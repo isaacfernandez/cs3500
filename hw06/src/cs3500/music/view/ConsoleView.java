@@ -3,9 +3,9 @@ package cs3500.music.view;
 import java.util.Collection;
 import cs3500.music.model.MusicModel;
 import cs3500.music.model.Note;
-import cs3500.music.model.NoteImpl;
-import cs3500.music.model.Piece;
-
+//import cs3500.music.model.NoteImpl;
+//import cs3500.music.model.Piece;
+// CHANGE: REMOVED UNUSED CODE THAT WE CAN'T USE BECAUSE IMPLEMENTATION LEAK
 
 public class ConsoleView implements ViewInterface{
   String console = "       ";
@@ -43,7 +43,7 @@ public class ConsoleView implements ViewInterface{
     int start = this.totalStart.getPitch();
     for (Note n : notesAtBeatByPitch) {
       while (start <= n.getPitch() ) {
-        Note forPitch = new NoteImpl(0, 0, start);
+       Note forPitch = new NoteImpl(0, 0, start);
         if (n.getPitch() == start) {
           if (n.getStartBeat() == beat) {
             console+= "X";
@@ -85,4 +85,3 @@ public class ConsoleView implements ViewInterface{
 
   }
 }
-

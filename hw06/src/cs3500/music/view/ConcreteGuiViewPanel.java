@@ -12,8 +12,9 @@ import javax.swing.*;
 import cs3500.music.controller.MouseAndKeyHandler;
 import cs3500.music.model.MusicModel;
 import cs3500.music.model.Note;
-import cs3500.music.model.NoteImpl;
-import cs3500.music.model.Piece;
+//import cs3500.music.model.NoteImpl;
+//import cs3500.music.model.Piece;
+// CHANGE: REMOVED UNUSED CODE THAT WE CAN'T USE BECAUSE IMPLEMENTATION LEAK
 
 /**
  * A dummy view that simply draws a string
@@ -22,8 +23,9 @@ public class ConcreteGuiViewPanel extends JPanel implements ViewInterface {
 
   boolean paused = false;
 
-  MusicModel testPiece = new Piece.PieceBuilder().build();
-  Note temp = new NoteImpl(0, 2, 60);
+  //MusicModel testPiece = new Piece.PieceBuilder().build();
+  //Note temp = new NoteImpl(0, 2, 60);
+  // CHANGE: REMOVED UNUSED CODE THAT WE CAN'T USE BECAUSE IMPLEMENTATION LEAK
   String console;
   Note totalStart;
   Note totalEnd;

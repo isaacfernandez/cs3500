@@ -1,0 +1,6 @@
+Commented out unused implementation leaks & imports in their view (ConcreteGuiViewPanel)
+Commented out implementation leaking imports in their view (ConcreteGuiViewPanel)
+
+
+Changed visibility of piece in Score so subclasses can access
+Made Tone not final, so we could subclass it

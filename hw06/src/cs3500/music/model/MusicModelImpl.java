@@ -121,4 +121,5 @@ public class MusicModelImpl extends Score implements MusicModel {
     }
     return notes;
   }
+
 }
