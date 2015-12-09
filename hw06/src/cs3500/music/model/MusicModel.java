@@ -93,5 +93,4 @@ public interface MusicModel {
    * start on it.
    */
   Collection<Note> notesPlayingAtBeat(int beat);
-
 }
