@@ -12,6 +12,7 @@ import javax.swing.*;
 import cs3500.music.controller.MouseAndKeyHandler;
 import cs3500.music.model.MusicModel;
 import cs3500.music.model.Note;
+import cs3500.music.model.NoteEnum;
 //import cs3500.music.model.NoteImpl;
 //import cs3500.music.model.Piece;
 // CHANGE: REMOVED UNUSED CODE THAT WE CAN'T USE BECAUSE IMPLEMENTATION LEAK
@@ -106,9 +107,13 @@ public class ConcreteGuiViewPanel extends JPanel implements ViewInterface {
       }
     }
     for (int i = m.lowestPitch().getPitch(); i <= m.highestPitch().getPitch(); i++) {
-      Note temp = new NoteImpl(0, 0, i); //TODO fix this
+      //Note temp = new NoteImpl(0, 0, i);
+      //Commented out because we don't have their implementation of note.
       g.setColor(Color.BLACK);
-      g.drawString(temp.getPitchInOctave() + temp.getOctave(), 0,
+      //g.drawString(temp.getPitchInOctave() + temp.getOctave(), 0,
+      //Commented out because we don't have their implementation of note, replaced with the logic
+      // we believe they used.
+      g.drawString(NoteEnum.ValueToString(i%12)+ i/12, 0,
               10 * (i - m.lowestPitch().getPitch()) + 35);
       g.setColor(Color.WHITE);
       g.drawLine(25, 10 * (i - m.lowestPitch().getPitch()) + 35,
@@ -144,7 +149,8 @@ public class ConcreteGuiViewPanel extends JPanel implements ViewInterface {
     int start = this.totalStart.getPitch();
     for (Note n : notesAtBeatByPitch) {
       while (start <= n.getPitch()) {
-        Note forPitch = new NoteImpl(0, 0, start);
+        // Note forPitch = new NoteImpl(0, 0, start);
+        // Commented out because it's not used and we can't use their NoteImpl
         if (n.getPitch() == start) {
           if (n.getStartBeat() == beat) {
             shapeList.add(new Rectangle((10 * beat) + 25,
