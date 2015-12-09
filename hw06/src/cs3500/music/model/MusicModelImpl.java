@@ -21,7 +21,7 @@ public class MusicModelImpl extends Score implements MusicModel {
 
   @Override
   public int getBpm() {
-    return 0;//TODO i literally don't know what they want here
+    return this.getTempo()/60000;
   }
 
   @Override
@@ -48,7 +48,7 @@ public class MusicModelImpl extends Score implements MusicModel {
       notes.put(x, tempList);
       tempList.clear();
     }
-    return notes; //TODO ??????
+    return notes;
   }
 
   @Override
@@ -103,8 +103,6 @@ public class MusicModelImpl extends Score implements MusicModel {
     // actually use the beat of this
   }
 
-  //TODO test this
-  //this is kind of ugly...
   @Override
   public Collection<Note> notesPlayingAtBeat(int beat) {
     LinkedList<Note> notes = new LinkedList<Note>();

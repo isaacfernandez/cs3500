@@ -83,12 +83,12 @@ public class ToneToNoteAdapter extends ToneImp implements Note {
 
   @Override
   public void setVolume(int vol) {
-    //TODO lol
+    //This is never used, and our value is final.
   }
 
   @Override
   public void setInstrument(int instrument) {
-    //TODO also lol
+    //This is never used, and our value is final.
   }
 
   @Override
@@ -113,53 +113,27 @@ public class ToneToNoteAdapter extends ToneImp implements Note {
    */
   @Override
   public void setStartBeat(int beat) throws IllegalArgumentException {
-    //TODO We dont actually need this
+    //This is never used, and our value is final.
   }
 
-  /**
-   * Gets the end beat of a given note. This is the beat on which the note ends, not the beat after
-   * that. Therefore, a 3 beat long note starting on beat 0 would end on beat 3, not 4.
-   *
-   * @return the end beat of the note as an integer
-   */
   @Override
   public int getEndBeat() {
-    //TODO We dont actually need this
-    return 0;
+    return startBeat + duration;
   }
 
-  /**
-   * Sets the end of a given note. This is the beat on which the note ends, not the beat after that.
-   * Therefore, a 3 beat long note starting on beat 0 would end on beat 3, not 4.
-   *
-   * @param beat The end beat as an integer
-   * @throws IllegalArgumentException If that beat is not an acceptable beat for a note to end on
-   */
   @Override
   public void setEndBeat(int beat) throws IllegalArgumentException {
-    //TODO We dont actually need this
+    //This is never used, and our value is final.
   }
-
-  /**
-   * Returns the integer value of the pitch.
-   *
-   * @return The integer value of the pitch.
-   */
 
   @Override
   public int getPitch() {
     return super.getValue();
   }
-  /**
-   * Sets the integer value pitch of the note.
-   *
-   * @param pitch The integer value of the pitch of the note
-   * @throws IllegalArgumentException If the pitch is an unacceptable value such as a negative pitch
-   *                                  or a pitch higher than the upper bound of the implementation
-   */
+
   @Override
   public void setPitch(int pitch) throws IllegalArgumentException {
-    //TODO We dont actually need this
+    //This is never used, and our value is final.
   }
 
   /**
