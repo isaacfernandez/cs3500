@@ -104,7 +104,9 @@ import cs3500.music.viewmine.SafeMusicRepresentationDecorator;
         this.mhandler);*/
 
     MouseAndKeyHandler mk = new MouseAndKeyHandler(this);
-    this.view = new GuiViewFrame(this.model, mk); //Assuming this works
+    //this.view = new GuiViewFrame(this.model, mk); //Assuming this works
+    MidiViewImpl.MidiViewImplBuilder builder = new MidiViewImpl.MidiViewImplBuilder();
+    this.view = builder.build();
   }
 
   /**
