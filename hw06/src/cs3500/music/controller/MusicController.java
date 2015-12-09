@@ -145,7 +145,7 @@ import cs3500.music.viewmine.SafeMusicRepresentationDecorator;
    */
 
   public int tickBeat() {
-    if (this.model.getLength() > this.beat) {
+    if (this.model.endBeat() > this.beat) {
       return this.beat++;
     }
     return this.beat;
@@ -161,8 +161,8 @@ import cs3500.music.viewmine.SafeMusicRepresentationDecorator;
   public void setBeat(int i) {
     if (i < 0) {
       this.beat = 0;
-    } else if (i > this.model.getLength()) {
-      this.beat = this.model.getLength();
+    } else if (i > this.model.endBeat()) {
+      this.beat = this.model.endBeat();
     } else {
       this.beat = i;
     }
@@ -179,8 +179,8 @@ import cs3500.music.viewmine.SafeMusicRepresentationDecorator;
     if (this.beat < 0) {
       this.beat = 0;
     }
-    else if (this.beat > this.model.getLength()) {
-      this.beat = this.model.getLength();
+    else if (this.beat > this.model.endBeat()) {
+      this.beat = this.model.endBeat();
     }
   }
 
@@ -196,7 +196,7 @@ import cs3500.music.viewmine.SafeMusicRepresentationDecorator;
    *
    * @return the model
    */
-  public MusicRepresentation getModel() {
+  public MusicModel getModel() {
     return this.model;
   }
 
