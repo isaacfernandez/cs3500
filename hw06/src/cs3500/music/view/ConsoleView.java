@@ -2,6 +2,7 @@ package cs3500.music.view;
 
 import java.util.Collection;
 import cs3500.music.model.MusicModel;
+import cs3500.music.model.MusicModelImpl;
 import cs3500.music.model.Note;
 //import cs3500.music.model.NoteImpl;
 //import cs3500.music.model.Piece;
@@ -43,7 +44,7 @@ public class ConsoleView implements ViewInterface{
   @Override
   public void playBeat(MusicModel m, int beat) {
     Collection<Note> notesAtBeat = m.notesPlayingAtBeat(beat);
-    Collection<Note> notesAtBeatByPitch = Piece.sortNotesByPitch(notesAtBeat);
+    Collection<Note> notesAtBeatByPitch = MusicModelImpl.sortNotesByPitch(notesAtBeat);
     int start = this.totalStart.getPitch();
     for (Note n : notesAtBeatByPitch) {
       while (start <= n.getPitch() ) {
