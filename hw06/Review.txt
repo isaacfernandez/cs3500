@@ -1,0 +1,23 @@
+For this project, we were given the views and model interfaces of kernanr and mrascati. Our goal
+was to adapt our model and controller to work with their view.
+
+We encountered some problems while adapting our code. In their views (specfically the files
+ConcreteGuiViewPanel and ConsoleView), they leaked implementation details in several places by
+creating "NoteImpl"s, their implementation of note, and using a static method on Piece, their
+implementation of music model, called "sortNotesByPitch(notesAtBeat)". We emailed several times
+(December 5, December 7, and December 9) asking them to change this (as we were unable to compile
+their code due to it), but we never received any changed files. As a result, we were unable to
+avoid making changes to their code. We have uploaded a change log of the changes we needed to make,
+both to their code and to ours to document this (as well as leaving comments in the code).
+
+Another problem we encountered was the absence of a view that combines the GUI and MIDI views. This
+was not sent to us initially. We requested it and got a message that said they do not have that
+view created. This made working with that particular view impossible, so we worked instead on
+adapting our code for the GUI and MIDI views individually. They also did not have any method declarations
+in their interface that was specifically for GUI views (GuiViewInterface), and did not actually
+implement that interface anywhere (instead using ViewInterface for all of their views).
+
+A third problem we encountered was the absence of certain methods in their GUI code. The methods
+playPiece, playBeat, and playFromBeat on GuiViewFrame were all void and empty. All of the other
+GUI views also had playFromBeat empty. As there was no documentation in ViewInterface as to exactly
+what each of those methods is supposed to do, and why they might be empty in certain classes.
