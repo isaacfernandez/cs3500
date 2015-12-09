@@ -32,7 +32,7 @@ public class ConcreteGuiViewPanel extends JPanel implements ViewInterface {
   int endBeat;
   Collection<Collection<Rectangle>> forPrint = new ArrayList<>();
   MusicModel m;
-  MouseAndKeyHandler mkHandler = new MouseAndKeyHandler();
+  MouseAndKeyHandler mkHandler = new MouseAndKeyHandler(); //TODO fix this
 
   public ConcreteGuiViewPanel(MusicModel m) {
     this.m = m;
@@ -106,7 +106,7 @@ public class ConcreteGuiViewPanel extends JPanel implements ViewInterface {
       }
     }
     for (int i = m.lowestPitch().getPitch(); i <= m.highestPitch().getPitch(); i++) {
-      Note temp = new NoteImpl(0, 0, i);
+      Note temp = new NoteImpl(0, 0, i); //TODO fix this
       g.setColor(Color.BLACK);
       g.drawString(temp.getPitchInOctave() + temp.getOctave(), 0,
               10 * (i - m.lowestPitch().getPitch()) + 35);

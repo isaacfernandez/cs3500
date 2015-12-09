@@ -4,10 +4,8 @@ import org.junit.Test;
 
 import cs3500.music.model.*;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import java.util.Collection;
-import java.util.List;
 
 public class MusicModelImplTest {
 
@@ -100,8 +98,9 @@ public class MusicModelImplTest {
 
   public void allNotesOfPitchTest0() {
     MusicModel music = this.testSong();
-    Collection<Note> notes = music.allNotesOfPitch();
-        //TODO
+    Collection<Note> notes = music.allNotesOfPitch(48);
+    assertEquals(notes.size(), 1);
+    assertTrue(notes.contains(new ToneToNoteAdapter(1, "C", 4, 100, 0, 0)));
   }
 
   public void allNotesOfPitchTest1() {
@@ -109,8 +108,6 @@ public class MusicModelImplTest {
     Collection<Note> notes = music.allNotesOfPitch(2);
     assertEquals(notes.size(), 0);
   }
-
-
 
 
 }
