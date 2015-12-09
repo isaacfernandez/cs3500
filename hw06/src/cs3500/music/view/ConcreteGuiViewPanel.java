@@ -34,7 +34,7 @@ public class ConcreteGuiViewPanel extends JPanel implements ViewInterface {
   int endBeat;
   Collection<Collection<Rectangle>> forPrint = new ArrayList<>();
   MusicModel m;
-  MouseAndKeyHandler mkHandler = new MouseAndKeyHandler(); //TODO fix this
+  MouseAndKeyHandler mkHandler = new MouseAndKeyHandler(); //implementation leak??
 
   public ConcreteGuiViewPanel(MusicModel m) {
     this.m = m;
