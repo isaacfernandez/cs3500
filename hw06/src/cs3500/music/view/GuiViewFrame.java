@@ -4,6 +4,7 @@ import java.awt.*;
 
 import javax.swing.*;
 
+import cs3500.music.controller.MouseAndKeyHandler;
 import cs3500.music.model.MusicModel;
 
 /**
@@ -17,9 +18,9 @@ public class GuiViewFrame extends javax.swing.JFrame implements ViewInterface {
     /**
      * Creates new GuiView
      */
-    public GuiViewFrame(MusicModel m) {
+    public GuiViewFrame(MusicModel m, MouseAndKeyHandler mk) {
         this.m = m;
-        this.displayPanel = new ConcreteGuiViewPanel(m);
+        this.displayPanel = new ConcreteGuiViewPanel(m, mk);
         this.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         this.getContentPane().add(displayPanel);
         this.pack();
@@ -43,18 +44,19 @@ public class GuiViewFrame extends javax.swing.JFrame implements ViewInterface {
             ((m.highestPitch().getPitch() - m.lowestPitch().getPitch()) * 10) + 100);
   }
 
+  //Adding system calls
     @Override
     public void playPiece(MusicModel m) {
-
+      System.out.println("Playing piece");
     }
 
     @Override
     public void playBeat(MusicModel m, int beat) {
-
+      System.out.println("Playing beat at " + beat);
     }
 
     @Override
     public void playFromBeat(MusicModel m, int beat) {
-
+      System.out.println("Playing beat from " + beat);
     }
 }

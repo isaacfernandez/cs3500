@@ -95,22 +95,12 @@ public class ToneToNoteAdapter extends ToneImp implements Note {
   public String getPitchInOctave() {
     return super.getNote().toString();
   }
-  /**
-   * Gets the start beat of a given note.
-   *
-   * @return The start beat (as an integer)
-   */
+
   @Override
   public int getStartBeat() {
     return this.startBeat;
   }
 
-  /**
-   * Sets the start beat of a given note.
-   *
-   * @param beat The start beat as an integer.
-   * @throws IllegalArgumentException If that beat is not an acceptable beat for a note to start on
-   */
   @Override
   public void setStartBeat(int beat) throws IllegalArgumentException {
     //This is never used, and our value is final.

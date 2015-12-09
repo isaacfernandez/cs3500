@@ -1,6 +1,9 @@
 package cs3500.music.model;
 
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.List;
@@ -118,6 +121,12 @@ public class MusicModelImpl extends Score implements MusicModel {
       }
     }
     return notes;
+  }
+
+  public static Collection<Note> sortNotesByPitch(Collection<Note> notes) {
+    List<Note> list = Arrays.asList((Note[]) notes.toArray());
+    Collections.sort(list, (Note o1, Note o2) -> o1.getPitch() - o2.getPitch());
+    return list;
   }
 
 }

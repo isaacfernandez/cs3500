@@ -20,4 +20,5 @@ implement that interface anywhere (instead using ViewInterface for all of their 
 A third problem we encountered was the absence of certain methods in their GUI code. The methods
 playPiece, playBeat, and playFromBeat on GuiViewFrame were all void and empty. All of the other
 GUI views also had playFromBeat empty. As there was no documentation in ViewInterface as to exactly
-what each of those methods is supposed to do, and why they might be empty in certain classes.
+what each of those methods is supposed to do, and why they might be empty in certain classes. There
+was also missing documentation for a few other methods outside in other interfaces.

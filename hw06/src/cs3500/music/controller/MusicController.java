@@ -9,6 +9,7 @@ import javax.sound.midi.InvalidMidiDataException;
 import javax.swing.*;
 
 import cs3500.music.model.MusicModel;
+import cs3500.music.model.MusicModelImpl;
 import cs3500.music.model.MusicRepresentation;
 import cs3500.music.view.*;
 
@@ -101,7 +102,11 @@ import cs3500.music.viewmine.SafeMusicRepresentationDecorator;
     /*this.view = MusicRepresentationViewFactory.makeView(mode,
         this.handler,
         this.mhandler);*/
-    this.view = new GuiViewFrame(); //Assuming this works
+
+    MouseAndKeyHandler mk = new MouseAndKeyHandler(this);
+    //this.view = new GuiViewFrame(this.model, mk); //Assuming this works
+    MidiViewImpl.MidiViewImplBuilder builder = new MidiViewImpl.MidiViewImplBuilder();
+    this.view = builder.build();
   }
 
   /**
@@ -196,8 +201,8 @@ import cs3500.music.viewmine.SafeMusicRepresentationDecorator;
    *
    * @return the model
    */
-  public MusicModel getModel() {
-    return this.model;
+  public MusicRepresentation getModel() {
+    return (MusicModelImpl)this.model;
   }
 
   /**

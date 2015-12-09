@@ -10,4 +10,5 @@ public interface ViewInterface {
     void playBeat(MusicModel m, int beat) throws InvalidMidiDataException;
 
     void playFromBeat(MusicModel m, int beat) throws InvalidMidiDataException;
+
 }
