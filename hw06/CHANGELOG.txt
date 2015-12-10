@@ -13,3 +13,8 @@ Changed visibility of piece in Score so subclasses can access.
 Made Tone not final, so we could subclass it.
 Changed controller so that it takes a MusicModel instead of a MusicRepresentation and changed
 associated methods.
+
+Parametrized KeyboardAndMouseHandler through the constructor
+Changed Piece.sortNotes... to MusicModelImpl.sortNotes, to deal with a static method
+we had no access to that could not be added to their interface
+Added system calls to verify the appropiate blank methods in GuiViewImpl was being called
