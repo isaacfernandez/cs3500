@@ -36,7 +36,6 @@ public class ConcreteGuiViewPanel extends JPanel implements ViewInterface {
   int endBeat;
   Collection<Collection<Rectangle>> forPrint = new ArrayList<>();
   MusicModel m;
-  MouseAndKeyHandler mkHandler = new MouseAndKeyHandler(); //implementation leak??
   MouseAndKeyHandler mkHandler; //= new MouseAndKeyHandler();
   /**
    * Commented out their code there to be able to parametrize this
