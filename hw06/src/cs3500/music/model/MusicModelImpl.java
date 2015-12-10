@@ -123,6 +123,13 @@ public class MusicModelImpl extends Score implements MusicModel {
     return notes;
   }
 
+  /**
+   * Sorts a Collection of notes by pitch.
+   * Replacement for their static method on Piece which we could not use.
+   *
+   * @param notes notes to sort
+   * @return sorted Collection of notes.
+   */
   public static Collection<Note> sortNotesByPitch(Collection<Note> notes) {
     List<Note> list = Arrays.asList((Note[]) notes.toArray());
     Collections.sort(list, (Note o1, Note o2) -> o1.getPitch() - o2.getPitch());

@@ -40,6 +40,7 @@ public class ConcreteGuiViewPanel extends JPanel implements ViewInterface {
   /**
    * Commented out their code there to be able to parametrize this
    */
+
   public ConcreteGuiViewPanel(MusicModel m, MouseAndKeyHandler mk) {
     this.m = m;
     JFrame frame = new JFrame();
