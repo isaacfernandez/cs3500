@@ -3,6 +3,7 @@ package cs3500.music.util;
 import cs3500.music.model.MusicRepresentation;
 import cs3500.music.model.Note;
 import cs3500.music.model.Score;
+import cs3500.music.model.Skip;
 
 /**
  * Builder for score.
@@ -62,6 +63,14 @@ public class MusicRepresentationBuilder implements CompositionBuilder<MusicRepre
   @Override
   public CompositionBuilder<MusicRepresentation> addRepeat(int start, int end) {
     score.addRepeat(start, end);
+    return this;
+  }
+
+  //end -- where the alt-ending ends
+  //start -- where to jump back to
+  //skipfrom -- where to jump forward on second playthrough
+  public CompositionBuilder<MusicRepresentation> addAlt(int endbeat, int startbeat, int skipfrom) {
+    score.addRepeat(endbeat, new Skip(new Skip(endbeat + 1), skipfrom, startbeat));
     return this;
   }
 }

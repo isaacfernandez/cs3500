@@ -237,6 +237,8 @@ public class Score implements MusicRepresentation {
     this.repeats.put(end, new Skip(start));
   }
 
+
+  //Alternate ending
   public void addRepeat(int where, Skip sk) {
     this.repeats.put(where, sk);
   }
