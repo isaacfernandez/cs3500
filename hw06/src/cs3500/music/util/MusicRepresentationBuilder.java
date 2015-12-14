@@ -58,4 +58,10 @@ public class MusicRepresentationBuilder implements CompositionBuilder<MusicRepre
     score.addNote(start, duration, Note.ValueToString(note), octave, volume, instrument);
     return this;
   }
+
+  @Override
+  public CompositionBuilder<MusicRepresentation> addRepeat(int start, int end) {
+    score.addRepeat(start, end);
+    return this;
+  }
 }

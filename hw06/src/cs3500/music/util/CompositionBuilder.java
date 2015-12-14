@@ -33,4 +33,12 @@ public interface CompositionBuilder<T> {
    * @param volume     The volume (in the range [0, 127])
    */
   CompositionBuilder<T> addNote(int start, int end, int instrument, int pitch, int volume);
+
+  /**
+   * Adds a repeat to the piece
+   *
+   * @param start where the repeat starts
+   * @param end the beat at which to repeat
+   */
+  CompositionBuilder<T> addRepeat(int start, int end);
 }
