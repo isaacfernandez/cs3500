@@ -1,5 +1,7 @@
 package cs3500.music.util;
 
+import cs3500.music.model.MusicRepresentation;
+
 /**
  * A builder of compositions.  Since we do not know in advance what the name of the main type is
  * for a model, we parameterize this builder interface by an unknown type.
@@ -41,4 +43,8 @@ public interface CompositionBuilder<T> {
    * @param end the beat at which to repeat
    */
   CompositionBuilder<T> addRepeat(int start, int end);
+
+  /**Alternate ending**/
+  public CompositionBuilder<MusicRepresentation> addAlt(int endbeat, int startbeat, int skipfrom);
+
 }

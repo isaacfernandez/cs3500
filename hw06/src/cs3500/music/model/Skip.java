@@ -20,7 +20,7 @@ public class Skip {
     this.skipTo = skipTo;
     this.skipThen = -1;
   }
-
+  // .......... null ..... null ......... mandatory
   public Skip(Skip then, int skipThen, int skipTo) {
     this.then = then;
     this.skipThen = skipThen;
@@ -31,15 +31,7 @@ public class Skip {
     return then;
   }
 
-  public void setThen(Skip then) {
-    this.then = then;
-  }
-
   public int getSkipTo() {
     return skipTo;
-  }
-
-  public int getSkipThen() {
-    return skipThen;
   }
 }

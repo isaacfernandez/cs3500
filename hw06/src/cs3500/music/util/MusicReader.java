@@ -64,6 +64,19 @@ public class MusicReader {
             throw new IllegalArgumentException("Malformed note line: " + scanner.nextLine());
           }
           break;
+        case "altend": //altending where-this-is where-skip [where-back-to]
+          try {
+            String[] line = scanner.nextLine().split(" ");
+            int endBeat = Integer.parseInt(line[1]);
+            int startBeat = Integer.parseInt(line[2]);
+            int skipback = 0;
+            if (line.length > 3) {
+              skipback = Integer.parseInt(line[3]);
+            }
+            piece.addAlt(endBeat, startBeat, skipback);
+          } catch (NoSuchElementException e) {
+            throw new IllegalArgumentException("Malformed note line: " + scanner.nextLine());
+          }
         default:
           throw new IllegalArgumentException("Bad line type: " + lineType);
       }
