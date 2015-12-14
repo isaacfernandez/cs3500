@@ -13,6 +13,7 @@ import cs3500.music.view.MusicRepresentationView;
 import cs3500.music.view.MusicRepresentationViewFactory;
 import cs3500.music.view.SafeMusicRepresentation;
 import cs3500.music.view.SafeMusicRepresentationDecorator;
+import cs3500.music.model.Skip;
 
 /**
  * Representation of a controller for a MusicRepresentation.
@@ -68,7 +69,7 @@ import cs3500.music.view.SafeMusicRepresentationDecorator;
   /**
    *
    */
-  private final Map<Integer, Integer> repeats;
+  private final Map<Integer, Skip> repeats;
 
   /**
    * Constructs a new MusicController with model {@code model}, mode {@code mode},
@@ -147,7 +148,7 @@ import cs3500.music.view.SafeMusicRepresentationDecorator;
   public int tickBeat() {
     int newBeat = this.beat;
     if (this.repeats.containsKey(this.beat)) {
-      newBeat = this.repeats.get(this.beat);
+      newBeat = this.repeats.get(this.beat).getSkipTo();
       this.repeats.remove(this.beat);
       //return newBeat;
       this.setBeat(newBeat);

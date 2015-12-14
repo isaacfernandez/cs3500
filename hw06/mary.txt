@@ -33,7 +33,13 @@ note 52 54 1 64 81
 note 54 56 1 62 70
 note 56 64 1 52 72
 note 56 64 1 60 73
-repeat 0 16
-repeat 4 12
-repeat 0 57
-repeat 2 8
+note 64 76 1 52 100
+note 64 76 1 60 100
+note 64 76 1 72 100
+note 64 76 1 48 100
+note 64 76 1 40 100
+note 64 76 1 64 100
+note 76 100 1 67 120
+repeat 16
+altend 64 56 0
+altend 76 64 0
