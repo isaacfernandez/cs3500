@@ -6,6 +6,7 @@ package cs3500.music.model;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Implements musicRepresentation.
@@ -22,6 +23,9 @@ public class Score implements MusicRepresentation {
    *     -
    */
   private int tempo;
+
+  //A map of repeats
+  private HashMap<Integer, Integer> repeats;
 
   //A map of all list of beats
   private HashMap<Integer, ArrayList> piece;
@@ -213,6 +217,24 @@ public class Score implements MusicRepresentation {
   @Override
   public int getTempo() {
     return this.tempo;
+  }
+
+  /**
+   * Returns a Map, (int)Beat -> Repeat
+   *
+   * @return the map
+   */
+  @Override
+  public Map<Integer, Integer> getRepeats() {
+    return (HashMap)this.repeats.clone(); //Allows the returned object to be safely mutated
+  }
+
+  /**
+   * Adds a repeat from startbeat to endbeat
+   */
+  @Override
+  public void addRepeat(int start, int end) {
+    this.repeats.put(end, start);
   }
 
   /**
