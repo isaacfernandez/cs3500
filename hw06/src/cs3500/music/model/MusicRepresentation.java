@@ -94,4 +94,5 @@ public interface MusicRepresentation {
    * @returns number of tones in piece
    */
   int countNotes();
+
 }

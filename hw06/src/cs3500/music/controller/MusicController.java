@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.util.Objects;
+import java.util.Map;
 
 import javax.swing.*;
 
@@ -65,6 +66,11 @@ import cs3500.music.view.SafeMusicRepresentationDecorator;
   private boolean paused;
 
   /**
+   *
+   */
+  private final Map<Integer, Integer> repeats;
+
+  /**
    * Constructs a new MusicController with model {@code model}, mode {@code mode},
    * keyboard handlers, and a new view of the mode specified.
    *
@@ -75,6 +81,7 @@ import cs3500.music.view.SafeMusicRepresentationDecorator;
     this.paused = false;
     this.mode = mode;
     this.model = Objects.requireNonNull(model);
+    this.repeats = this.model.getRepeats();
 
     //make handler
     this.mhandler = new MouseHandlerPointer(this);
@@ -138,7 +145,13 @@ import cs3500.music.view.SafeMusicRepresentationDecorator;
    */
 
   public int tickBeat() {
-    if (this.model.getLength() > this.beat) {
+    int newBeat = this.beat;
+    if (this.repeats.containsKey(this.beat)) {
+      newBeat = this.repeats.get(this.beat);
+      this.repeats.remove(this.beat);
+      //return newBeat;
+      this.setBeat(newBeat);
+    } else if (this.model.getLength() > this.beat) {
       return this.beat++;
     }
     return this.beat;

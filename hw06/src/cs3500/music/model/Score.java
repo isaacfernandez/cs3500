@@ -35,6 +35,7 @@ public class Score implements MusicRepresentation {
     this.maxOctave = 0;
     piece = new HashMap<Integer, ArrayList>();
     this.tempo = 0;
+    this.repeats = new HashMap<Integer, Integer>();
   }
 
   /**

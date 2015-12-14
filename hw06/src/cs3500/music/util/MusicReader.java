@@ -59,6 +59,7 @@ public class MusicReader {
           } catch (NoSuchElementException e) {
             throw new IllegalArgumentException("Malformed note line: " + scanner.nextLine());
           }
+          break;
         default:
           throw new IllegalArgumentException("Bad line type: " + lineType);
       }
