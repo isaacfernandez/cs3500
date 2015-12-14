@@ -1,6 +1,7 @@
 package cs3500.music.model;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Represents a music piece.
@@ -70,6 +71,17 @@ public interface MusicRepresentation {
    * @return tempo
    */
   int getTempo();
+
+  /**
+   * Returns a Map, (int)Beat -> Repeat
+   * @return the map
+   */
+  Map<Integer, Integer> getRepeats();
+
+  /**
+   * Adds a repeat from startbeat to endbeat
+   */
+  void addRepeat(int start, int end);
 
   /**
    * Sets the int tempo of the piece to {@code t}.
