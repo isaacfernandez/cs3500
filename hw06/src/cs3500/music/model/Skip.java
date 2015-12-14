@@ -4,8 +4,15 @@ package cs3500.music.model;
  * Created by isaacf on 12/14/15.
  */
 public class Skip {
-  private Skip then;
+  //For nested skips,
+
+  //The location in which the next skip should be placed
   private int skipThen;
+  //The next skip
+  private Skip then;
+
+
+  //Where this skip should skip to
   private int skipTo;
 
   public Skip(int skipTo) {

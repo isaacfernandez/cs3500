@@ -53,9 +53,13 @@ public class MusicReader {
           break;
         case "repeat":
           try {
-            int startBeat = scanner.nextInt();
-            int endBeat = scanner.nextInt();
-            piece.addRepeat(startBeat, endBeat);
+            String[] line = scanner.nextLine().split(" ");
+            int endBeat = Integer.parseInt(line[1]);
+            if (line.length > 2) {
+              int startBeat = Integer.parseInt(line[2]);
+              piece.addRepeat(startBeat, endBeat);
+            }
+            piece.addRepeat(0, endBeat);
           } catch (NoSuchElementException e) {
             throw new IllegalArgumentException("Malformed note line: " + scanner.nextLine());
           }

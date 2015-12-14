@@ -76,12 +76,15 @@ public interface MusicRepresentation {
    * Returns a Map, (int)Beat -> Repeat
    * @return the map
    */
-  Map<Integer, Integer> getRepeats();
+  Map<Integer, Skip> getRepeats();
 
   /**
    * Adds a repeat from startbeat to endbeat
    */
   void addRepeat(int start, int end);
+
+  //adds a Skip at where
+  void addRepeat(int where, Skip sk);
 
   /**
    * Sets the int tempo of the piece to {@code t}.

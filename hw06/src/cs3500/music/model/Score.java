@@ -25,7 +25,7 @@ public class Score implements MusicRepresentation {
   private int tempo;
 
   //A map of repeats
-  private HashMap<Integer, Integer> repeats;
+  private HashMap<Integer, Skip> repeats;
 
   //A map of all list of beats
   private HashMap<Integer, ArrayList> piece;
@@ -226,16 +226,19 @@ public class Score implements MusicRepresentation {
    * @return the map
    */
   @Override
-  public Map<Integer, Integer> getRepeats() {
+  public Map<Integer, Skip> getRepeats() {
     return (HashMap)this.repeats.clone(); //Allows the returned object to be safely mutated
   }
 
   /**
    * Adds a repeat from startbeat to endbeat
    */
-  @Override
   public void addRepeat(int start, int end) {
-    this.repeats.put(end, start);
+    this.repeats.put(end, new Skip(start));
+  }
+
+  public void addRepeat(int where, Skip sk) {
+    this.repeats.put(where, sk);
   }
 
   /**
