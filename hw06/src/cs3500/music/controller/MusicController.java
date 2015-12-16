@@ -160,6 +160,7 @@ import cs3500.music.model.Skip;
       if (altSection != null) {
         int altSectionBegin = this.repeats.get(this.beat).getSkipThen(); //awful varnames sorry
         this.altskips.put(altSectionBegin, altSection);
+        System.out.println("Permskip added");
       }
       this.repeats.remove(this.beat);
       //return newBeat;
