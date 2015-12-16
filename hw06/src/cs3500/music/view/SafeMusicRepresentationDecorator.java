@@ -4,11 +4,13 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 import cs3500.music.model.MusicRepresentation;
 import cs3500.music.model.Score;
 import cs3500.music.model.Tone;
 import cs3500.music.model.ToneImp;
+import cs3500.music.model.Skip;
 
 /**
  * Wraps around a MusicRepresentation to present a safe version to a view.
@@ -74,5 +76,10 @@ public class SafeMusicRepresentationDecorator implements SafeMusicRepresentation
       header = header.nextTone();
     } while (highest.compare(header) >= 0);
     return notes;
+  }
+
+  @Override
+  public Map<Integer, Skip> getRepeats() {
+    return model.getRepeats();
   }
 }

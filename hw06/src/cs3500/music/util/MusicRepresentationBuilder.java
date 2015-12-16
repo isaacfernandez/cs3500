@@ -4,6 +4,7 @@ import cs3500.music.model.MusicRepresentation;
 import cs3500.music.model.Note;
 import cs3500.music.model.Score;
 import cs3500.music.model.Skip;
+import cs3500.music.model.SkipImp;
 
 /**
  * Builder for score.
@@ -70,8 +71,8 @@ public class MusicRepresentationBuilder implements CompositionBuilder<MusicRepre
   //start -- where to jump back to
   //skipfrom -- where to jump forward on second playthrough
   public CompositionBuilder<MusicRepresentation> addAlt(int firstBeat, int startOfAlt, int endOfAlt) {
-    Skip permSkip = new Skip(endOfAlt); //located at startofAlt
-    Skip repeatSkip = new Skip(permSkip, startOfAlt, firstBeat); //This is the toplevel rewind skip
+    Skip permSkip = new SkipImp(endOfAlt); //located at startofAlt
+    Skip repeatSkip = new SkipImp(permSkip, startOfAlt, firstBeat); //This is the toplevel rewind skip
     score.addRepeat(endOfAlt, repeatSkip);
     return this;
   }

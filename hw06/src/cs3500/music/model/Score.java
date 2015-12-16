@@ -234,7 +234,7 @@ public class Score implements MusicRepresentation {
    * Adds a repeat from startbeat to endbeat
    */
   public void addRepeat(int start, int end) {
-    this.repeats.put(end, new Skip(start));
+    this.repeats.put(end, new SkipImp(start));
   }
 
 
