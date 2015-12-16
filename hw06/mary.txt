@@ -40,6 +40,5 @@ note 64 76 1 48 100
 note 64 76 1 40 100
 note 64 76 1 64 100
 note 76 100 1 67 120
-repeat 16
 altend 64 56 0
-altend 76 65 0
+altend 76 56 0
