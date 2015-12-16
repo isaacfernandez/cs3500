@@ -1,4 +1,4 @@
-tempo 20000
+tempo 200000
 note 0 2 1 64 72
 note 0 7 1 55 70
 note 2 4 1 62 72
@@ -33,3 +33,13 @@ note 52 54 1 64 81
 note 54 56 1 62 70
 note 56 64 1 52 72
 note 56 64 1 60 73
+note 64 76 1 52 100
+note 64 76 1 60 100
+note 64 76 1 72 100
+note 64 76 1 48 100
+note 64 76 1 40 100
+note 64 76 1 64 100
+note 76 100 1 67 120
+repeat 16
+altend 64 56 0
+altend 76 64 0

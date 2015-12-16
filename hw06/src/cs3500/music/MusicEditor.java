@@ -27,7 +27,7 @@ public final class MusicEditor {
     } catch (IOException e) {
       System.out.println("Error with file named: " + filename);
       System.out.println(e.getMessage());
-      
+
     }
   }
 }
