@@ -34,4 +34,8 @@ public class Skip {
   public int getSkipTo() {
     return skipTo;
   }
+
+  public int getSkipThen() {
+    return skipThen;
+  }
 }

@@ -69,8 +69,10 @@ public class MusicRepresentationBuilder implements CompositionBuilder<MusicRepre
   //end -- where the alt-ending ends
   //start -- where to jump back to
   //skipfrom -- where to jump forward on second playthrough
-  public CompositionBuilder<MusicRepresentation> addAlt(int endbeat, int startbeat, int skipfrom) {
-    score.addRepeat(endbeat, new Skip(new Skip(endbeat + 1), skipfrom, startbeat));
+  public CompositionBuilder<MusicRepresentation> addAlt(int firstBeat, int startOfAlt, int endOfAlt) {
+    Skip permSkip = new Skip(endOfAlt); //located at startofAlt
+    Skip repeatSkip = new Skip(permSkip, startOfAlt, firstBeat); //This is the toplevel rewind skip
+    score.addRepeat(endOfAlt, repeatSkip);
     return this;
   }
 }

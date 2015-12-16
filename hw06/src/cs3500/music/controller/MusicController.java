@@ -3,6 +3,7 @@ package cs3500.music.controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.util.HashMap;
 import java.util.Objects;
 import java.util.Map;
 
@@ -67,9 +68,14 @@ import cs3500.music.model.Skip;
   private boolean paused;
 
   /**
-   *
+   * This are the one-off repeats, or as we like to call them, repeats
    */
   private final Map<Integer, Skip> repeats;
+
+  /**
+   * These are the permanent repeats used for alternate endings
+   */
+  private final Map<Integer, Skip> altskips = new HashMap<>();
 
   /**
    * Constructs a new MusicController with model {@code model}, mode {@code mode},
@@ -149,10 +155,20 @@ import cs3500.music.model.Skip;
     int newBeat = this.beat;
     if (this.repeats.containsKey(this.beat)) {
       newBeat = this.repeats.get(this.beat).getSkipTo();
+
+      Skip altSection = this.repeats.get(this.beat).getThen();
+      if (altSection != null) {
+        int altSectionBegin = this.repeats.get(this.beat).getSkipThen(); //awful varnames sorry
+        this.altskips.put(altSectionBegin, altSection);
+      }
       this.repeats.remove(this.beat);
       //return newBeat;
       this.setBeat(newBeat);
-    } else if (this.model.getLength() > this.beat) {
+
+    } else if (this.altskips.containsKey(this.beat)) {
+      newBeat = this.altskips.get(this.beat).getSkipTo();
+      this.setBeat(newBeat);
+    } if (this.model.getLength() > this.beat) {
       return this.beat++;
     }
     return this.beat;

@@ -73,7 +73,7 @@ public class MusicReader {
             if (line.length > 3) {
               skipback = Integer.parseInt(line[3]);
             }
-            piece.addAlt(endBeat, startBeat, skipback);
+            piece.addAlt(skipback, startBeat, endBeat);
           } catch (NoSuchElementException e) {
             throw new IllegalArgumentException("Malformed note line: " + scanner.nextLine());
           }
