@@ -16,7 +16,6 @@ import cs3500.music.controller.MusicController;
 
 public final class MusicEditor {
   public static void main(String[] args) {
-    MusicReader mr = new MusicReader();
     String filename = args[0];
     String view = args[1];
     try {
@@ -26,7 +25,9 @@ public final class MusicEditor {
       //Get it, mc?
       mc.start();
     } catch (IOException e) {
-      System.out.println("Error with file");
+      System.out.println("Error with file named: " + filename);
+      System.out.println(e.getMessage());
+      
     }
   }
 }
