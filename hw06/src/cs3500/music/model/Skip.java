@@ -1,41 +1,13 @@
 package cs3500.music.model;
 
 /**
- * Created by isaacf on 12/14/15.
+ * Created by rdvoskin on 12/16/15.
  */
-public class Skip {
-  //For nested skips,
+public interface Skip {
 
-  //The location in which the next skip should be placed
-  private int skipThen;
-  //The next skip
-  private Skip then;
+  Skip getThen();
 
+  int getSkipTo();
 
-  //Where this skip should skip to
-  private int skipTo;
-
-  public Skip(int skipTo) {
-    this.then = null; //Just to be super explicit
-    this.skipTo = skipTo;
-    this.skipThen = -1;
-  }
-  // .......... null ..... null ......... mandatory
-  public Skip(Skip then, int skipThen, int skipTo) {
-    this.then = then;
-    this.skipThen = skipThen;
-    this.skipTo = skipTo;
-  }
-
-  public Skip getThen() {
-    return then;
-  }
-
-  public int getSkipTo() {
-    return skipTo;
-  }
-
-  public int getSkipThen() {
-    return skipThen;
-  }
+  int getSkipThen();
 }

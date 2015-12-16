@@ -1,18 +1,13 @@
 package cs3500.music.view;
 
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Objects;
 import java.util.*;
 
 import javax.swing.*;
 
-import cs3500.music.model.MusicRepresentation;
-import cs3500.music.model.Note;
-import cs3500.music.model.Score;
 import cs3500.music.model.Tone;
+import cs3500.music.model.Skip;
 
 /**
  * Implementation of a visual representation (view) of a MusicRepresentation
@@ -72,6 +67,15 @@ public class MusicGuiViewPanel extends JPanel {
       g.fillRect(x, y, music.getLength()*30, 2);
       g.drawString(tones.get(i).toString(), 20, y - 10);
       y = y + 30;
+    }
+    Map<Integer, Skip> repeats = music.getRepeats();
+    g.setColor(new Color(13, 27, 225));
+    for (int i : repeats.keySet()) {
+      x = i* 30 + 50;
+      y = 50;
+      g.fillRect(x-3, y, 6, height);
+      x = repeats.get(i).getSkipTo()*30 + 50;
+      g.fillRect(x-3, y, 6, height);
     }
   }
 

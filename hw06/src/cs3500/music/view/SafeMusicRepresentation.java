@@ -2,8 +2,10 @@ package cs3500.music.view;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 import cs3500.music.model.Tone;
+import cs3500.music.model.Skip;
 
 /**
  * A simplified form of MusicRepresentation that is unmodifiable
@@ -51,4 +53,11 @@ public interface SafeMusicRepresentation {
    * @return list of tones
    */
   List<Tone> displayNotes();
+
+  /**
+   * Returns all the repeats in this piece.
+   *
+   * @return Map of locations to repeats.
+   */
+  Map<Integer, Skip> getRepeats();
 }
